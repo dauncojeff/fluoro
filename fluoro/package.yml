@@ -3,3 +3,19 @@ matches:
     replace: "Interval xx-xx-2024: XXX presents to clinic today for a C7/T1 Cervical Interlaminar Epidural Steroid Injection under Fluoroscopy. To encourage strength and conditioning, at-home exercises were discussed with the patient. All patient questions were addressed and answered prior to procedure. Patient is hopeful that this procedure will improve range of motion and consequently better enable completion of activities of daily living. No other changes to patient’s pain at this time."
   - trigger: ".cei"
     replace: "Interval xx-xx-2024: XXX presents to clinic today for a C7/T1 Cervical Interlaminar Epidural Injection with Platelet-rich Plasma under Fluoroscopy. To encourage strength and conditioning, at-home exercises were discussed with the patient. All patient questions were addressed and answered prior to procedure. Patient is hopeful that this procedure will improve range of motion and consequently better enable completion of activities of daily living. No other changes to patient’s pain at this time."
+  - trigger: ".td"
+    replace: Today I administered
+  - trigger: ".tol"
+    replace: Patient tolerated the procedure well and without complication. Discharge instructions were given.
+  - trigger: ".lei"
+    replace: "Interval xx-xx-2024: XXX presents to clinic today for a L5/S1 Lumbar Interlaminar Epidural Steroid Injection under Fluoroscopy. To encourage strength and conditioning, at-home exercises were discussed with the patient. All patient questions were addressed and answered prior to procedure. Patient is hopeful that this procedure will improve range of motion and consequently better enable completion of activities of daily living. No other changes to patient’s pain at this time."
+  - trigger: ".lei"
+    replace: "Interval xx-xx-2024: XXX presents to clinic today for a L5/S1 Lumbar Interlaminar Epidural Injection with Platelet-rich Plasma under Fluoroscopy. To encourage strength and conditioning, at-home exercises were discussed with the patient. All patient questions were addressed and answered prior to procedure. Patient is hopeful that this procedure will improve range of motion and consequently better enable completion of activities of daily living. No other changes to patient’s pain at this time."
+  - trigger: ".cei"
+    replace: C7/T1 Cervical Interlaminar Epidural Steroid Injection under Fluoroscopy
+  - trigger: ".cei"
+    replace: C7/T1 Cervical Interlaminar Epidural Injection with Platelet-rich Plasma under Fluoroscopy
+  - trigger: ".lei"
+    replace: L5/S1 Lumbar Interlaminar Epidural Steroid Injection under Fluoroscopy
+  - trigger: ".lei"
+    replace: L5/S1 Lumbar Interlaminar Epidural Injection with Platelet-rich Plasma under Fluoroscopy
