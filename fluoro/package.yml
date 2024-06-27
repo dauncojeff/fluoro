@@ -28,10 +28,28 @@ matches:
   - trigger: "tele" 
     replace: "***New patient evaluation conducted via Telehealth- physical exam to be performed at next in-clinic visit***"
   - trigger: ".nkda"
-    replace: Allergies: Patient does not report any allergies or intolerances. 
+    replace: "Allergies: Patient does not report any allergies or intolerances." 
   - trigger: ".refpt"
     replace: I believe physical therapy is medically necessary due to patient's debilitating XXX pain. Patient is to go to sessions 1-2 times per week for 6 weeks. To teach several stretching and strengthening exercises. Referral was provided during today's visit.
   - trigger: ".refchiro"
     replace: I believe chiropractic therapy is medically necessary due to patient's debilitating XXX pain. Patient is to go to sessions 1-2 times per week for 6 weeks. To teach several stretching and strengthening exercises. Referral was provided during today's visit.
-
-
+  - trigger: ".nochang"
+    replace: No other changes to patient's pain at this time. 
+  - trigger: "jmj"
+    replace: Jeffrey Jew
+  - trigger: "thearpy"
+    replace: therapy
+  - trigger: ".prior"
+    replace: "Prior Interventional Injections: Nil"
+  - trigger: ".fup"
+    replace: presents to clinic today for a follow-up appointment
+  - trigger: "patinet"
+    replace: patient
+  - trigger: ".reqlei"
+    replace: "In order to restore levels of daily functioning, it is in my medical opinion that an L5/S1 Lumbar Interlaminar Epidural Steroid Injection under Fluoroscopy (at a cost of approximately $8,000.00 per injection) or an L5/S1 Lumbar Interlaminar Epidural Injection with Platelet-rich Plasma under Fluoroscopy (at a cost of approximately $11,500.00 per injection) is medically necessary in order to improve patient's condition. Patient complains of low back pain radiating down his/her lower extremities in a radicular fashion. Patient's pain is consistent with physical exam findings. Procedure also supported by lumbar MRI findings (dated XX-XX-20XX) demonstrating: XXX. Patient is hopeful that L5/S1 lumbar epidural injection will moderate their pain levels and restore prior levels of daily functioning. Patient has tried and failed several conservative modalities, including HEP, medications, physical therapy, chiropractic therapy, and NSAIDs with insufficient relief of their pain. Pain is affecting patient's quality of life and level of function. None of which have been successful in providing adequate relief of symptoms. Patient meets criteria for this injection. \n***Patient educated on both steroid and Platelet-rich Plasma and expresses full verbal understanding of these two options. At this time, patient prefers xxxx***"
+  - trigger: "prp"
+    replace: Platelet-rich Plasma
+  - trigger: ".refmri"
+    replace: I believe MRIs of the XXX (Without contrast) are medically necessary in order to rule out potential soft-tissue pathologies. Referral provided- reports to be reviewed at next visit.
+  - trigger: "jsm"
+    replace: Joseph Maldonado
