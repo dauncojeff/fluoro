@@ -20,7 +20,7 @@ matches:
   - trigger: ".lei"
     replace: L5/S1 Lumbar Interlaminar Epidural Injection with Platelet-rich Plasma under Fluoroscopy
   - trigger: ".img"
-    repleace: MRI reports of the xxx were reviewed during today's visit. All patient's questions were encouraged and answered.
+    replace: MRI reports of the xxx were reviewed during today's visit. All patient's questions were encouraged and answered.
   - trigger: ".chiro"
     replace: Patient is to continue chiropractic thearpy as directed by OSP (as of xxx).
   - trigger: ".thor"
