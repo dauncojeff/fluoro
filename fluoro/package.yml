@@ -22,8 +22,16 @@ matches:
   - trigger: ".img"
     replace: MRI reports of the xxx were reviewed during today's visit. All patient's questions were encouraged and answered.
   - trigger: ".chiro"
-    replace: Patient is to continue chiropractic thearpy as directed by OSP (as of xxx).
+    replace: Patient is to continue chiropractic therapy as directed by OSP (as of xxx).
   - trigger: ".thor"
     replace: "***Consider further evaluation of the Thoracic spine should pain not moderate with current therapies***"
   - trigger: "tele" 
     replace: "***New patient evaluation conducted via Telehealth- physical exam to be performed at next in-clinic visit***"
+  - trigger: ".nkda"
+    replace: Allergies: Patient does not report any allergies or intolerances. 
+  - trigger: ".refpt"
+    replace: I believe physical therapy is medically necessary due to patient's debilitating XXX pain. Patient is to go to sessions 1-2 times per week for 6 weeks. To teach several stretching and strengthening exercises. Referral was provided during today's visit.
+  - trigger: ".refchiro"
+    replace: I believe chiropractic therapy is medically necessary due to patient's debilitating XXX pain. Patient is to go to sessions 1-2 times per week for 6 weeks. To teach several stretching and strengthening exercises. Referral was provided during today's visit.
+
+
