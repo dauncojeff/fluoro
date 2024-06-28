@@ -25,7 +25,7 @@ matches:
     replace: Patient is to continue chiropractic therapy as directed by OSP (as of xxx).
   - trigger: ".thor"
     replace: "***Consider further evaluation of the Thoracic spine should pain not moderate with current therapies***"
-  - trigger: "tele" 
+  - trigger: ".tele" 
     replace: "***New patient evaluation conducted via Telehealth- physical exam to be performed at next in-clinic visit***"
   - trigger: ".nkda"
     replace: "Allergies: Patient does not report any allergies or intolerances." 
@@ -53,3 +53,15 @@ matches:
     replace: I believe MRIs of the XXX (Without contrast) are medically necessary in order to rule out potential soft-tissue pathologies. Referral provided- reports to be reviewed at next visit.
   - trigger: "jsm"
     replace: Joseph Maldonado
+  - trigger: ".pblf"
+    replace: "Interval xx-xx-2024: XXX presents to clinic today for a Bilateral L4-L5 and L5-S1 Lumbar Facet Injection with Platelet-rich Plasma under Fluoroscopy. To encourage strength and conditioning, at-home exercises were discussed with the patient. All patient questions were addressed and answered prior to procedure. Patient is hopeful that this procedure will improve range of motion and consequently better enable completion of activities of daily living. No other changes to patient’s pain at this time."
+  - trigger: ".pp"
+    replace: post-procedure
+  - trigger: ".rom"
+    replace: range of motion
+  - trigger: ".nmb"
+    replace: neck, mid-back, and low back pain. 
+  - trigger: ".reqcei"
+    replace: "In order to restore levels of daily functioning, I believe a C7/T1 Cervical Interlaminar Epidural Steroid Injection under Fluoroscopy (at a cost of approximately $8,000.00 per injection) or C7/T1 Cervical Interlaminar Epidural Injection with Platelet-rich Plasma (PRP) under Fluoroscopy (at a cost of approximately $11,500.00 per injection) is medically necessary. Patient complains of neck pain radiating down his/her upper extremities. Patient's pain is consistent with physical exam findings. Diagnosis supported by MRI of cervical spine (dated XX-XX-20XX) demonstrates: XXX. Patient has failed multiple modalities of conservative therapies including chiro, medication, home exercise, and NSAIDS. None of which have been successful in providing adequate relief of symptoms. Patient meets criteria for this injection. \n***Patient educated on both steroid and Platelet-rich Plasma and expresses full verbal understanding of these two options. At this time, patient prefers xxxx***"
+
+  
