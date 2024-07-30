@@ -107,7 +107,8 @@ matches:
     replace: "In view of patient’s debilitating XXX pain, I believe it is medically necessary for patient to consult with Dr. Shail Vyas (Orthopedist). Referral provided during today’s visit."
   - trigger: ".refspinesx"
     replace: "Due to patient's persistent XXX pain without relief of more conservative therapies, it is my medical opinion that this patient stands to benefit from a surgical consultation. Referral to a Spine Surgeon was given to patient today."
-
+  - trigger: ".cd"
+    replace: "Clayton Dinh"
 
 
     
