@@ -91,8 +91,6 @@ matches:
     replace: "TRIAL Ibuprofen 800mg oral tablet #90 Take 1 tab TID prn pain"
   - trigger: ".med"
     replace: "During today's visit, I have prescribed the following medications:"
-  - trigger: "ot"
-    replace: "to"
   - trigger: ".rob"
     replace: "TRIAL Robaxin 750mg oral tablet #60 Take 1 tab BID prn muscle spasms"
   - trigger: "4a1"
