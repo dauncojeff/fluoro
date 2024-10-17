@@ -15,7 +15,6 @@ matches:
     replace: "MRI reports of the XXX were reviewed during today's visit. All patient's questions were encouraged and answered."
   - trigger: ".bsij"
     replace: Bilateral Sacroiliac Joint Injection under Fluoroscopy
-    replace: "Imaging: MRI reports of the xxx were reviewed during today's visit. All patient's questions were encouraged and answered."
   - trigger: ".chiro"
     replace: Patient is to continue chiropractic therapy as directed by OSP (as of xxx).
   - trigger: ".thor"
