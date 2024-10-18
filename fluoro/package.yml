@@ -12,7 +12,7 @@ matches:
   - trigger: ".lepi"
     replace: L5/S1 Lumbar Interlaminar Epidural Injection with Platelet-rich Plasma under Fluoroscopy
   - trigger: ".img"
-    replace: "MRI reports of the XXX were reviewed during today's visit. All patient's questions were encouraged and answered."
+    replace: "Imaging: MRI reports of the XXX were reviewed during today's visit. All patient's questions were encouraged and answered."
   - trigger: ".bsij"
     replace: Bilateral Sacroiliac Joint Injection under Fluoroscopy
   - trigger: ".chiro"
