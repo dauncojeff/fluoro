@@ -101,6 +101,8 @@ matches:
     replace: "A NEW urine sample was taken today. Results will be reviewed at next visit."
   - trigger: ".pn"
     replace: "Pawrsa Nikzad"
+  - trigger: ".nope"
+    replace: "************** Patient is a candidate for this injection as long as it is consistent with physical exam findings.*************"
 
     
 
