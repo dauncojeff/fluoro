@@ -175,7 +175,7 @@ matches:
     replace: "Patrick Acholonu"
   - trigger: ".tk"
     replace: "Tariq Khoury"
-  - trigger: ".nm"
+  - trigger: ".noah"
     replace: "Noah Medel"
   - trigger: ".int" 
     replace: "Interval XX-XX-XXXX:"
