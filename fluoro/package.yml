@@ -112,7 +112,7 @@ matches:
   - trigger: ".disccons"
     replace: "As such, conservative therapies were discussed to help his/her manage pain."
   - trigger: ".at-home"
-    replace: "Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to his/her moderate pain."
+    replace: "Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his/her pain."
   - trigger: ".bigm"
     replace: "Mustafa Samih"
   - trigger: ".bj"
