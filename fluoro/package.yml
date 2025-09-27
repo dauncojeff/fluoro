@@ -186,7 +186,7 @@ matches:
   - trigger: ".lidocream"
     replace: "Rx lidocaine 4% topical cream #1 AAA (2-3 grams) 3-4x day prn pain"
   - trigger: ".lidopatch"
-    replace: "Rx lidocaine 4% topical patch #30 Apply 1 patch AAA for 12 hours on then 12 hours off"
+    replace: "Rx lidocaine 4% topical patch #30 Apply 1 patch AAA for 12 hours on then 12 hours off prn pain"
 
 
     
