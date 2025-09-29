@@ -45,12 +45,10 @@ matches:
     replace: I believe MRIs of the XXX (Without contrast) are medically necessary in order to rule out potential soft-tissue pathologies. Referral provided- reports to be reviewed at next visit.
   - trigger: "jsm"
     replace: Joseph Maldonado
-  - trigger: ".pp"
-    replace: post-procedure
   - trigger: ".rom"
     replace: range of motion
   - trigger: ".nmb"
-    replace: neck, mid-back, and low back pain. 
+    replace: neck, mid-back, and low back 
   - trigger: ".hx"
     replace: "Past Medical History\nPatient does not report any prior medical history.\nFamily History\nPatient does not report any prior family history of disease or pathologies.\nPast Surgical History\nPatient does not report any prior surgical history.\n\nSocial History:\nIllicit Drugs: Denies\nRx Opioid abuse: Denies"
   - trigger: ".toenc"
@@ -147,7 +145,7 @@ matches:
     replace: "XXX presents today for a tele-health follow-up appointment. Patient partakes in XXX therapy ( x/week), citing XXX relief. However, patient reports that his / her XXX pain continues to be present and  XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. No other changes to patient's pain at this time."
   - trigger: ".diagnostic review"
     replace: "XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient partakes in XXX therapy ( x/week), citing XXX relief. However, patient reports that ( his / her ) XXX pain continues to be present and XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. A significant portion of today's visit was spent reviewing patient's XXX MRI reports. No other changes to patient's pain at this time."
-  - trigger: ".post-procedure"
+  - trigger: ".pp"
     replace: "XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a XXX on XX-XX-XXXX, citing XXX relief. Patient continues to partake in XXX therapy ( x/week), citing XXX relief. However, patient reports that ( his / her ) XXX pain continues to be present and XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. No other changes to patient's pain at this time."
   - trigger: ".tepi"
     replace: "T11/T12 Thoracic Interlaminar Epidural Injection with Platelet-rich Plasma under Fluoroscopy"
@@ -195,16 +193,10 @@ matches:
     replace: "XXX continues to help patient manage their daily levels of pain and improve their overall quality of life. Patient is meeting the 4 A’s of opioid therapy and does not report any adverse side effects. No other changes to patient’s pain at this time."
     trigger: ".discmed"
     replace: "As such, medications were discussed to help patient manage his/her pain."
-    trigger: ".sleep1"
-    replace: "The patient reports significant difficulty sleeping, often lying awake for hours each night due to their ongoing pain, which they describes as both physically exhausting and emotionally draining."
-    trigger: ".sleep2"
-    replace: "The patient reports profound difficulty sleeping, stating that the persistent pain prevents him/her from finding any position of comfort, leaving him/her exhausted and increasingly distressed"
-    trigger: ".sleep3"
-    replace: "The patient is unable to achieve restful sleep due to constant, unremitting pain. He/She expresses growing frustration and emotional fatigue as a result"
-    trigger: ".exercise1"
-    replace: "The patient reports significant difficulty engaging in physical activity, stating that even minimal exertion is now accompanied by pain and fatigue, severely limiting his ability to function and impacting his/her overall quality of life."
-    trigger: ".exercise2"
-    replace: "The patient expresses increasing difficulty with physical activity, reporting that pain and stiffness now interfere with even basic movements, and that this loss of mobility has had a profound emotional impact."
+    trigger: ".sleep"
+    replace: "The patient states that pain interferes with restful sleep and reports increasing fatigue and frustration related to ongoing sleep disturbance."
+    trigger: ".exercise"
+    replace: "The patient reports ongoing difficulty with physical activity, noting that even mild exertion results in pain and fatigue. This has limited their functional capacity and affected daily routines."
     trigger: ".work"
     replace: "The patient reports increasing difficulty performing work-related duties due to ongoing pain and physical limitations, which have begun to interfere with his/her ability to meet daily job demands."
     trigger: ".refill"
@@ -215,6 +207,11 @@ matches:
     replace: "In view of unremarkable MRI of XXX, a referral for an EMG/NCS study of xxx was given to patient today to assess for possible neuropathy."
     trigger: ".full"
     replace: "full range of motion"
+    trigger: "insurancepp"
+    replace: "Patient presents today for a post-procedure follow-up appointment. Patient received a XXX on XXX-XXX-XXXX. Patient reports that the injection provided him/her with XXX relief, noting that his/her pain improved by approximately XXX."
+    trigger: ".nl"
+    replace: "neck and low back"
+    
     
 
 
