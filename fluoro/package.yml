@@ -14,7 +14,7 @@ matches:
   - trigger: ".img"
     replace: "Imaging: MRI reports of the XXX were reviewed during today's visit. All patient's questions were encouraged and answered."
   - trigger: ".bsij"
-    replace: Bilateral Sacroiliac Joint Injection under Fluoroscopy
+    replace: Bilateral Sacroiliac Joint ***Steroid Injection ***with Platelet-Rich Plasma under Fluoroscopy
   - trigger: ".chiro"
     replace: Patient is to continue chiropractic therapy as directed by OSP (as of xxx).
   - trigger: ".thor"
@@ -74,11 +74,11 @@ matches:
   - trigger: ".tgaba300" 
     replace: "Rx Gabapentin 300mg oral capsule #96 Take 1 tab QD x7 days, Take 1 tab BID x7 days, Take 1 tab TID x7 days, then take 2 tabs TID thereafter"
   - trigger: ".ibu"
-    replace: "Rx Ibuprofen 800mg oral tablet #90 Take 1 tab TID prn pain"
+    replace: "Rx Ibuprofen 800mg oral tablet #45 Take 1 tab BID prn pain"
   - trigger: ".med"
     replace: "During today's visit, I have prescribed the following medications:"
   - trigger: ".rob"
-    replace: "Rx Robaxin 500mg oral tablet #60 Take 1 tab BID prn muscle spasms"
+    replace: "Rx Methocarbamol 500mg oral tablet #45 Take 1 tab BID prn muscle spasms"
   - trigger: "4a1"
     replace: "XXX continues to help patient control his/her daily pain levels and encourage a healthy and active lifestyle. Patient is meeting the 4 A’s of opioid therapy and does not report any adverse side effects. No other changes to patient’s pain at this time."
   - trigger: "4a2"
@@ -92,9 +92,9 @@ matches:
   - trigger: ".cd"
     replace: "Clayton Dinh"
   - trigger: ".reqoscfac"
-    replace: "In view of patient’s neck pain, I believe a Left/Right C4-5, C5-C6, and C6-7 Cervical Facet Steroid Injection under Fluoroscopy (at a cost of approximately $7,000 to $12,000 professional; If patient prefers sedation, it is recommended the procedure be performed in an out-patient surgery center because of availability of life-saving equipment; an additional cost of approximately $12,000 to $16,000 will be added which may include anesthesia costs) or Left/Right C4-5, C5-C6, and C6-7 Cervical Facet Injection with Platelet-rich Plasma under Fluoroscopy (at a cost of approximately $9,000 to $14,000 professional; If patient prefers sedation, it is recommended the procedure be performed in an out-patient surgery center because of availability of life-saving equipment; an additional cost of approximately $13,000 to $17,000 will be added which may include anesthesia costs) is medically necessary. Diagnosis is supported by objective physical exam findings and peer-reviewed research findings (Cohen et al conducted studies on lumbalgia determining factors predictive of RFA. No significant correlation was found between successful treatment of the facet joint and MRI abnormalities such as facet joint pathology. Cohen, S. P., Hurley, R. W., Christo, P. J. et al Clinical predictors of success and failure for lumbar facet radiofrequency denervation. The Clinical journal of pain 2007; 23:45-52). Research findings indicate successful treatment of the facet joint  despite a lack of diagnostic findings. Patient has tried and failed several conservative modalities including XXX with insufficient relief of pain. Pain is affecting patient's quality of life and level of function. Patient is a candidate for this injection."
+    replace: "In view of patient’s neck pain, I believe a Left/Right C4-5, C5-C6, and C6-7 Cervical Facet Steroid Injection under Fluoroscopy (at a cost of approximately $7,000 to $12,000 professional; If patient prefers sedation, it is recommended the procedure be performed in an out-patient surgery center because of availability of life-saving equipment; an additional cost of approximately $12,000 to $16,000 will be added which may include anesthesia costs) or Left/Right C4-5, C5-C6, and C6-7 Cervical Facet Injection with Platelet-rich Plasma under Fluoroscopy (at a cost of approximately $9,000 to $14,000 professional; If patient prefers sedation, it is recommended the procedure be performed in an out-patient surgery center because of availability of life-saving equipment; an additional cost of approximately $13,000 to $17,000 will be added which may include anesthesia costs) is medically necessary. Diagnosis is supported by objective physical exam findings and peer-reviewed research findings (Cohen et al conducted studies on lumbalgia determining factors predictive of RFA. No significant correlation was found between successful treatment of the facet joint and MRI abnormalities such as facet joint pathology. Cohen, S. P., Hurley, R. W., Christo, P. J. et al Clinical predictors of success and failure for lumbar facet radiofrequency denervation. The Clinical journal of pain 2007; 23:45-52). Research findings indicate successful treatment of the facet joint  despite a lack of diagnostic findings. Patient has tried and failed several conservative modalities including XXX with insufficient relief of pain. Pain is affecting patient's quality of life and level of function. Patient is a candidate for this injection. \n***Patient educated on both steroid and Platelet-rich Plasma and expresses full verbal understanding of these two options. At this time, patient prefers xxxx***"
   - trigger: ".reqoslfac"
-    replace: "In view of patient’s low back pain, I believe a Left/Right L3-L4, L4-L5, and L5-S1 Lumbar Facet Steroid Injection under Fluoroscopy (at a cost of approximately $7,000 to $12,000 professional; If patient prefers sedation, it is recommended the procedure be performed in an out-patient surgery center because of availability of life-saving equipment; an additional cost of approximately $12,000 to $16,000 will be added which may include anesthesia costs) or Left/Right L3-L4, L4-L5, and L5-S1 Lumbar Facet Injection with Platelet-rich Plasma under Fluoroscopy (at a cost of approximately $9,000 to $14,000 professional; If patient prefers sedation, it is recommended the procedure be performed in an out-patient surgery center because of availability of life-saving equipment; an additional cost of approximately $13,000 to $17,000 will be added which may include anesthesia costs) is medically necessary. Diagnosis is supported by objective physical exam findings and peer-reviewed research findings (Cohen et al conducted studies on lumbalgia determining factors predictive of RFA. No significant correlation was found between successful treatment of the facet joint and MRI abnormalities such as facet joint pathology. Cohen, S. P., Hurley, R. W., Christo, P. J. et al Clinical predictors of success and failure for lumbar facet radiofrequency denervation. The Clinical journal of pain 2007; 23:45-52). Research findings indicate successful treatment of the facet joint  despite a lack of diagnostic findings. Patient has tried and failed several conservative modalities including XXX with insufficient relief of pain. Pain is affecting patient's quality of life and level of function. Patient is a candidate for this injection."
+    replace: "In view of patient’s low back pain, I believe a Left/Right L3-L4, L4-L5, and L5-S1 Lumbar Facet Steroid Injection under Fluoroscopy (at a cost of approximately $7,000 to $12,000 professional; If patient prefers sedation, it is recommended the procedure be performed in an out-patient surgery center because of availability of life-saving equipment; an additional cost of approximately $12,000 to $16,000 will be added which may include anesthesia costs) or Left/Right L3-L4, L4-L5, and L5-S1 Lumbar Facet Injection with Platelet-rich Plasma under Fluoroscopy (at a cost of approximately $9,000 to $14,000 professional; If patient prefers sedation, it is recommended the procedure be performed in an out-patient surgery center because of availability of life-saving equipment; an additional cost of approximately $13,000 to $17,000 will be added which may include anesthesia costs) is medically necessary. Diagnosis is supported by objective physical exam findings and peer-reviewed research findings (Cohen et al conducted studies on lumbalgia determining factors predictive of RFA. No significant correlation was found between successful treatment of the facet joint and MRI abnormalities such as facet joint pathology. Cohen, S. P., Hurley, R. W., Christo, P. J. et al Clinical predictors of success and failure for lumbar facet radiofrequency denervation. The Clinical journal of pain 2007; 23:45-52). Research findings indicate successful treatment of the facet joint  despite a lack of diagnostic findings. Patient has tried and failed several conservative modalities including XXX with insufficient relief of pain. Pain is affecting patient's quality of life and level of function. Patient is a candidate for this injection. \n***Patient educated on both steroid and Platelet-rich Plasma and expresses full verbal understanding of these two options. At this time, patient prefers xxxx***"
   - trigger: ".uds"
     replace: "A NEW urine sample was taken today. Results will be reviewed at next visit."
   - trigger: ".pn"
@@ -211,7 +211,20 @@ matches:
     replace: "Patient presents today for a post-procedure follow-up appointment. Patient received a XXX on XXX-XXX-XXXX. Patient reports that the injection provided him/her with XXX relief, noting that his/her pain improved by approximately XXX."
   - trigger: ".nl"
     replace: "neck and low back"
+  - trigger: ".cl"
+    replace: "Cervical and Lumbar Spine"
+  - trigger: ".nil"
+    replace: "Medications: Nil"
+  - trigger: ".worsening"
+    replace: " Patient reports that their condition has worsened and now characterizes their XXX pain as traveling to their XXX, citing XXX"
+  - trigger: ".sub"
+    replace: "subsequent"
+  - trigger: ".gtor"
+    replace: "Injection - Ketorolac (Toradol) \nRisks and benefits of procedure and alternatives discussed, and patient verbalized understanding and consent. Drug: ketorolac tromethamine. Dose: 60 mg, Expiration date: 02/2027, Manufacturer lot #: G2020075. NDC N: 72266-119-01. \nRoute: Intramuscular. \nSite: left dorsogluteal muscle. Injection administered by staff. Administration by EM. Used 25 gauge needle. \nPatient Position: lying. \nPatient was observed for 5 minutes. Patient tolerated procedure well, Patient had a normal neurovascular exam post procedure. Patient left room without difficulty. \nOrdered by Trishaben Patel M.D."
+  - trigger: ".7tor"
+    replace: "Injection - Ketorolac (Toradol) \nRisks and benefits of procedure and alternatives discussed, and patient verbalized understanding and consent. Drug: ketorolac tromethamine. Dose: 60 mg, Expiration date: 10/2026, Manufacturer lot #: 7230474. NDC N: 62332-601-25. \nRoute: Intramuscular. \nSite: left dorsogluteal muscle. Injection administered by staff. Administration by EM. Used 25 gauge needle. \nPatient Position: lying. \nPatient was observed for 5 minutes. Patient tolerated procedure well, Patient had a normal neurovascular exam post procedure. Patient left room without difficulty. \nOrdered by Trishaben Patel M.D."
     
+  
     
 
 
