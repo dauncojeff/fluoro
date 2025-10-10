@@ -223,7 +223,7 @@ matches:
     replace: "Injection - Ketorolac (Toradol) \nRisks and benefits of procedure and alternatives discussed, and patient verbalized understanding and consent. Drug: ketorolac tromethamine. Dose: 60 mg, Expiration date: 02/2027, Manufacturer lot #: G2020075. NDC N: 72266-119-01. \nRoute: Intramuscular. \nSite: left dorsogluteal muscle. Injection administered by staff. Administration by EM. Used 25 gauge needle. \nPatient Position: lying. \nPatient was observed for 5 minutes. Patient tolerated procedure well, Patient had a normal neurovascular exam post procedure. Patient left room without difficulty. \nOrdered by Trishaben Patel M.D."
   - trigger: ".7tor"
     replace: "Injection - Ketorolac (Toradol) \nRisks and benefits of procedure and alternatives discussed, and patient verbalized understanding and consent. Drug: ketorolac tromethamine. Dose: 60 mg, Expiration date: 10/2026, Manufacturer lot #: 7230474. NDC N: 62332-601-25. \nRoute: Intramuscular. \nSite: left dorsogluteal muscle. Injection administered by staff. Administration by EM. Used 25 gauge needle. \nPatient Position: lying. \nPatient was observed for 5 minutes. Patient tolerated procedure well, Patient had a normal neurovascular exam post procedure. Patient left room without difficulty. \nOrdered by Trishaben Patel M.D."
-  - trigger: ".xx"
+  - trigger: ".x"
     replace: "{{output}}"
     vars:
       - name: output
