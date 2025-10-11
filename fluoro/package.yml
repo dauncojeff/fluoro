@@ -16,7 +16,7 @@ matches:
   - trigger: ".bsij"
     replace: Bilateral Sacroiliac Joint ***Steroid Injection ***with Platelet-Rich Plasma under Fluoroscopy
   - trigger: ".chiro"
-    replace: Patient is to continue chiropractic therapy as directed by OSP (as of {{output}}).
+    replace: "Patient is to continue chiropractic therapy as directed by OSP (as of {{output}})."
         vars:
       - name: output
         type: shell
