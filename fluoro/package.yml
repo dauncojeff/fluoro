@@ -16,7 +16,12 @@ matches:
   - trigger: ".bsij"
     replace: Bilateral Sacroiliac Joint ***Steroid Injection ***with Platelet-Rich Plasma under Fluoroscopy
   - trigger: ".chiro"
-    replace: Patient is to continue chiropractic therapy as directed by OSP (as of xxx).
+    replace: Patient is to continue chiropractic therapy as directed by OSP (as of {{output}}).
+        vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
   - trigger: ".thor"
     replace: "***Consider further evaluation of the Thoracic spine should pain not moderate with current therapies***"
   - trigger: ".tele" 
@@ -176,7 +181,12 @@ matches:
   - trigger: ".noah"
     replace: "Noah Medel"
   - trigger: ".int" 
-    replace: "Interval XX-XX-XXXX:"
+    replace: "Interval {{output}}:"
+        vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
   - trigger: ".ass"
     replace: "Assoc: no bowel or bladder incontinence, no saddle anesthesia, no focal weakness"
   - trigger: ".lidooint"
