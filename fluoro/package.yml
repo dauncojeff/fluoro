@@ -182,7 +182,7 @@ matches:
     replace: "Noah Medel"
   - trigger: ".int" 
     replace: "Interval {{output}}:"
-        vars:
+    vars:
       - name: output
         type: shell
         params:
