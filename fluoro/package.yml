@@ -229,7 +229,7 @@ matches:
       - name: output
         type: shell
         params:
-          cmd: "date +'%d-%m-%Y'"
+          cmd: "date +'%m-%d-%Y'"
       
   
     
