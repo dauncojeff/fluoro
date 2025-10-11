@@ -251,6 +251,8 @@ matches:
         type: shell
         params:
           cmd: "date +'%m-%d-%Y'"
+  - trigger: ".edd"
+    replace: "Patient's pain has not responded to current therapies. Patient's condition requires extensive monitoring."
           
 
       
