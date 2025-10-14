@@ -176,9 +176,9 @@ matches:
     replace: "Adrian Reyna"
   - trigger: ".rn"
     replace: "Patrick Acholonu"
-  - trigger: ".tk"
+  - trigger: ".baba"
     replace: "Tariq Khoury"
-  - trigger: ".noah"
+  - trigger: ".apa"
     replace: "Noah Medel"
   - trigger: ".int" 
     replace: "Interval {{output}}:"
@@ -253,6 +253,8 @@ matches:
           cmd: "date +'%m-%d-%Y'"
   - trigger: ".edd"
     replace: "Patient's pain has not responded to current therapies. Patient's condition requires extensive monitoring."
+  - trigger: "queen"
+    replace: "Shaniece Reniece Hampton"
           
 
       
