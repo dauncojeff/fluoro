@@ -255,6 +255,8 @@ matches:
     replace: "Patient's pain has not responded to current therapies. Patient's condition requires extensive monitoring."
   - trigger: "queen"
     replace: "Shaniece Reniece Hampton"
+  - trigger: ".hope"
+    replace: "Patient is hopeful that his/her pain is moderated with current therapies."
           
 
       
