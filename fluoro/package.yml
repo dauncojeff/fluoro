@@ -264,16 +264,14 @@ matches:
         type: shell
         params:
           cmd: "date +'%m-%d-%Y'"
-   - trigger: ".yx"
-     replace: "{{output}}"
-     vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "date -d 'yesterday' +'%m-%d-%Y'"
-  
+  - trigger: ".x"
+  replace: "{{output}}"
+  vars:
+    - name: output
+      type: shell
+      params:
+        cmd: "date -d 'yesterday' +'%m-%d-%Y'"
 
-      
   
     
 
