@@ -270,7 +270,8 @@ matches:
       - name: output
         type: shell
         params:
-          cmd: "date -d 'yesterday' +'%m-%d-%Y'"
+          cmd: "date -v-1d +'%m-%d-%Y'"
+
 
   
     
