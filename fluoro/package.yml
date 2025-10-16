@@ -259,7 +259,7 @@ matches:
     replace: "Patient is hopeful that his/her pain is moderated with current therapies."
   - trigger: ".cc"
     replace: "Patient completed chiropractic therapy (reported on {{output}})
-    vars:
+  vars:
       - name: output
         type: shell
         params:
