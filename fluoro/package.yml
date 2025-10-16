@@ -257,7 +257,14 @@ matches:
     replace: "Shaniece Reniece Hampton"
   - trigger: ".hope"
     replace: "Patient is hopeful that his/her pain is moderated with current therapies."
-          
+  - trigger: ".cc"
+    replace: "Patient completed chiropractic therapy (reported on {{output}})
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+  
 
       
   
