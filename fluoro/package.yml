@@ -285,7 +285,7 @@ matches:
   - trigger: ".cons"
     replace: "rest, ice/heat, chiropractic therapy, and home exercise"
   - trigger: ".phys"
-  - replace: "Patient is to continue chiropractic therapy as directed by OSP (as of {{output}})."
+    replace: "Patient is to continue physical therapy as directed by OSP (as of {{output}})."
     vars:
       - name: output
         type: shell
