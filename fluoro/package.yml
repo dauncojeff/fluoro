@@ -271,6 +271,13 @@ matches:
         type: shell
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
+  - trigger: ".yint" 
+    replace: "Interval {{output}}:"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
 
   
