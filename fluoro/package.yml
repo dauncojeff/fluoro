@@ -267,10 +267,10 @@ matches:
    - trigger: ".yx"
      replace: "{{output}}"
      vars:
-       - name: output
-         type: shell
-         params:
-           cmd: "date -d 'yesterday' +'%m-%d-%Y'"
+    - name: output
+      type: shell
+      params:
+        cmd: "date -d 'yesterday' +'%m-%d-%Y'"
   
 
       
