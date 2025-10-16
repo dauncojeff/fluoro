@@ -260,10 +260,10 @@ matches:
   - trigger: ".cc"
     replace: "Patient completed chiropractic therapy (reported on {{output}})
     vars:
-     - name: output
-       type: shell
-       params:
-         cmd: "date +'%m-%d-%Y'"
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
   
 
       
