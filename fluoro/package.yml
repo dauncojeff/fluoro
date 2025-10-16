@@ -264,7 +264,7 @@ matches:
         type: shell
         params:
           cmd: "date +'%m-%d-%Y'"
-  - trigger: ".x"
+  - trigger: ".yx"
   replace: "{{output}}"
   vars:
     - name: output
