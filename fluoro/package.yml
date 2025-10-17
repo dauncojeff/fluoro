@@ -291,6 +291,8 @@ matches:
         type: shell
         params:
           cmd: "date +'%m-%d-%Y'"
+  - trigger: ".glutes"
+    replace: "traveling to his/her XXX glutes in a radicular fashion"
     
 
 
