@@ -81,7 +81,7 @@ matches:
   - trigger: ".ibu"
     replace: "Rx Ibuprofen 800mg oral tablet #45 Take 1 tab BID prn pain"
   - trigger: ".med"
-    replace: "2)Medications\nDuring today's visit, I have prescribed the following medications:"
+    replace: "2) Medications\nDuring today's visit, I have prescribed the following medications:"
   - trigger: ".rob"
     replace: "Rx Methocarbamol 500mg oral tablet #45 Take 1 tab BID prn muscle spasms"
   - trigger: "4a1"
@@ -293,7 +293,10 @@ matches:
           cmd: "date +'%m-%d-%Y'"
   - trigger: ".glutes"
     replace: "traveling to his/her XXX glutes in a radicular fashion"
-    
+  - trigger: ".cs"
+    replace: "Cervical Spine"
+  - trigger: ".ls"
+    replace: "Lumbar Spine"
 
 
   
