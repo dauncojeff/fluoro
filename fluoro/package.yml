@@ -51,7 +51,7 @@ matches:
   - trigger: "jsm"
     replace: Joseph Maldonado
   - trigger: ".rom"
-    replace: range of motion
+    replace: overall range of motion
   - trigger: ".nmb"
     replace: neck, mid-back, and low back 
   - trigger: ".hx"
@@ -81,7 +81,7 @@ matches:
   - trigger: ".ibu"
     replace: "Rx Ibuprofen 800mg oral tablet #45 Take 1 tab BID prn pain"
   - trigger: ".med"
-    replace: "During today's visit, I have prescribed the following medications:"
+    replace: "2)Medications\nDuring today's visit, I have prescribed the following medications:"
   - trigger: ".rob"
     replace: "Rx Methocarbamol 500mg oral tablet #45 Take 1 tab BID prn muscle spasms"
   - trigger: "4a1"
