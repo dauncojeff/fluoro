@@ -307,7 +307,9 @@ matches:
       ***If the patient benefits significantly during the stimulator trial period of approximately 5-7 days, the patient is a candidate for a permanent spinal cord stimulator implant surgery in order to provide them with long-term relief of their pain through neuromodulation. The cost of an SCS implant including professional fees, facility fees, the cost of the stimulator implanted device, and anesthesia fees is approximately $135,000.00 to $145,000.00.
 
       -In order to obtain surgical clearance for a Lumbar Spinal Cord Stimulator Implant, I believe a lab order for Complete Blood Count, Prothrombin time, Partial thromboplastin time, International normalized ratio, Urinalysis, and HCG tests is medically necessary. Order provided-results to be reviewed.
-
+  - trigger: ".js"
+    replace: "Jiwon Seo"
+    
 
   
     
