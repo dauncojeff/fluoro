@@ -313,6 +313,8 @@ matches:
     replace: "Patient denies memory loss, dizziness, nausea, and headaches."
   - trigger: ".sp"
     replace: "Status-post"
+  - trigger: ".head"
+    replace: "Patient denies memory loss, dizziness, and nausea, but reports experiencing headaches."
   
     
 
