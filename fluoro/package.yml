@@ -309,6 +309,11 @@ matches:
       -In order to obtain surgical clearance for a Lumbar Spinal Cord Stimulator Implant, I believe a lab order for Complete Blood Count, Prothrombin time, Partial thromboplastin time, International normalized ratio, Urinalysis, and HCG tests is medically necessary. Order provided-results to be reviewed.
   - trigger: ".js"
     replace: "Jiwon Seo"
+  - trigger: ".neuro"
+    replace: "Patient denies memory loss, dizziness, nausea, and headaches."
+  - trigger: ".sp"
+    replace: "Status-post"
+  
     
 
   
