@@ -315,6 +315,42 @@ matches:
     replace: "Status-post"
   - trigger: ".head"
     replace: "Patient denies memory loss, dizziness, and nausea, but reports experiencing headaches."
+  - trigger: ".prcepi"
+    replace: |
+      FLUOROSCOPY GUIDED EPIDURAL INJECTION PROCEDURE REPORT
+Patient was consented and understands the risks and benefits. Specific risks include failure to relieve pain, increased pain, bleeding/infection, nerve damage
+
+LOCATION: C7/T1
+
+SKIN PREP: chlora prep
+
+POSITION: prone
+
+SOLUTION: Leukocyte-Poor Autologous Platelet-rich plasma
+ 
+Pre-operative diagnosis: Cervicalgia, cervical radiculopathy
+ 
+Post-operative diagnosis: Cervicalgia, cervical radiculopathy
+ 
+Procedure: Cervical epidural Injection with Platelet-rich Plasma
+Informed consent obtained after explaining the procedure and potential complications including local discomfort, infection, headache, temporary or permanent weakness and/or numbness of one or both arms or legs, temporary or permanent quadriplegia, heart attack and stroke. All questions were answered. Platelet-rich plasma (PRP) was harvested from the patient and centrifuged at 11000 G's for ten minutes using Genesis Biologics PRP kit. 
+ 
+Patient was taken to exam room and placed in prone position.
+Time out was performed.
+Patients Cervical area was prepped and draped in a sterile manner.
+ 
+Using fluoroscopic guidance the skin and soft tissue overlying the C7-T1 area was anesthetized using local injection with 1% lidocaine.  Then under fluoroscopy using AP, contralateral oblique and Oblique views a 17 G 3.5 inch Touhy needle was advanced to the posterior aspect of the T1 lamina. The needle was redirected more cephalad and advanced to engage the ligamentum flavum.
+ 
+Loss of resistance was achieved.
+Omnipaque injection revealed good epidural spread.
+Then the harvested platelet-rich plasma was injected. 
+ 
+Estimated Blood Loss: None
+Specimens: None
+ 
+Patient returned to post op area with no immediate complications.
+ 
+OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Discharge instructions were given.
   
     
 
