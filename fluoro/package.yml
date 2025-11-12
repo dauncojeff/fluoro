@@ -315,6 +315,8 @@ matches:
     replace: "Status-post"
   - trigger: ".head"
     replace: "Patient denies memory loss, dizziness, and nausea, but reports experiencing headaches."
+  - trigger: ".ts"
+    replace: "Thoracic Spine"
   
     
 
