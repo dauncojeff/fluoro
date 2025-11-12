@@ -319,7 +319,10 @@ matches:
     replace: "Thoracic Spine"
   - trigger: ".ctl"
     replace: "Cervical, Thoracic, and Lumbar Spine"
-  
+  - trigger: ".reqhip"
+    replace: "-In view of patient's debilitating right hip pain, I believe a Right Hip Intra-articular Steroid Injection under Fluoroscopy (at a cost of approximately $5,800 per injection) or Right Hip Intra-articular Injection with Platelet-rich Plasma under Fluoroscopy (at a cost of approximately $7,300 per injection) is medically necessary in order to improve patient's condition. Procedure supported by physical examination. Procedure also supported by right hip MRI findings (dated XX-XX-202X) demonstrating: Patient has tried and failed several conservative modalities including muscle relaxants, NSAIDs, rest, ice/heat, chiropractic therapy, and home exercise with insufficient relief of their pain. Pain is affecting patient's quality of life and level of function.  Patient is a candidate for this injection.\n ***Patient educated on both steroid and Platelet-rich Plasma and expresses full verbal understanding of these two options. At this time, patient prefers xxxx***"
+    
+
     
 
   
