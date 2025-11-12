@@ -317,6 +317,8 @@ matches:
     replace: "Patient denies memory loss, dizziness, and nausea, but reports experiencing headaches."
   - trigger: ".ts"
     replace: "Thoracic Spine"
+  - trigger: ".ctl"
+    replace: "Cervical, Thoracic, and Lumbar Spine"
   
     
 
