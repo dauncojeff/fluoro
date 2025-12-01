@@ -327,7 +327,13 @@ matches:
     replace: "PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam were/was administered orally to patient 30 minutes prior to procedure. Vitals signs were stable and continuously monitored."
   - trigger: ".postxan"
     replace: "OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Patient's vitals were stable and continuously monitored for 30 minutes post-procedure. Patient was then discharged after confirmation of a driver present for patient's transportation."
-    
+  - trigger: ".yfu" 
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient partakes in XXX therapy ( x/week), citing some relief. However, patient reports that his / her XXX pain continues to be present and  XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
 
     
