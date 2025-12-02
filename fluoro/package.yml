@@ -400,6 +400,17 @@ matches:
       Assoc: no bowel or bladder incontinence, no saddle anesthesia, no focal weakness
   - trigger: "extremitites"
     replace: "extremities"
+  - trigger: ".female"
+    replace: |
+      Patient is seen here today for a New Patient Evaluation.
+
+      is a -year-old female who presents with neck, mid-back, and low back pain. Patient describes her neck pain as traveling to her XXX in a radicular fashion, noting that the pain limits her overall range of motion. Patient denies XXX, but reports experiencing XXX. In addition, patient describes her mid-back pain as traveling to her ribs with some radiation, citing that the pain interferes with her daily functioning. To continue, patient characterizes her low back pain as traveling to her XXX in radicular fashion, stating that the pain affects her ability to perform activities of daily living. Patient reports XXX. Patient states that all her pain started due to a Motor Vehicle Accident (MVA) on XXX. Following the accident, patient presented to XXX where she XXX. Patient received MRIs of her XXX to evaluate her condition. Moreover, patient partXXX in XXX therapy, citing some relief. Additionally patient reports taking XXX to help manage her pain.The patient has tried opioid medications, anti-inflammatories, anti-depressants, muscle relaxants, injections, surgery, NSAIDs, rest, ice/heat, chiropractic therapy, and home exercise. These therapies have not provided significant relief of symptoms. Patient's pain is affecting her quality of life, level of function, as well as basic activities of daily living
+
+      Goal for today's visit: Evaluate extent of pain levels and discuss treatment options to restore prior levels of functioning and quality of life.
+
+      Pt's paperwork includes: Available images were reviewed with patient today. Impressions can be found under "Imaging" section. 
+
+      Assoc: no bowel or bladder incontinence, no saddle anesthesia, no focal weakness
 
    
 
