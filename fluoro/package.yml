@@ -34,7 +34,7 @@ matches:
     replace: -I believe chiropractic therapy is medically necessary due to patient's debilitating XXX pain. Patient is to go to sessions 1-2 times per week for 6 weeks. To teach several stretching and strengthening exercises. Referral was provided during today's visit.
   - trigger: ".nochang"
     replace: No other changes to patient's pain at this time. 
-  - trigger: "jmj"
+  - trigger: "jew"
     replace: Jeffrey Jew
   - trigger: "thearpy"
     replace: therapy
