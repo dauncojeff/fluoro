@@ -662,7 +662,7 @@ matches:
       Patient returned to post op area with no immediate complications.
  
       OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Patient's vitals were stable and continuously monitored for 30 minutes post-procedure. Patient was then discharged after confirmation of a driver present for patient's transportation.
-  - trigger: ".prxancesi"
+  - trigger: ".prxanlesi"
     replace: |
       EPIDURAL INJECTION PROCEDURE REPORT     
       Patient was consented and understands the risks and benefits. Specific risks include failure to relieve pain, increased pain, bleeding/infection, nerve damage, steroid reaction/effects. 
