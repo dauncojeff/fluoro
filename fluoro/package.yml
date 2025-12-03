@@ -539,3 +539,25 @@ matches:
       Patient returned to post op area with no immediate complications.
  
       OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Discharge instructions were given.
+  - trigger: ".prlesi"
+    replace: |
+      EPIDURAL INJECTION PROCEDURE REPORT     
+      Patient was consented and understands the risks and benefits. Specific risks include failure to relieve pain, increased pain, bleeding/infection, nerve damage, steroid reaction/effects. 
+
+      DIAGNOSIS/INDICATION: Lumbar Radiculopathy 
+
+      LOCATION: L5/S1. 
+
+      SKIN PREP: chloraprep
+
+      ANESTHESIA: local infiltrating 1% lidocaine 
+
+      NEEDLE USED: 18 gauge touhy 3.5 inch 
+
+      POSITION: prone 
+
+      SOLUTION: 3 cc of Normal Saline Preservative, 5ml Lidocaine 1%, 1cc Isovue 300, and Dexamethasone 2cc, 20 mg 
+
+      TECHNIQUE: After obtaining informed consent, the patient was placed on the procedure table in the prone position.  The standard monitors were placed.  The patient was prepped and draped in the usual sterile fashion.  The L5-S1 interspace was identified by fluoroscopy.  Next 5 cc of lidocaine 1% was injected into the skin and along the targeted needle track.  Then an 18-gauge Tuohy needle was inserted through the anesthetized skin and slowly advanced while constantly monitoring for any change in resistance via syringe filled with preservative-free normal saline.  Loss of resistance was appreciated immediately upon entry of the Tuohy needle tip into the epidural space.  No blood, CSF or paresthesias were elicited.  An epidurogram with Isovue confirmed correct placement of the needle and appropriate spread of the contrast solution.  Then 5 cc of solution consisting of Dexamethasone 20 mg plus preservative-free normal saline was injected without difficulty.  Fluoroscopy demonstrated appropriate washout of the contrast medium to confirm the delivery of therapeutic injectate to the target tissues, after which the Tuohy needle was easily removed.  The patient tolerated the procedure well.  There were no immediate complications.
+ 
+      OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Discharge instructions were given.
