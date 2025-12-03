@@ -561,3 +561,41 @@ matches:
       TECHNIQUE: After obtaining informed consent, the patient was placed on the procedure table in the prone position.  The standard monitors were placed.  The patient was prepped and draped in the usual sterile fashion.  The L5-S1 interspace was identified by fluoroscopy.  Next 5 cc of lidocaine 1% was injected into the skin and along the targeted needle track.  Then an 18-gauge Tuohy needle was inserted through the anesthetized skin and slowly advanced while constantly monitoring for any change in resistance via syringe filled with preservative-free normal saline.  Loss of resistance was appreciated immediately upon entry of the Tuohy needle tip into the epidural space.  No blood, CSF or paresthesias were elicited.  An epidurogram with Isovue confirmed correct placement of the needle and appropriate spread of the contrast solution.  Then 5 cc of solution consisting of Dexamethasone 20 mg plus preservative-free normal saline was injected without difficulty.  Fluoroscopy demonstrated appropriate washout of the contrast medium to confirm the delivery of therapeutic injectate to the target tissues, after which the Tuohy needle was easily removed.  The patient tolerated the procedure well.  There were no immediate complications.
  
       OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Discharge instructions were given.
+  - trigger: ".prxancepi"
+    replace: |
+      FLUOROSCOPY GUIDED EPIDURAL INJECTION PROCEDURE REPORT
+      Patient was consented and understands the risks and benefits. Specific risks include failure to relieve pain, increased pain, bleeding/infection, nerve damage
+
+      LOCATION: C7/T1
+
+      SKIN PREP: chlora prep
+
+      POSITION: prone
+
+      SOLUTION: Leukocyte-Poor Autologous Platelet-rich plasma
+ 
+      Pre-operative diagnosis: Cervicalgia, cervical radiculopathy
+ 
+      Post-operative diagnosis: Cervicalgia, cervical radiculopathy
+ 
+      PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam were/was administered orally to patient 30 minutes prior to procedure. Vitals signs were stable and continuously monitored.
+
+      Procedure: Cervical epidural Injection with Platelet-rich Plasma
+      Informed consent obtained after explaining the procedure and potential complications including local discomfort, infection, headache, temporary or permanent weakness and/or numbness of one or both arms or legs, temporary or permanent quadriplegia, heart attack and stroke. All questions were answered. Platelet-rich plasma (PRP) was harvested from the patient and centrifuged at 11000 G's for ten minutes using Genesis Biologics PRP kit. 
+ 
+      Patient was taken to exam room and placed in prone position.
+      Time out was performed.
+      Patients Cervical area was prepped and draped in a sterile manner.
+ 
+      Using fluoroscopic guidance the skin and soft tissue overlying the C7-T1 area was anesthetized using local injection with 1% lidocaine.  Then under fluoroscopy using AP, contralateral oblique and Oblique views a 17 G 3.5 inch Touhy needle was advanced to the posterior aspect of the T1 lamina. The needle was redirected more cephalad and advanced to engage the ligamentum flavum.
+ 
+      Loss of resistance was achieved.
+      Omnipaque injection revealed good epidural spread.
+      Then the harvested platelet-rich plasma was injected. 
+ 
+      Estimated Blood Loss: None
+      Specimens: None
+ 
+      Patient returned to post op area with no immediate complications.
+ 
+      OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Patient's vitals were stable and continuously monitored for 30 minutes post-procedure. Patient was then discharged after confirmation of a driver present for patient's transportation.
