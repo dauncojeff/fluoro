@@ -444,3 +444,39 @@ matches:
     replace: "In view of patient’s low back pain, I believe a Bilateral T9-T10 and T10-T11 Thoracic Facet Steroid Injection under Fluoroscopy (at a cost of  $12,000 per injection, which includes both facility and professional fee) or Bilateral T9-T10 and T10-T11 Thoracic Facet Injection with Platelet-rich Plasma under Fluoroscopy (at a cost of $15,500 per injection, which includes both facility and professional fee) is medically necessary. Diagnosis is supported by objective physical exam findings and peer-reviewed research findings (Cohen et al conducted studies on lumbalgia determining factors predictive of RFA. No significant correlation was found between successful treatment of the facet joint and MRI abnormalities such as facet joint pathology. Cohen, S. P., Hurley, R. W., Christo, P. J. et al Clinical predictors of success and failure for lumbar facet radiofrequency denervation. The Clinical journal of pain 2007; 23:45-52). Research findings indicate successful treatment of facet joint despite a lack of diagnostic findings. Patient has tried and failed several conservative modalities including medications, NSAIDs, rest, ice/heat, chiropractic therapy, and home exercise with insufficient relief of pain. Pain is affecting patient's quality of life and level of function. Patient is a candidate for this injection.\n***Patient educated on both steroid and Platelet-rich Plasma and expresses full verbal understanding of these two options. At this time, patient prefers xxxx***"
   - trigger: ".reqostfac"
     replace: "-In view of patient’s mid back pain, I believe a Left/Right T7-T8, T8-T9, and T9-T10 Thoracic Facet Steroid Injection under Fluoroscopy (at a cost of $10,000 per injection, which includes both facility and professional fee) or a Left/Right T7-T8, T8-T9, and T9-T10 Thoracic Facet Injection with Platelet-rich Plasma under Fluoroscopy (at a cost of  $13,500 per injection, which includes both facility and professional fees) is medically necessary. Diagnosis is supported by objective physical exam findings and peer-reviewed research findings (Cohen et al conducted studies on lumbalgia determining factors predictive of RFA. No significant correlation was found between successful treatment of the facet joint and MRI abnormalities such as facet joint pathology. Cohen, S. P., Hurley, R. W., Christo, P. J. et al Clinical predictors of success and failure for lumbar facet radiofrequency denervation. The Clinical journal of pain 2007; 23:45-52). Research findings indicate successful treatment of facet joint despite a lack of diagnostic findings. Patient has tried and failed several conservative modalities including rest, ice/heat, chiropractic therapy, and home exercise with insufficient relief of pain. Pain is affecting patient's quality of life and level of function. Patient is a candidate for this injection.\n***Patient educated on both steroid and Platelet-rich Plasma and expresses full verbal understanding of these two options. At this time, patient prefers XXX***"
+  - trigger: ".prcepi"
+    replace: |
+      FLUOROSCOPY GUIDED EPIDURAL INJECTION PROCEDURE REPORT
+      Patient was consented and understands the risks and benefits. Specific risks include failure to relieve pain, increased pain, bleeding/infection, nerve damage
+
+      LOCATION: C7/T1
+
+      SKIN PREP: chlora prep
+
+      POSITION: prone
+
+      SOLUTION: Leukocyte-Poor Autologous Platelet-rich plasma
+ 
+      Pre-operative diagnosis: Cervicalgia, cervical radiculopathy
+ 
+      Post-operative diagnosis: Cervicalgia, cervical radiculopathy
+ 
+      Procedure: Cervical epidural Injection with Platelet-rich Plasma
+      Informed consent obtained after explaining the procedure and potential complications including local discomfort, infection, headache, temporary or permanent weakness and/or numbness of one or both arms or legs, temporary or permanent quadriplegia, heart attack and stroke. All questions were answered. Platelet-rich plasma (PRP) was harvested from the patient and centrifuged at 11000 G's for ten minutes using Genesis Biologics PRP kit. 
+      
+      Patient was taken to exam room and placed in prone position.
+      Time out was performed.
+      Patients Cervical area was prepped and draped in a sterile manner.
+ 
+      Using fluoroscopic guidance the skin and soft tissue overlying the C7-T1 area was anesthetized using local injection with 1% lidocaine.  Then under fluoroscopy using AP, contralateral oblique and Oblique views a 17 G 3.5 inch Touhy needle was advanced to the posterior aspect of the T1 lamina. The needle was redirected more cephalad and advanced to engage the ligamentum flavum.
+ 
+      Loss of resistance was achieved.
+      Omnipaque injection revealed good epidural spread.
+      Then the harvested platelet-rich plasma was injected. 
+ 
+      Estimated Blood Loss: None
+      Specimens: None
+ 
+      Patient returned to post op area with no immediate complications.
+ 
+      OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Discharge instructions were given. 
