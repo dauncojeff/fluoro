@@ -480,7 +480,7 @@ matches:
       Patient returned to post op area with no immediate complications.
  
       OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Discharge instructions were given.
-  - trigger: ".prcepi"
+  - trigger: ".prlepi"
     replace: |
       EPIDURAL INJECTION PROCEDURE REPORT     
       Patient was consented and understands the risks and benefits. Specific risks include failure to relieve pain, increased pain, bleeding/infection, nerve damage
