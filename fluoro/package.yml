@@ -335,7 +335,7 @@ matches:
         type: shell
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
-  - trigger: ".fu" 
+  - trigger: ".f-u" 
     replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient partakes in XXX therapy ( x/week), citing some relief. However, patient reports that his / her XXX pain continues to be present and  XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. No other changes to patient's pain at this time."
     vars:
       - name: output
