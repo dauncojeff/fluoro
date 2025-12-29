@@ -325,7 +325,7 @@ matches:
   - trigger: ".reqknee"
     replace: "-In view of this patient’s left/right knee pain and antalgic gait, I believe a Left/Right Knee Intra-articular Joint Steroid Injection under Ultrasound (at a cost of $3,800 per injection, which includes both professional and facility fee) or Left/Right Knee Intra-articular Joint Injection with Platelet-rich Plasma under Ultrasound (at a cost of $5,800 per injection, which includes both professional and facility fee) is medically necessary. Diagnosis supported by diagnostics and objective physical exam findings. Patient's MRI of the left/right knee (dated XX-XX-20XX) supports this procedure; demonstrating XXX. Risks and benefits were extensively weighed, patients feels benefits outweigh risks and would like to proceed. Patient has tried and failed several conservative modalities including XXX with insufficient relief of their pain. Pain is affecting patient's quality of life and level of function. Patient is a candidate for this injection.\n***Patient educated on both steroid and Platelet-rich Plasma and expresses full verbal understanding of these two options. At this time, patient prefers XXX***"
   - trigger: ".prexan"
-    replace: "PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam were/was administered orally to patient 30 minutes prior to procedure. Vitals signs were stable and continuously monitored."
+    replace: "PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam was/were administered orally to patient 30 minutes prior to procedure. XXX tablets of excess 0.5 mg Alprazolam were discarded per DEA protocol. Vitals signs were stable and continuously monitored.\nBlood Pressure: XXX\nPulse: XXX"
   - trigger: ".postxan"
     replace: "OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Patient's vitals were stable and continuously monitored for 30 minutes post-procedure. Patient was then discharged after confirmation of a driver present for patient's transportation."
   - trigger: ".yfu" 
@@ -578,8 +578,10 @@ matches:
  
       Post-operative diagnosis: Cervicalgia, cervical radiculopathy
  
-      PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam were/was administered orally to patient 30 minutes prior to procedure. Vitals signs were stable and continuously monitored.
-
+      PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam was/were administered orally to patient 30 minutes prior to procedure. XXX tablets of excess 0.5 mg Alprazolam were discarded per DEA protocol. Vitals signs were stable and continuously monitored. 
+      Blood Pressure: XXX
+      Pulse: XXX
+      
       Procedure: Cervical epidural Injection with Platelet-rich Plasma
       Informed consent obtained after explaining the procedure and potential complications including local discomfort, infection, headache, temporary or permanent weakness and/or numbness of one or both arms or legs, temporary or permanent quadriplegia, heart attack and stroke. All questions were answered. Platelet-rich plasma (PRP) was harvested from the patient and centrifuged at 11000 G's for ten minutes using Genesis Biologics PRP kit. 
  
@@ -618,8 +620,10 @@ matches:
 
       SOLUTION: Leukocyte-Poor Autologous Platelet-rich plasma
 
-      PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam were/was administered orally to patient 30 minutes prior to procedure. Vitals signs were stable and continuously monitored.
-
+      PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam was/were administered orally to patient 30 minutes prior to procedure. XXX tablets of excess 0.5 mg Alprazolam were discarded per DEA protocol. Vitals signs were stable and continuously monitored. 
+      Blood Pressure: XXX
+      Pulse: XXX
+      
       TECHNIQUE: After obtaining informed consent, platelet-rich plasma (PRP) was harvested from the patient and centrifuged at 11000 G's for ten minutes using Genesis Biologics PRP kit. The patient was placed on the procedure table in the prone position.  The standard monitors were placed.  The patient was prepped and draped in the usual sterile fashion.  The L5-S1 interspace was identified by fluoroscopy.  Next 5 cc of lidocaine 1% was injected into the skin and along the targeted needle track.  Then an 18-gauge Tuohy needle was inserted through the anesthetized skin and slowly advanced while constantly monitoring for any change in resistance via syringe filled with preservative-free normal saline.  Loss of resistance was appreciated immediately upon entry of the Tuohy needle tip into the epidural space.  No blood, CSF or paresthesias were elicited.  An epidurogram with Isovue confirmed correct placement of the needle and appropriate spread of the contrast solution. Then the harvested platelet-rich plasma was injected. Fluoroscopy demonstrated appropriate washout of the contrast medium to confirm the delivery of therapeutic injectate to the target tissues, after which the Tuohy needle was easily removed.  The patient tolerated the procedure well.  There were no immediate complications.
  
       OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Patient's vitals were stable and continuously monitored for 30 minutes post-procedure. Patient was then discharged after confirmation of a driver present for patient's transportation.
@@ -641,8 +645,10 @@ matches:
  
       Post-operative diagnosis: Cervicalgia, cervical radiculopathy
  
-      PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam were/was administered orally to patient 30 minutes prior to procedure. Vitals signs were stable and continuously monitored.
-
+      PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam was/were administered orally to patient 30 minutes prior to procedure. XXX tablets of excess 0.5 mg Alprazolam were discarded per DEA protocol. Vitals signs were stable and continuously monitored. 
+      Blood Pressure: XXX
+      Pulse: XXX
+      
       Procedure: Cervical epidural Steroid Injection
       Informed consent obtained after explaining the procedure and potential complications including local discomfort, infection, headache, temporary or permanent weakness and/or numbness of one or both arms or legs, temporary or permanent quadriplegia, heart attack and stroke. All questions were answered. 
  
@@ -681,7 +687,9 @@ matches:
 
       SOLUTION: 3 cc of Normal Saline Preservative, 5ml Lidocaine 1%, 1cc Isovue 300, and Dexamethasone 2cc, 20 mg 
 
-      PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam were/was administered orally to patient 30 minutes prior to procedure. Vitals signs were stable and continuously monitored.
+      PRE-OPERATIVE: Patient wished to discuss medications to help manage pre-procedural anxiety. #mg Alprazolam, #mg Diazepam, #mg Midazolam was/were administered orally to patient 30 minutes prior to procedure. XXX tablets of excess 0.5 mg Alprazolam were discarded per DEA protocol. Vitals signs were stable and continuously monitored. 
+      Blood Pressure: XXX
+      Pulse: XXX
 
       TECHNIQUE: After obtaining informed consent, the patient was placed on the procedure table in the prone position.  The standard monitors were placed.  The patient was prepped and draped in the usual sterile fashion.  The L5-S1 interspace was identified by fluoroscopy.  Next 5 cc of lidocaine 1% was injected into the skin and along the targeted needle track.  Then an 18-gauge Tuohy needle was inserted through the anesthetized skin and slowly advanced while constantly monitoring for any change in resistance via syringe filled with preservative-free normal saline.  Loss of resistance was appreciated immediately upon entry of the Tuohy needle tip into the epidural space.  No blood, CSF or paresthesias were elicited.  An epidurogram with Isovue confirmed correct placement of the needle and appropriate spread of the contrast solution.  Then 5 cc of solution consisting of Dexamethasone 20 mg plus preservative-free normal saline was injected without difficulty.  Fluoroscopy demonstrated appropriate washout of the contrast medium to confirm the delivery of therapeutic injectate to the target tissues, after which the Tuohy needle was easily removed.  The patient tolerated the procedure well.  There were no immediate complications.
  
