@@ -703,5 +703,5 @@ matches:
   - trigger: ".drive"
     replace: "The patient reports significant anxiety and emotional distress while driving, which affects his/her ability to safely and independently perform activities of daily living."
   - trigger: ".nut"
-    replace: "numbing and tingling"
+    replace: "numbness and tinging"
     
