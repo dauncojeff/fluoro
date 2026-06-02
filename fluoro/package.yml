@@ -704,4 +704,10 @@ matches:
     replace: "The patient reports significant anxiety and emotional distress while driving, which affects his/her ability to safely and independently perform activities of daily living."
   - trigger: ".nut"
     replace: "numbness and tinging"
+  - trigger: ".st"
+    replace: "Sydney To, PA-C."
+  - trigger: ".ei"
+    replace: "Eunice Im, PA-C."
+  - trigger: ".cw"
+    replace: "Carly Welch, NP."
     
