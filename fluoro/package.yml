@@ -702,3 +702,6 @@ matches:
     replace: "The patient reports increasing difficulty participating in school-related activities due to ongoing pain, which have negatively affected academic performance and participation in daily educational tasks."
   - trigger: ".drive"
     replace: "The patient reports significant anxiety and emotional distress while driving, which affects his/her ability to safely and independently perform activities of daily living."
+  - trigger: ".nut"
+    replace: "numbing and tingling"
+    
