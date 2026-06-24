@@ -12,7 +12,7 @@ matches:
   - trigger: ".lepi"
     replace: L5/S1 Lumbar Interlaminar Epidural Injection with Platelet-rich Plasma under Fluoroscopy
   - trigger: ".img"
-    replace: "Imaging: MRI reports of the XXX were reviewed during today's visit. All patient's questions were encouraged and answered."
+    replace: "-Imaging: MRI reports of the XXX were reviewed during today's visit. All patient's questions were encouraged and answered."
   - trigger: ".bsij"
     replace: Bilateral Sacroiliac Joint ***Steroid Injection ***with Platelet-Rich Plasma under Fluoroscopy
   - trigger: ".chiro"
@@ -47,7 +47,7 @@ matches:
   - trigger: "prp"
     replace: Platelet-rich Plasma
   - trigger: ".refmri"
-    replace: -I believe MRIs of the XXX (Without contrast) are medically necessary in order to rule out potential soft-tissue pathologies. Referral provided XXX reports to be reviewed at next visit.
+    replace: -I believe MRIs of the XXX (Without contrast) are medically necessary in order to rule out potential soft-tissue pathologies. Referral provided- reports to be reviewed at next visit.
   - trigger: "jsm"
     replace: Joseph Maldonado
   - trigger: ".rom"
@@ -729,3 +729,7 @@ matches:
           cmd: date +"%m-%d-%Y"
   - trigger: ".natesh"
     replace: "Dr. Natesh Patel, MD."
+  - trigger: ".pt"
+    replace: "physical therapy"
+  - trigger: ".ciro"
+    replace: "chiropractic therapy"
