@@ -726,6 +726,6 @@ matches:
       - name: output
         type: shell
         params:
-          cmd: date +"%Y-%m-%d"
+          cmd: date +"%m-%d-%Y"
   - trigger: ".natesh"
     replace: "Dr. Natesh Patel, MD."
