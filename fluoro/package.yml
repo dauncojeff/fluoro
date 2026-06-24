@@ -95,7 +95,7 @@ matches:
           cmd: date +"%m-%d-%Y"
   - trigger: ".ibu"
     replace: "Rx Ibuprofen 800mg oral tablet #45 Take 1 tab BID prn pain {{output}}"
-     vars:
+    vars:
       - name: output
         type: shell
         params:
