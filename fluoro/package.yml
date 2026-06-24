@@ -716,7 +716,7 @@ matches:
     replace: "Dr. Trisha Patel, MD."
   - trigger: ".ll"
     replace: "Landon Lam"
-  - trigger: ".sl"
+  - trigger: ".sll"
     replace: "Sammy Lauw"
   - trigger: ".jr"
     replace: "Alejandro Rivas"
