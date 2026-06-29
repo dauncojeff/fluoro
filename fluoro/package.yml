@@ -792,23 +792,23 @@ matches:
     replace: "Miguel Ybanez"
   - trigger: ".peelbow"
     replace: |
-     "Right/Left elbow exam: 
+     Right/Left elbow exam: 
           Diffuse non-specific TTP, skin intact, non-erythematous, decreased range of motion, + medial epicondyle TTP ***"
   - trigger: ".peupperforearm"
     replace: |
-     "Right/Left upper forearm exam: \
+     Right/Left upper forearm exam: \
           Diffuse non-specific TTP, skin intact, non-erythematous, + proximal flexor mass TTP ***"
   - trigger: ".peshoulder"
     replace: |
-     "Left/Right shoulder exam: 
+     Left/Right shoulder exam: 
           Diffuse non-specific TTP, skin intact, non-erythematous, decreased range of motion, + subacromial and bicipital groove TTP ***"
   - trigger: ".pehip"
     replace: |
-     "Left/Right hip exam: 
+     Left/Right hip exam: 
           Diffuse non-specific TTP, skin intact, non-erythematous, decreased range of motion, + greater trochanter TTP ***"
   - trigger: ".peknee"
     replace: |
-     "Right/Left knee exam: 
+     Right/Left knee exam: 
           Diffuse non-specific TTP, skin intact, non-erythematous, decreased range of motion, + medial joint line TTP ***"
 
 
