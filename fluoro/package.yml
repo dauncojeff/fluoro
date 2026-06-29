@@ -160,7 +160,7 @@ matches:
   - trigger: ".partakes"
     replace: "patient partakes in chiropractic therapy (_x/week), citing XXX relief"
   - trigger: ".volt"
-    replace: "Rx Voltaren Arthritis Pain 1 % topical gel #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
+    replace: "     Rx Voltaren Arthritis Pain 1 % topical gel #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
     vars:
       - name: output
         type: shell
