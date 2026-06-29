@@ -790,3 +790,8 @@ matches:
     replace: "chiropractic therapy"
   - trigger: ".my"
     replace: "Miguel Ybanez"
+  - trigger: ".peelbow"
+    replace: |
+    Right elbow exam: 
+        Diffuse non-specific TTP, skin intact, non-erythematous, decreased range of motion, + medial epicondyle TTP ***
+  
