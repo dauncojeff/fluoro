@@ -73,28 +73,28 @@ matches:
   - trigger: ".asig"
     replace: "A significant portion of today's visit was spent reviewing patient's XXX MRI reports."
   - trigger: ".tiz"
-    replace: "Rx Tizanidine 4mg oral tablet #45 Take 1-2 tabs QHS prn muscle spasms {{output}}"
+    replace: "     Rx Tizanidine 4mg oral tablet #45 Take 1-2 tabs QHS prn muscle spasms {{output}}"
     vars:
       - name: output
         type: shell
         params:
           cmd: date +"%m-%d-%Y"
   - trigger: ".xan"
-    replace: "Rx Xanax 0.5mg oral tablet #6 Take 1-2 tabs Q30mins titrating up until procedure prn anxiety\n\n***Safe use of Xanax was thoroughly discussed. Patient history was reviewed. Patient expresses clear verbal understanding, especially on use with contraindicated medications. Medication is a 1-day supply for pre-procedure anxiety. {{output}}"
+    replace: "     Rx Xanax 0.5mg oral tablet #6 Take 1-2 tabs Q30mins titrating up until procedure prn anxiety\n\n***Safe use of Xanax was thoroughly discussed. Patient history was reviewed. Patient expresses clear verbal understanding, especially on use with contraindicated medications. Medication is a 1-day supply for pre-procedure anxiety. {{output}}"
     vars:
       - name: output
         type: shell
         params:
           cmd: date +"%m-%d-%Y"
   - trigger: ".tgaba300" 
-    replace: "Rx Gabapentin 300mg oral capsule #96 Take 1 tab QD x7 days, Take 1 tab BID x7 days, Take 1 tab TID x7 days, then take 2 tabs TID thereafter {{output}}"
+    replace: "     Rx Gabapentin 300mg oral capsule #96 Take 1 tab QD x7 days, Take 1 tab BID x7 days, Take 1 tab TID x7 days, then take 2 tabs TID thereafter {{output}}"
     vars:
       - name: output
         type: shell
         params:
           cmd: date +"%m-%d-%Y"
   - trigger: ".ibu"
-    replace: "Rx Ibuprofen 800mg oral tablet #45 Take 1 tab BID prn pain {{output}}"
+    replace: "     Rx Ibuprofen 800mg oral tablet #45 Take 1 tab BID prn pain {{output}}"
     vars:
       - name: output
         type: shell
@@ -103,7 +103,7 @@ matches:
   - trigger: ".med"
     replace: "2) Medications\nDuring today's visit, I have prescribed the following medications:"
   - trigger: ".rob"
-    replace: "Rx Methocarbamol 500mg oral tablet #45 Take 1 tab BID prn muscle spasms {{output}}"
+    replace: "     Rx Methocarbamol 500mg oral tablet #45 Take 1 tab BID prn muscle spasms {{output}}"
     vars:
       - name: output
         type: shell
@@ -197,14 +197,14 @@ matches:
   - trigger: ".futures"
     replace: "FUTURE MEDICAL CARE Future medical care should be made available to this patient. The patient should have access to neck and low back chiropractic therapy sessions 2-3 times per week for 6 weeks up to two times per year for the next 3 years. The patient should also have access to Cervical Epidural Injections no more than three a year at a total cost of approximately $5,000 to $12,000 (with additional cost of $11,000 to $17,000 if procedure is to be performed at surgery center) per injection for the next 3 years. Furthermore, patient is to have access to as-needed interventional pain management consultations and orthopedic surgical evaluation."
   - trigger: ".tgaba600"
-    replace: "Rx Gabapentin 600mg Tablet #80 Take 0.5 tab TID x7 days, then take 1 tab TID thereafter. {{output}}"
+    replace: "     Rx Gabapentin 600mg Tablet #80 Take 0.5 tab TID x7 days, then take 1 tab TID thereafter. {{output}}"
     vars:
       - name: output
         type: shell
         params:
           cmd: date +"%m-%d-%Y"
   - trigger: ".gaba"
-    replace: "Rx Gabapentin 600mg Tablet #90 Take 1 tab TID {{output}}"
+    replace: "     Rx Gabapentin 600mg Tablet #90 Take 1 tab TID {{output}}"
     vars:
       - name: output
         type: shell
@@ -230,21 +230,21 @@ matches:
   - trigger: ".ass"
     replace: "Assoc: no bowel or bladder incontinence, no saddle anesthesia, no focal weakness"
   - trigger: ".lidooint"
-    replace: "Rx lidocaine 5% topical ointment #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
+    replace: "     Rx lidocaine 5% topical ointment #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
     vars:
       - name: output
         type: shell
         params:
           cmd: date +"%m-%d-%Y"
   - trigger: ".lidocream"
-    replace: "Rx lidocaine 4% topical cream #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
+    replace: "     Rx lidocaine 4% topical cream #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
     vars:
       - name: output
         type: shell
         params:
           cmd: date +"%m-%d-%Y"
   - trigger: ".lidopatch"
-    replace: "Rx lidocaine 4% topical patch #10 Apply 1 patch AAA for 12 hours on then 12 hours off prn pain {{output}}"
+    replace: "     Rx lidocaine 4% topical patch #10 Apply 1 patch AAA for 12 hours on then 12 hours off prn pain {{output}}"
     vars:
       - name: output
         type: shell
