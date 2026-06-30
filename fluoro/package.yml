@@ -858,7 +858,7 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ytiz"
-    replace: "Rx Tizanidine 4mg oral tablet #45 Take 1-2 tabs QHS prn muscle spasms {{output}}"
+    replace: "     Rx Tizanidine 4mg oral tablet #45 Take 1-2 tabs QHS prn muscle spasms {{output}}"
     vars:
       - name: output
         type: shell
@@ -867,7 +867,7 @@ matches:
 
   - trigger: ".yyxan"
     replace: |
-      Rx Xanax 0.5mg oral tablet #6 Take 1-2 tabs Q30mins titrating up until procedure prn anxiety
+           Rx Xanax 0.5mg oral tablet #6 Take 1-2 tabs Q30mins titrating up until procedure prn anxiety
 
       ***Safe use of Xanax was thoroughly discussed. Patient history was reviewed. Patient expresses clear verbal understanding, especially on use with contraindicated medications. Medication is a 1-day supply for pre-procedure anxiety. {{output}}
     vars:
@@ -877,7 +877,7 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ytgaba300"
-    replace: "Rx Gabapentin 300mg oral capsule #96 Take 1 tab QD x7 days, Take 1 tab BID x7 days, Take 1 tab TID x7 days, then take 2 tabs TID thereafter {{output}}"
+    replace: "     Rx Gabapentin 300mg oral capsule #96 Take 1 tab QD x7 days, Take 1 tab BID x7 days, Take 1 tab TID x7 days, then take 2 tabs TID thereafter {{output}}"
     vars:
       - name: output
         type: shell
@@ -885,7 +885,7 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".yibu"
-    replace: "Rx Ibuprofen 800mg oral tablet #45 Take 1 tab BID prn pain {{output}}"
+    replace: "     Rx Ibuprofen 800mg oral tablet #45 Take 1 tab BID prn pain {{output}}"
     vars:
       - name: output
         type: shell
@@ -893,7 +893,7 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".yrob"
-    replace: "Rx Methocarbamol 500mg oral tablet #45 Take 1 tab BID prn muscle spasms {{output}}"
+    replace: "     Rx Methocarbamol 500mg oral tablet #45 Take 1 tab BID prn muscle spasms {{output}}"
     vars:
       - name: output
         type: shell
@@ -901,7 +901,7 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".yvolt"
-    replace: "Rx Voltaren Arthritis Pain 1% topical gel #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
+    replace: "     Rx Voltaren Arthritis Pain 1% topical gel #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
     vars:
       - name: output
         type: shell
@@ -909,7 +909,7 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ytgaba600"
-    replace: "Rx Gabapentin 600mg Tablet #80 Take 0.5 tab TID x7 days, then take 1 tab TID thereafter {{output}}"
+    replace: "     Rx Gabapentin 600mg Tablet #80 Take 0.5 tab TID x7 days, then take 1 tab TID thereafter {{output}}"
     vars:
       - name: output
         type: shell
@@ -917,7 +917,7 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ygaba"
-    replace: "Rx Gabapentin 600mg Tablet #90 Take 1 tab TID {{output}}"
+    replace: "     Rx Gabapentin 600mg Tablet #90 Take 1 tab TID {{output}}"
     vars:
       - name: output
         type: shell
@@ -925,7 +925,7 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ylidooint"
-    replace: "Rx lidocaine 5% topical ointment #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
+    replace: "     Rx lidocaine 5% topical ointment #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
     vars:
       - name: output
         type: shell
@@ -933,7 +933,7 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ylidocream"
-    replace: "Rx lidocaine 4% topical cream #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
+    replace: "     Rx lidocaine 4% topical cream #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
     vars:
       - name: output
         type: shell
@@ -941,7 +941,7 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ylidopatch"
-    replace: "Rx lidocaine 4% topical patch #10 Apply 1 patch AAA for 12 hours on then 12 hours off prn pain {{output}}"
+    replace: "     Rx lidocaine 4% topical patch #10 Apply 1 patch AAA for 12 hours on then 12 hours off prn pain {{output}}"
     vars:
       - name: output
         type: shell
