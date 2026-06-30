@@ -867,8 +867,9 @@ matches:
 
   - trigger: ".yyxan"
     replace: |
-           Rx Xanax 0.5mg oral tablet #6 Take 1-2 tabs Q30mins titrating up until procedure prn anxiety
-           ***Safe use of Xanax was thoroughly discussed. Patient history was reviewed. Patient expresses clear verbal understanding, especially on use with contraindicated medications. Medication is a 1-day supply for pre-procedure anxiety. {{output}}
+                Rx Xanax 0.5mg oral tablet #6 Take 1-2 tabs Q30mins titrating up until procedure prn anxiety {{output}}
+           
+           ***Safe use of Xanax was thoroughly discussed. Patient history was reviewed. Patient expresses clear verbal understanding, especially on use with contraindicated medications. Medication is a 1-day supply for pre-procedure anxiety. 
     vars:
       - name: output
         type: shell
