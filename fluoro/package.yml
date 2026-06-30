@@ -924,14 +924,6 @@ matches:
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
-  - trigger: ".yint"
-    replace: "Interval {{output}}:"
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "date -v-1d +'%m-%d-%Y'"
-
   - trigger: ".ylidooint"
     replace: "Rx lidocaine 5% topical ointment #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
     vars:
@@ -979,34 +971,6 @@ matches:
         type: shell
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
-
-  - trigger: ".yf-u"
-    replace: |
-      Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient partakes in XXX therapy (x/week), citing some relief. However, patient reports that XXX pain continues to be present and XXX, citing the pain as limiting function. As such, XXX therapies were discussed. No other changes at this time.
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "date -v-1d +'%m-%d-%Y'"
-
-  - trigger: ".ydiagrev"
-    replace: |
-      Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient partakes in XXX therapy (x/week), citing some relief. However, pain continues and limits function. MRI reports were reviewed in detail. No other changes at this time.
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "date -v-1d +'%m-%d-%Y'"
-
-  - trigger: ".ypp"
-    replace: |
-      Interval {{output}}: XXX presents today for a post-procedure follow-up. Patient received a procedure on XX-XX-XXXX with reported relief. Continues therapy (x/week). Pain persists and limits function. Discussed further management options. No other changes at this time.
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "date -v-1d +'%m-%d-%Y'"
-
   - trigger: ".yobtain"
     replace: "***Obtain report for my review (as of {{output}})"
     vars:
