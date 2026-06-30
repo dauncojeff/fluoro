@@ -177,11 +177,26 @@ matches:
   - trigger: ".oslfac"
     replace: "Right/Left L3-L4, L4-L5, and L5-S1 Lumbar Facet Injection under Fluoroscopy"
   - trigger: ".follow"
-    replace: "XXX presents today for a tele-health follow-up appointment. Patient reports that his / her XXX pain continues to be present and  XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his / her XXX pain continues to be present and  XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
   - trigger: ".diagnosticrev"
-    replace: "XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient reports that ( his / her ) XXX pain continues to be present and XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. A significant portion of today's visit was spent reviewing patient's XXX MRI reports. No other changes to patient's pain at this time."
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient reports that ( his / her ) XXX pain continues to be present and XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. A significant portion of today's visit was spent reviewing patient's XXX MRI reports. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
   - trigger: ".postpro"
-    replace: "XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a XXX on XX-XX-XXXX, citing XXX relief. Patient reports that ( his / her ) XXX pain continues to be present and XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    replace: "Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a XXX on XX-XX-XXXX, citing XXX relief. Patient reports that ( his / her ) XXX pain continues to be present and XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
   - trigger: ".tepi"
     replace: "T11/T12 Thoracic Interlaminar Epidural Injection with Platelet-rich Plasma under Fluoroscopy"
   - trigger: ".tesi"
@@ -994,6 +1009,27 @@ matches:
 
   - trigger: ".yobtain"
     replace: "***Obtain report for my review (as of {{output}})"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
+  - trigger: ".yfollow"
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his / her XXX pain continues to be present and  XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
+  - trigger: ".ydiagnosticrev"
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient reports that ( his / her ) XXX pain continues to be present and XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. A significant portion of today's visit was spent reviewing patient's XXX MRI reports. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
+  - trigger: ".ypostpro"
+    replace: "Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a XXX on XX-XX-XXXX, citing XXX relief. Patient reports that ( his / her ) XXX pain continues to be present and XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
     vars:
       - name: output
         type: shell
