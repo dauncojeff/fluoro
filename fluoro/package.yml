@@ -834,6 +834,8 @@ matches:
      OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Discharge instructions were given."
   - trigger: ".master"
     replace: "Mustafa Samih"
+ matches:
+
   - trigger: ".ychiro"
     replace: "-Patient is to continue chiropractic therapy as directed by OSP (as of {{output}})."
     vars:
@@ -843,70 +845,73 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ytiz"
-    replace: "     Rx Tizanidine 4mg oral tablet #45 Take 1-2 tabs QHS prn muscle spasms {{output}}"
+    replace: "Rx Tizanidine 4mg oral tablet #45 Take 1-2 tabs QHS prn muscle spasms {{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: date -v-1d +"%m-%d-%Y"
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".yxan"
-    replace: "     Rx Xanax 0.5mg oral tablet #6 Take 1-2 tabs Q30mins titrating up until procedure prn anxiety\n\n***Safe use of Xanax was thoroughly discussed. Patient history was reviewed. Patient expresses clear verbal understanding, especially on use with contraindicated medications. Medication is a 1-day supply for pre-procedure anxiety. {{output}}"
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: date -v-1d +"%m-%d-%Y"
+    replace: |
+      Rx Xanax 0.5mg oral tablet #6 Take 1-2 tabs Q30mins titrating up until procedure prn anxiety
 
-  - trigger: ".ytgaba300" 
-    replace: "     Rx Gabapentin 300mg oral capsule #96 Take 1 tab QD x7 days, Take 1 tab BID x7 days, Take 1 tab TID x7 days, then take 2 tabs TID thereafter {{output}}"
+      ***Safe use of Xanax was thoroughly discussed. Patient history was reviewed. Patient expresses clear verbal understanding, especially on use with contraindicated medications. Medication is a 1-day supply for pre-procedure anxiety. {{output}}
     vars:
       - name: output
         type: shell
         params:
-          cmd: date -v-1d +"%m-%d-%Y"
+          cmd: "date -v-1d +'%m-%d-%Y'"
+
+  - trigger: ".ytgaba300"
+    replace: "Rx Gabapentin 300mg oral capsule #96 Take 1 tab QD x7 days, Take 1 tab BID x7 days, Take 1 tab TID x7 days, then take 2 tabs TID thereafter {{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".yibu"
-    replace: "     Rx Ibuprofen 800mg oral tablet #45 Take 1 tab BID prn pain {{output}}"
+    replace: "Rx Ibuprofen 800mg oral tablet #45 Take 1 tab BID prn pain {{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: date -v-1d +"%m-%d-%Y"
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".yrob"
-    replace: "     Rx Methocarbamol 500mg oral tablet #45 Take 1 tab BID prn muscle spasms {{output}}"
+    replace: "Rx Methocarbamol 500mg oral tablet #45 Take 1 tab BID prn muscle spasms {{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: date -v-1d +"%m-%d-%Y"
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".yvolt"
-    replace: "     Rx Voltaren Arthritis Pain 1 % topical gel #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
+    replace: "Rx Voltaren Arthritis Pain 1% topical gel #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: date -v-1d +"%m-%d-%Y"
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ytgaba600"
-    replace: "     Rx Gabapentin 600mg Tablet #80 Take 0.5 tab TID x7 days, then take 1 tab TID thereafter. {{output}}"
+    replace: "Rx Gabapentin 600mg Tablet #80 Take 0.5 tab TID x7 days, then take 1 tab TID thereafter {{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: date -v-1d +"%m-%d-%Y"
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ygaba"
-    replace: "     Rx Gabapentin 600mg Tablet #90 Take 1 tab TID {{output}}"
+    replace: "Rx Gabapentin 600mg Tablet #90 Take 1 tab TID {{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: date -v-1d +"%m-%d-%Y"
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
-  - trigger: ".yint" 
+  - trigger: ".yint"
     replace: "Interval {{output}}:"
     vars:
       - name: output
@@ -915,28 +920,28 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ylidooint"
-    replace: "     Rx lidocaine 5% topical ointment #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
+    replace: "Rx lidocaine 5% topical ointment #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: date -v-1d +"%m-%d-%Y"
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ylidocream"
-    replace: "     Rx lidocaine 4% topical cream #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
+    replace: "Rx lidocaine 4% topical cream #1 AAA (2-3 grams) 3-4x day prn pain {{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: date -v-1d +"%m-%d-%Y"
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".ylidopatch"
-    replace: "     Rx lidocaine 4% topical patch #10 Apply 1 patch AAA for 12 hours on then 12 hours off prn pain {{output}}"
+    replace: "Rx lidocaine 4% topical patch #10 Apply 1 patch AAA for 12 hours on then 12 hours off prn pain {{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: date -v-1d +"%m-%d-%Y"
+          cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".yx"
     replace: "{{output}}"
@@ -947,7 +952,7 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".yor"
-    replace: "***Or obtain for my review (as of {{output}})"
+    replace: "***Obtain for my review (as of {{output}})"
     vars:
       - name: output
         type: shell
@@ -970,24 +975,27 @@ matches:
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
-  - trigger: ".yf-u" 
-    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient partakes in XXX therapy ( x/week), citing some relief. However, patient reports that his / her XXX pain continues to be present and  XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. No other changes to patient's pain at this time."
+  - trigger: ".yf-u"
+    replace: |
+      Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient partakes in XXX therapy (x/week), citing some relief. However, patient reports that XXX pain continues to be present and XXX, citing the pain as limiting function. As such, XXX therapies were discussed. No other changes at this time.
     vars:
       - name: output
         type: shell
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
-  - trigger: ".ydiagrev" 
-    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient partakes in XXX therapy ( x/week), citing some relief. However, patient reports that ( his / her ) XXX pain continues to be present and XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. A significant portion of today's visit was spent reviewing patient's XXX MRI reports. No other changes to patient's pain at this time."
+  - trigger: ".ydiagrev"
+    replace: |
+      Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient partakes in XXX therapy (x/week), citing some relief. However, pain continues and limits function. MRI reports were reviewed in detail. No other changes at this time.
     vars:
       - name: output
         type: shell
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
-  - trigger: ".ypp" 
-    replace: "Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a XXX on XX-XX-XXXX, citing XXX relief. Patient continues to partake in XXX therapy ( x/week), citing some relief. However, patient reports that ( his / her ) XXX pain continues to be present and XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. No other changes to patient's pain at this time."
+  - trigger: ".ypp"
+    replace: |
+      Interval {{output}}: XXX presents today for a post-procedure follow-up. Patient received a procedure on XX-XX-XXXX with reported relief. Continues therapy (x/week). Pain persists and limits function. Discussed further management options. No other changes at this time.
     vars:
       - name: output
         type: shell
@@ -995,12 +1003,9 @@ matches:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
   - trigger: ".yobtain"
-    replace: "***Obtain XXX report for my review (as of {{output}})"
+    replace: "***Obtain report for my review (as of {{output}})"
     vars:
       - name: output
         type: shell
         params:
-          cmd: date -v-1d +"%m-%d-%Y"
-
-
-
+          cmd: "date -v-1d +'%m-%d-%Y'"
