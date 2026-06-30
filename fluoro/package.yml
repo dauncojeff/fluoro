@@ -834,8 +834,6 @@ matches:
      OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Discharge instructions were given."
   - trigger: ".master"
     replace: "Mustafa Samih"
- matches:
-
   - trigger: ".ychiro"
     replace: "-Patient is to continue chiropractic therapy as directed by OSP (as of {{output}})."
     vars:
