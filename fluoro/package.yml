@@ -850,7 +850,7 @@ matches:
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
 
-  - trigger: ".yxan"
+  - trigger: ".yyxan"
     replace: |
       Rx Xanax 0.5mg oral tablet #6 Take 1-2 tabs Q30mins titrating up until procedure prn anxiety
 
@@ -935,14 +935,6 @@ matches:
 
   - trigger: ".ylidopatch"
     replace: "Rx lidocaine 4% topical patch #10 Apply 1 patch AAA for 12 hours on then 12 hours off prn pain {{output}}"
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "date -v-1d +'%m-%d-%Y'"
-
-  - trigger: ".yx"
-    replace: "{{output}}"
     vars:
       - name: output
         type: shell
