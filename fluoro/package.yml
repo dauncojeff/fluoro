@@ -996,3 +996,8 @@ matches:
         type: shell
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
+  - trigger: ".effective"
+    replace: "provide effective, long-lasting relief"
+  - trigger: ".further"
+    replace: "to further evaluate the patient's condition"
+    
