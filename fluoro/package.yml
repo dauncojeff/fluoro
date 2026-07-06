@@ -1025,5 +1025,5 @@ matches:
   - trigger: ".traps"
     replace: "trapezius muscles"
   - trigger: ".anal"
-    repalce: "non-opioid analgesics"
+    replace: "non-opioid analgesics"
     
