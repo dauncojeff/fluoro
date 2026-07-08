@@ -212,7 +212,7 @@ matches:
   - trigger: ".futures"
     replace: |
      FUTURE MEDICAL CARE 
-     Future medical care should be made available to this patient. The patient should have access to neck and low back chiropractic therapy sessions 2-3 times per week for 6 weeks up to two times per year for the next 3 years. The patient should also have access to Cervical Epidural Injections no more than three a year at a total cost of approximately $8,000 to $10,000 per injection for the next 3 years. Furthermore, patient is to have access to as-needed interventional pain management consultations and orthopedic surgical evaluation."
+     Future medical care should be made available to this patient. The patient should have access to neck and low back chiropractic therapy sessions 2-3 times per week for 6 weeks up to two times per year for the next 3 years. The patient should also have access to Cervical Epidural Injections no more than three a year at a total cost of approximately $8,000 to $10,000 per injection for the next 3 years. Furthermore, patient is to have access to as-needed interventional pain management consultations and orthopedic surgical evaluation.
   - trigger: ".tgaba600"
     replace: "     Rx Gabapentin 600mg Tablet #80 Take 0.5 tab TID x7 days, then take 1 tab TID thereafter. {{output}}"
     vars:
