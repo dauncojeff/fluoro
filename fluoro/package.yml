@@ -1026,4 +1026,8 @@ matches:
     replace: "trapezius muscles"
   - trigger: ".anal"
     replace: "non-opioid analgesics"
+  - trigger: ".bulge"
+    replace: "disc bulge contributing to"
+  - trigger: ".doc"
+    replace: "disc osteophyte complex contributing to"
     
