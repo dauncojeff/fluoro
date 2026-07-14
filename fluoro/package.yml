@@ -1044,7 +1044,7 @@ matches:
     replace: "Minimal relief"
   - trigger: ".mor"
     replace: "minor relief"
-  - trigger: ".Mor:
+  - trigger: ".Mor:"
     replace: "Minor relief"
   - trigger: ".sign"
     replace: "significant relief"
