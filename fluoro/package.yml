@@ -1030,4 +1030,56 @@ matches:
     replace: "disc bulge contributing to"
   - trigger: ".doc"
     replace: "disc osteophyte complex contributing to"
+  - trigger: ".,"
+    replace: ", respectively."
+  - trigger: ".regard"
+    replace: "patient continues to follow up with a XXX regarding his/her XXX."
+  - trigger: ".mod"
+    replace: "moderate relief"
+  - trigger: ".Mod"
+    replace: "Moderate relief"
+  - trigger: ".min"
+    replace: "minimal relief"
+  - trigger: ".Min"
+    replace: "Minimal relief"
+  - trigger: ".mor"
+    replace: "minor relief"
+  - trigger: ".Mor:
+    replace: "Minor relief"
+  - trigger: ".sign"
+    replace: "significant relief"
+  - trigger: ".Sign"
+    replace: "Significant relief"
+  - trigger: ".tod"
+    replace: "today's" 
+  - trigger: ".inj"
+    replace: "Interval {{output}}: XXX presents today for a "
+     vars:
+      - name: output
+        type: shell
+        params:
+          cmd: date +"%m-%d-%Y"
+  - trigger: ".yinj"
+    replace: "Interval {{output}}: XXX presents today for a "
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
+  - trigger: ".ic" 
+    replace: "Interval {{output}}: XXX presents today for a in-clinic follow-up appointment. Patient reports that his / her XXX pain continues to be present and  XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: date +"%m-%d-%Y"
+  - trigger: ".yic"
+    replace: "Interval {{output}}: XXX presents today for a in-clinic follow-up appointment. Patient reports that his / her XXX pain continues to be present and  XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
+      
+  
     
