@@ -1054,7 +1054,7 @@ matches:
     replace: "today's" 
   - trigger: ".inj"
     replace: "Interval {{output}}: XXX presents today for a "
-     vars:
+    vars:
       - name: output
         type: shell
         params:
