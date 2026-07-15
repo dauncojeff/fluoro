@@ -1108,3 +1108,5 @@ matches:
     replace: "massage therapy"
   - trigger: ".ref neuro"
     replace: "-In view of patient’s debilitating XXX, I believe it is medically necessary for patient to consult with an neurologist. Referral provided during today’s visit."
+  - trigger: ".ability"
+    replace: "ability to perform activities of daily living"
