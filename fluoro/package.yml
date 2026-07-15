@@ -511,39 +511,31 @@ matches:
   - trigger: ".prcepi"
     replace: |
       FLUOROSCOPY GUIDED EPIDURAL INJECTION PROCEDURE REPORT
+      
       Patient was consented and understands the risks and benefits. Specific risks include failure to relieve pain, increased pain, bleeding/infection, nerve damage
+
+      DIAGNOSIS/INDICATION: Cervicalgia, cervical radiculopathy
 
       LOCATION: C7/T1
 
-      SKIN PREP: chlora prep
+      SKIN PREP: chloraprep
+
+      ANESTHESIA: local infiltrating 1% lidocaine
+
+      NEEDLE USED: 18 gauge Tuohy 3.5 inch
 
       POSITION: prone
 
       SOLUTION: Leukocyte-Poor Autologous Platelet-rich plasma
- 
-      Pre-operative diagnosis: Cervicalgia, cervical radiculopathy
- 
-      Post-operative diagnosis: Cervicalgia, cervical radiculopathy
- 
-      Procedure: Cervical epidural Injection with Platelet-rich Plasma
-      Informed consent obtained after explaining the procedure and potential complications including local discomfort, infection, headache, temporary or permanent weakness and/or numbness of one or both arms or legs, temporary or permanent quadriplegia, heart attack and stroke. All questions were answered. Platelet-rich plasma (PRP) was harvested from the patient and centrifuged at 11000 G's for ten minutes using Genesis Biologics PRP kit. 
-      
-      Patient was taken to exam room and placed in prone position.
-      Time out was performed.
-      Patients Cervical area was prepped and draped in a sterile manner.
- 
-      Using fluoroscopic guidance the skin and soft tissue overlying the C7-T1 area was anesthetized using local injection with 1% lidocaine.  Then under fluoroscopy using AP, contralateral oblique and Oblique views a 17 G 3.5 inch Touhy needle was advanced to the posterior aspect of the T1 lamina. The needle was redirected more cephalad and advanced to engage the ligamentum flavum.
- 
-      Loss of resistance was achieved.
-      Omnipaque injection revealed good epidural spread.
-      Then the harvested platelet-rich plasma was injected. 
- 
-      Estimated Blood Loss: None
-      Specimens: None
- 
-      Patient returned to post op area with no immediate complications.
- 
+
+      TECHNIQUE: After obtaining informed consent, platelet-rich plasma was harvested from the patient and centrifuged at 11000 G's for ten minutes using Genesis Biologics PRP kit. The patient was placed on the procedure table in the prone position. Time out was performed. The cervical area was prepped and draped in the usual  sterile fashion. Using fluoroscopic guidance, the skin and soft tissue overlying the C7-T1 area was anesthetized with 1% lidocaine. Under fluoroscopic guidance using AP, contralateral oblique, and oblique views, a 17-gauge 3.5 inch Tuohy needle was advanced to the posterior aspect of the T1 lamina and redirected cephalad to engage the ligamentum flavum. Loss of resistance was achieved. Omnipaque injection demonstrated good epidural spread. The harvested platelet-rich plasma was then injected. The needle was removed. The patient tolerated the procedure well. There were no immediate complications.
+
+      ESTIMATED BLOOD LOSS: None
+
+      SPECIMENS: None
+
       OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Discharge instructions were given.
+
   - trigger: ".prlepi"
     replace: |
       EPIDURAL INJECTION PROCEDURE REPORT     
