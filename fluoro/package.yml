@@ -1098,3 +1098,68 @@ matches:
     replace: "-In view of patient’s debilitating XXX, I believe it is medically necessary for patient to consult with an neurologist. Referral provided during today’s visit."
   - trigger: ".ability"
     replace: "ability to perform activities of daily living"
+  - trigger: ".pipe"
+    replace: |
+     ***PHYSICAL EXAM CONDUCTED DURING IN-CLINIC APPOINTMENT ON XXX***
+
+     Afebrile, VS WNL, +Antalgic gait
+     General appearance - alert, well appearing, and in no distress
+     Mental status - AOx3
+     Eyes - pupils equal and reactive, EOMI
+     Heart - normal rate, regular rhythm
+     Chest - symmetric air entry, unlabored respirations
+     Abdomen - soft, nontender, nondistended, 
+     Neurological - alert, oriented, normal speech, no focal findings or movement disorder noted
+     Extremities - peripheral pulses normal, no pedal edema
+
+     Lumbar Spine:
+        Inspection: No atrophy, No scars
+        Palpation: Midline NTTP/ Paraspinous muscles tenderness to palpation + Muscle tenderness to palpation +Palpable bands +Twitch 
+        ROM: Flex / Ext } limited due to pain
+        Pain with Facet loading:  + R/ + L; Pain with deep palpation over facet joints L3-L5
+        SLR:    +  R/   +L: bilateral sciatic notch TTP
+        SI joints   Bilateral exquisitely TTP 
+        Patrick's:    +   R /   +   L 
+        
+     Thoracic spine: 
+        Inspection: No atrophy, No scars
+        Palpation: Midline NTTP/ Paraspinous muscles tenderness to palpation + Muscle tenderness to palpations +Palpable bands +Twitch 
+        ROM: Flex / Ext } limited due to pain
+        Pain with Facet loading:  + R/ +L; Pain with deep palpation over facet joints T6-T9
+
+     Cervical Spine:
+        Inspection: No atrophy, No scars
+        Palpation: Midline NTTP/  Paraspinous muscles TTP + Diffuse Muscle tenderness to palpation +Palpable bands +Twitch response
+        ROM: Flex / Ext; limited due to pain. 
+     Facet loading:    +   R /  +  L Pain with deep palpation over facet joints C4-6
+        Spurlings Test:  + R / + L
+
+     Neuro:
+        CN II-XII Grossly intact
+        UE Sensation: R: intact / L: intact
+        UE Muscle Strength R: 5/5 / L: 5/5
+     UE DTR R: 2/4 / L: 2/4 (brachial, triceps)
+        LE Sensation: R intact / L: intact
+        LE Muscle Strength R: 5/5 / L: 5/5
+        LE DTR R: 2/4 / L: 2/4 (patellar, achilles)
+
+        Without allodynia, hyperalgesia
+
+     IMAGING: No new diagnostics for my review today."
+- trigger: ".thpe"
+  replace: |
+   *** A VIRTUAL TELEMEDICINE VISIT WAS CONDUCTED IN LIEU OF AN IN-PERSON EXAMINATION ON XXX ***
+
+   Lumbar Spine (as per the patient): 
+        Palpation: Midline NTTP/ Paraspinous muscles tenderness to palpation with sensations of muscle spasms
+        ROM: Flex / Ext / LR } limited due to pain
+       
+   Thoracic spine (as per the patient): 
+        Palpation: Midline NTTP/ Paraspinous muscles tenderness to palpation with sensations of spasms
+        ROM: Flex / Ext / LR } limited due to pain
+       
+   Cervical Spine (as per the patient): 
+        Palpation: Midline NTTP/  Paraspinous muscles tenderness to palpation with sensations of muscle spasms 
+        ROM: Flex / Ext / LR } limited due to pain.  
+
+   IMAGING: No new diagnostics for my review today."
