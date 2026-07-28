@@ -1145,7 +1145,7 @@ matches:
 
          Without allodynia, hyperalgesia
 
-     IMAGING: No new diagnostics for my review today."
+     IMAGING: No new diagnostics for my review today.
   - trigger: ".thpe"
     replace: |
      *** A VIRTUAL TELEMEDICINE VISIT WAS CONDUCTED IN LIEU OF AN IN-PERSON EXAMINATION ON XXX ***
@@ -1162,4 +1162,4 @@ matches:
             Palpation: Midline NTTP/  Paraspinous muscles tenderness to palpation with sensations of muscle spasms 
             ROM: Flex / Ext / LR } limited due to pain.  
 
-     IMAGING: No new diagnostics for my review today."
+     IMAGING: No new diagnostics for my review today.
