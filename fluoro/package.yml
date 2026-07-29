@@ -978,10 +978,10 @@ matches:
         type: shell
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
-  - trigger: ".effective"
+  - trigger: ".effe"
     replace: "provide effective, long-lasting relief"
-  - trigger: ".further"
-    replace: "to further evaluate the patient's condition"
+  - trigger: ".furth"
+    replace: "further evaluate the patient's condition"
   - trigger: ".ble"
     replace: "bilateral lower extremities"
   - trigger: ".bue"
@@ -1096,7 +1096,7 @@ matches:
     replace: "massage therapy"
   - trigger: ".ref neuro"
     replace: "-In view of patient’s debilitating XXX, I believe it is medically necessary for patient to consult with an neurologist. Referral provided during today’s visit."
-  - trigger: ".ability"
+  - trigger: ".abi"
     replace: "ability to perform activities of daily living"
   - trigger: ".pipe"
     replace: |
@@ -1348,3 +1348,18 @@ matches:
         type: shell
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"          
+  - trigger: ".compchiro"
+    replace: "-Patient completed chiropractic therapy (reported on {{output}})."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+  - trigger: ".ycompchiro"
+    replace: "-Patient completed chiropractic therapy (reported on {{output}})."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
+          
