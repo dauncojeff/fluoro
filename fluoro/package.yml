@@ -1392,3 +1392,66 @@ matches:
         type: shell
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
+  - trigger: ".mnldebromfollowinj1"
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his neck and low back pain continues to be present and debilitating, citing the pain as limiting his overall range of motion. As such, injection therapies were discussed to provide effective, long-lasting relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+  - trigger: ".fnldebromfollowinj1"
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that her neck and low back pain continues to be present and debilitating, citing the pain as limiting her overall range of motion. As such, injection therapies were discussed to provide effective, long-lasting relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+  - trigger: ".mnlbotromfollowinj1"
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his neck and low back pain continues to be present and bothersome, citing the pain as limiting his overall range of motion. As such, injection therapies were discussed to provide effective, long-lasting relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+  - trigger: ".fnlbotromfollowinj1"
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that her neck and low back pain continues to be present and bothersome, citing the pain as limiting her overall range of motion. As such, injection therapies were discussed to provide effective, long-lasting relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+  - trigger: ".ymnldebromfollowinj1"
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his neck and low back pain continues to be present and debilitating, citing the pain as limiting his overall range of motion. As such, injection therapies were discussed to provide effective, long-lasting relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
+
+  - trigger: ".yfnldebromfollowinj1"
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that her neck and low back pain continues to be present and debilitating, citing the pain as limiting her overall range of motion. As such, injection therapies were discussed to provide effective, long-lasting relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
+
+  - trigger: ".ymnlbotromfollowinj1"
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his neck and low back pain continues to be present and bothersome, citing the pain as limiting his overall range of motion. As such, injection therapies were discussed to provide effective, long-lasting relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
+
+  - trigger: ".yfnlbotromfollowinj1"
+    replace: "Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that her neck and low back pain continues to be present and bothersome, citing the pain as limiting her overall range of motion. As such, injection therapies were discussed to provide effective, long-lasting relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
