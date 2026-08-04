@@ -1054,7 +1054,7 @@ matches:
         params:
           cmd: date +"%m-%d-%Y"
   - trigger: ".yic"
-    replace: "Interval {{output}}: XXX presents today for a in-clinic follow-up appointment. Patient reports that his / her XXX pain continues to be present and  XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    replace: "Interval {{output}}: XXX presents today for an in-clinic follow-up appointment. Patient reports that his / her XXX pain continues to be present and  XXX, citing the pain as limiting his/her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
     vars:
       - name: output
         type: shell
@@ -1362,4 +1362,33 @@ matches:
         type: shell
         params:
           cmd: "date -v-1d +'%m-%d-%Y'"
-          
+  - trigger: ".mnut"
+    replace: "muscle spasms, numbness, and tingling"
+  - trigger: ".mic"
+    replace: "Interval {{output}}: XXX presents today for an in-clinic follow-up appointment. Patient reports that his XXX pain continues to be present and XXX, citing the pain as limiting his XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+  - trigger: ".fic"
+    replace: "Interval {{output}}: XXX presents today for an in-clinic follow-up appointment. Patient reports that her XXX pain continues to be present and XXX, citing the pain as limiting her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+  - trigger: ".ymic"
+    replace: "Interval {{output}}: XXX presents today for an in-clinic follow-up appointment. Patient reports that his XXX pain continues to be present and XXX, citing the pain as limiting his XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
+  - trigger: ".yfic"
+    replace: "Interval {{output}}: XXX presents today for an in-clinic follow-up appointment. Patient reports that her XXX pain continues to be present and XXX, citing the pain as limiting her XXX. As such, XXX therapies were discussed to XXX. Additionally, patient partakes in XXX therapy ( x/week), citing XXX relief. No other changes to patient's pain at this time."
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date -v-1d +'%m-%d-%Y'"
