@@ -9390,9 +9390,7 @@ matches:
             printf "%s" "$text"
   - trigger: ".mnpform5"
     replace: |
-      Patient is seen here today for a NP
-
-      New Patient Evaluation.
+      Patient is seen here today for a New Patient Evaluation.
 
       XXX is a {{np1.age}}-year-old male who presents with {{pain_list}} pain. {{pain_sections}} Patient states that all his pain started due to a Motor Vehicle Accident (MVA) on {{np3.accident_date}}. {{history_text}}Patient's pain is affecting his quality of life, level of function, as well as basic activities of daily living.
 
