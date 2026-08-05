@@ -4209,355 +4209,7 @@ matches:
       SPECIMENS: None
       
       OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Patient's vitals were stable and continuously monitored for 30 minutes post-procedure. Patient was then discharged after confirmation of a driver present for patient's transportation.
-  - trigger: ".mhpi"
-    replace: |
-      Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his {{hpi.pain_area}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{hpi.therapy}} therapies were discussed to {{goal}}. Additionally, patient partakes in {{hpi.current_therapy}} therapy ({{hpi.frequency}}x/week), citing {{hpi.relief}} relief. No other changes to patient's pain at this time.
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "date +'%m-%d-%Y'"
-
-      - name: hpi
-        type: form
-        params:
-          layout: |
-            Pain area: [[pain_area]]
-            Pain status: [[pain_status]]
-            Limitation: [[limitation]]
-            Therapies discussed: [[therapy]]
-            Current therapy: [[current_therapy]]
-            Frequency per week: [[frequency]]
-            Type of relief: [[relief]]
-          fields:
-            therapy:
-              type: choice
-              values:
-                - injection
-                - medication management
-                - physical therapy
-                - chiropractic
-
-      - name: goal
-        type: shell
-        params:
-          cmd: |
-            case "{{hpi.therapy}}" in
-              "injection")
-                printf "%s" "provide effective, long-lasting relief"
-                ;;
-              "medication")
-                printf "%s" "help manage pain"
-                ;;
-              "conservative")
-                printf "%s" "help manage pain"
-                ;;
-              "chiropractic")
-                printf "%s" "improve mobility and provide symptomatic relief"
-                ;;
-              *)
-                printf "%s" "improve pain and overall function"
-                ;;
-            esac
-  - trigger: ".mmfollowform1"
-    replace: |
-      Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{recommendations}}.{{current_therapy_sentence}} No other changes to patient's pain at this time.
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "date +'%m-%d-%Y'"
-
-      - name: hpi
-        type: form
-        params:
-          layout: |
-            Primary pain area:
-            [[pain1]]
-
-            Additional pain area 1:
-            [[pain2]]
-
-            Additional pain area 2:
-            [[pain3]]
-
-            Additional pain area 3:
-            [[pain4]]
-
-            Custom pain area (used only when "other/custom" is selected):
-            [[custom_pain]]
-
-            Pain status:
-            [[pain_status]]
-
-            Limitation:
-            [[limitation]]
-
-            Recommendation 1:
-            [[recommendation1]]
-
-            Recommendation 2:
-            [[recommendation2]]
-
-            Recommendation 3:
-            [[recommendation3]]
-
-            Recommendation 4:
-            [[recommendation4]]
-
-            Referral to (used only when "referral" is selected):
-            [[referral_target]]
-
-            Current therapy:
-            [[current_therapy]]
-
-            Frequency per week:
-            [[frequency]]
-
-            Relief:
-            [[relief]]
-          fields:
-            pain1:
-              type: choice
-              values:
-                - neck
-                - mid-back
-                - low back
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
-                - other/custom
-            pain2:
-              type: choice
-              values:
-                - none
-                - neck
-                - mid-back
-                - low back
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
-                - other/custom
-            pain3:
-              type: choice
-              values:
-                - none
-                - neck
-                - mid-back
-                - low back
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
-                - other/custom
-            pain4:
-              type: choice
-              values:
-                - none
-                - neck
-                - mid-back
-                - low back
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
-                - other/custom
-            custom_pain:
-              default: "XXX"
-            pain_status:
-              type: choice
-              values:
-                - debilitating
-                - bothersome
-            limitation:
-              type: choice
-              values:
-                - ability to perform activities of daily living
-                - overall range of motion
-                - full range of motion
-                - daily functioning
-            recommendation1:
-              type: choice
-              values:
-                - injection
-                - medications
-                - conservative
-                - diagnostics
-                - referral
-            recommendation2:
-              type: choice
-              values:
-                - none
-                - injection
-                - medications
-                - conservative
-                - diagnostics
-                - referral
-            recommendation3:
-              type: choice
-              values:
-                - none
-                - injection
-                - medications
-                - conservative
-                - diagnostics
-                - referral
-            recommendation4:
-              type: choice
-              values:
-                - none
-                - injection
-                - medications
-                - conservative
-                - diagnostics
-                - referral
-            referral_target:
-              default: "XXX"
-            current_therapy:
-              type: choice
-              values:
-                - none
-                - chiropractic
-                - acupuncture
-                - massage
-                - physical
-            frequency:
-              type: choice
-              values:
-                - "1"
-                - "2"
-                - "3"
-                - "4"
-                - "5"
-            relief:
-              type: choice
-              values:
-                - some
-                - temporary
-
-      - name: pain_list
-        type: shell
-        params:
-          cmd: |
-            count=0
-
-            add_pain() {
-              item="$1"
-
-              if [ "$item" = "none" ] || [ -z "$item" ]; then
-                return
-              fi
-
-              if [ "$item" = "other/custom" ]; then
-                item="$ESPANSO_HPI_CUSTOM_PAIN"
-              fi
-
-              case "|$seen|" in
-                *"|$item|"*) return ;;
-              esac
-
-              seen="${seen}|${item}"
-              count=$((count + 1))
-
-              case "$count" in
-                1) p1="$item" ;;
-                2) p2="$item" ;;
-                3) p3="$item" ;;
-                4) p4="$item" ;;
-              esac
-            }
-
-            add_pain "$ESPANSO_HPI_PAIN1"
-            add_pain "$ESPANSO_HPI_PAIN2"
-            add_pain "$ESPANSO_HPI_PAIN3"
-            add_pain "$ESPANSO_HPI_PAIN4"
-
-            case "$count" in
-              1) printf "%s" "$p1" ;;
-              2) printf "%s and %s" "$p1" "$p2" ;;
-              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
-              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
-            esac
-
-      - name: recommendations
-        type: shell
-        params:
-          cmd: |
-            count=0
-
-            add_recommendation() {
-              choice="$1"
-
-              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
-                return
-              fi
-
-              case "|$seen|" in
-                *"|$choice|"*) return ;;
-              esac
-
-              seen="${seen}|${choice}"
-
-              case "$choice" in
-                injection)
-                  item="injection therapies were discussed to provide effective, long-lasting relief"
-                  ;;
-                medications)
-                  item="medications were discussed to help manage pain"
-                  ;;
-                conservative)
-                  item="conservative therapies were discussed to help manage pain"
-                  ;;
-                diagnostics)
-                  item="diagnostics were discussed to further evaluate the patient's condition"
-                  ;;
-                referral)
-                  item="referral to $ESPANSO_HPI_REFERRAL_TARGET was discussed to further evaluate the patient's condition"
-                  ;;
-              esac
-
-              count=$((count + 1))
-
-              case "$count" in
-                1) r1="$item" ;;
-                2) r2="$item" ;;
-                3) r3="$item" ;;
-                4) r4="$item" ;;
-              esac
-            }
-
-            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
-            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
-            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
-            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
-
-            case "$count" in
-              1) printf "%s" "$r1" ;;
-              2) printf "%s and %s" "$r1" "$r2" ;;
-              3) printf "%s; %s; and %s" "$r1" "$r2" "$r3" ;;
-              4) printf "%s; %s; %s; and %s" "$r1" "$r2" "$r3" "$r4" ;;
-            esac
-
-      - name: current_therapy_sentence
-        type: shell
-        params:
-          cmd: |
-            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
-              printf "%s" ""
-            else
-              printf "%s" " Additionally, patient partakes in $ESPANSO_HPI_CURRENT_THERAPY therapy (${ESPANSO_HPI_FREQUENCY}x/week), citing $ESPANSO_HPI_RELIEF relief."
-            fi
-  - trigger: ".mmfollowform2"
+  - trigger: ".mmfol"
     replace: |
       Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
     vars:
@@ -4867,3 +4519,3981 @@ matches:
             else
               printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief."                 "$recommendation_text"                 "$ESPANSO_HPI_CURRENT_THERAPY"                 "$ESPANSO_HPI_FREQUENCY"                 "$ESPANSO_HPI_RELIEF"
             fi
+  - trigger: ".fffol"
+    replace: |
+      Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Primary pain area:
+            [[pain1]]
+
+            Additional pain area 1:
+            [[pain2]]
+
+            Additional pain area 2:
+            [[pain3]]
+
+            Additional pain area 3:
+            [[pain4]]
+
+            Custom pain area (used only when "other/custom" is selected):
+            [[custom_pain]]
+
+            Pain status:
+            [[pain_status]]
+
+            Limitation:
+            [[limitation]]
+
+            Recommendation 1:
+            [[recommendation1]]
+
+            Recommendation 2:
+            [[recommendation2]]
+
+            Recommendation 3:
+            [[recommendation3]]
+
+            Recommendation 4:
+            [[recommendation4]]
+
+            Referral to (used only when "referral" is selected):
+            [[referral_target]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Frequency per week:
+            [[frequency]]
+
+            Relief:
+            [[relief]]
+          fields:
+            pain1:
+              type: choice
+              values:
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain2:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain3:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain4:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_pain:
+              default: "XXX"
+            pain_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            recommendation1:
+              type: choice
+              values:
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation2:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation3:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation4:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            referral_target:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            frequency:
+              type: choice
+              values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_PAIN"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+                4) p4="$item" ;;
+              esac
+            }
+
+            add_pain "$ESPANSO_HPI_PAIN1"
+            add_pain "$ESPANSO_HPI_PAIN2"
+            add_pain "$ESPANSO_HPI_PAIN3"
+            add_pain "$ESPANSO_HPI_PAIN4"
+
+            case "$count" in
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            esac
+
+      - name: plan_text
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_recommendation() {
+              choice="$1"
+
+              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+                return
+              fi
+
+              case "|$seen|" in
+                *"|$choice|"*) return ;;
+              esac
+
+              seen="${seen}|${choice}"
+
+              case "$choice" in
+                injection)
+                  subject="injection therapies"
+                  goal="provide effective, long-lasting relief"
+                  ;;
+                medications)
+                  subject="medications"
+                  goal="help manage pain"
+                  ;;
+                conservative)
+                  subject="conservative therapies"
+                  goal="help manage pain"
+                  ;;
+                diagnostics)
+                  subject="diagnostics"
+                  goal="further evaluate the patient's condition"
+                  ;;
+                referral)
+                  subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
+                  goal="further evaluate the patient's condition"
+                  ;;
+              esac
+
+              count=$((count + 1))
+
+              case "$count" in
+                1) s1="$subject"; g1="$goal" ;;
+                2) s2="$subject"; g2="$goal" ;;
+                3) s3="$subject"; g3="$goal" ;;
+                4) s4="$subject"; g4="$goal" ;;
+              esac
+            }
+
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+
+            case "$count" in
+              1)
+                case "$s1" in
+                  referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+                  *) recommendation_text="$s1 were discussed to $g1." ;;
+                esac
+                ;;
+              2)
+                recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+                ;;
+              3)
+                recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+                ;;
+              4)
+                recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+                ;;
+            esac
+
+            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
+              printf "%s" "$recommendation_text"
+            else
+              printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+                "$recommendation_text" \
+                "$ESPANSO_HPI_CURRENT_THERAPY" \
+                "$ESPANSO_HPI_FREQUENCY" \
+                "$ESPANSO_HPI_RELIEF"
+            fi
+  - trigger: ".mmicfol"
+    replace: |
+      Interval {{output}}: XXX presents today for a in-clinic follow-up appointment. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Primary pain area:
+            [[pain1]]
+
+            Additional pain area 1:
+            [[pain2]]
+
+            Additional pain area 2:
+            [[pain3]]
+
+            Additional pain area 3:
+            [[pain4]]
+
+            Custom pain area (used only when "other/custom" is selected):
+            [[custom_pain]]
+
+            Pain status:
+            [[pain_status]]
+
+            Limitation:
+            [[limitation]]
+
+            Recommendation 1:
+            [[recommendation1]]
+
+            Recommendation 2:
+            [[recommendation2]]
+
+            Recommendation 3:
+            [[recommendation3]]
+
+            Recommendation 4:
+            [[recommendation4]]
+
+            Referral to (used only when "referral" is selected):
+            [[referral_target]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Frequency per week:
+            [[frequency]]
+
+            Relief:
+            [[relief]]
+          fields:
+            pain1:
+              type: choice
+              values:
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain2:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain3:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain4:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_pain:
+              default: "XXX"
+            pain_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            recommendation1:
+              type: choice
+              values:
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation2:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation3:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation4:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            referral_target:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            frequency:
+              type: choice
+              values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_PAIN"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+                4) p4="$item" ;;
+              esac
+            }
+
+            add_pain "$ESPANSO_HPI_PAIN1"
+            add_pain "$ESPANSO_HPI_PAIN2"
+            add_pain "$ESPANSO_HPI_PAIN3"
+            add_pain "$ESPANSO_HPI_PAIN4"
+
+            case "$count" in
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            esac
+
+      - name: plan_text
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_recommendation() {
+              choice="$1"
+
+              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+                return
+              fi
+
+              case "|$seen|" in
+                *"|$choice|"*) return ;;
+              esac
+
+              seen="${seen}|${choice}"
+
+              case "$choice" in
+                injection)
+                  subject="injection therapies"
+                  goal="provide effective, long-lasting relief"
+                  ;;
+                medications)
+                  subject="medications"
+                  goal="help manage pain"
+                  ;;
+                conservative)
+                  subject="conservative therapies"
+                  goal="help manage pain"
+                  ;;
+                diagnostics)
+                  subject="diagnostics"
+                  goal="further evaluate the patient's condition"
+                  ;;
+                referral)
+                  subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
+                  goal="further evaluate the patient's condition"
+                  ;;
+              esac
+
+              count=$((count + 1))
+
+              case "$count" in
+                1) s1="$subject"; g1="$goal" ;;
+                2) s2="$subject"; g2="$goal" ;;
+                3) s3="$subject"; g3="$goal" ;;
+                4) s4="$subject"; g4="$goal" ;;
+              esac
+            }
+
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+
+            case "$count" in
+              1)
+                case "$s1" in
+                  referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+                  *) recommendation_text="$s1 were discussed to $g1." ;;
+                esac
+                ;;
+              2)
+                recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+                ;;
+              3)
+                recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+                ;;
+              4)
+                recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+                ;;
+            esac
+
+            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
+              printf "%s" "$recommendation_text"
+            else
+              printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+                "$recommendation_text" \
+                "$ESPANSO_HPI_CURRENT_THERAPY" \
+                "$ESPANSO_HPI_FREQUENCY" \
+                "$ESPANSO_HPI_RELIEF"
+            fi
+  - trigger: ".fficfol"
+    replace: |
+      Interval {{output}}: XXX presents today for a in-clinic follow-up appointment. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Primary pain area:
+            [[pain1]]
+
+            Additional pain area 1:
+            [[pain2]]
+
+            Additional pain area 2:
+            [[pain3]]
+
+            Additional pain area 3:
+            [[pain4]]
+
+            Custom pain area (used only when "other/custom" is selected):
+            [[custom_pain]]
+
+            Pain status:
+            [[pain_status]]
+
+            Limitation:
+            [[limitation]]
+
+            Recommendation 1:
+            [[recommendation1]]
+
+            Recommendation 2:
+            [[recommendation2]]
+
+            Recommendation 3:
+            [[recommendation3]]
+
+            Recommendation 4:
+            [[recommendation4]]
+
+            Referral to (used only when "referral" is selected):
+            [[referral_target]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Frequency per week:
+            [[frequency]]
+
+            Relief:
+            [[relief]]
+          fields:
+            pain1:
+              type: choice
+              values:
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain2:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain3:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain4:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_pain:
+              default: "XXX"
+            pain_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            recommendation1:
+              type: choice
+              values:
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation2:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation3:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation4:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            referral_target:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            frequency:
+              type: choice
+              values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_PAIN"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+                4) p4="$item" ;;
+              esac
+            }
+
+            add_pain "$ESPANSO_HPI_PAIN1"
+            add_pain "$ESPANSO_HPI_PAIN2"
+            add_pain "$ESPANSO_HPI_PAIN3"
+            add_pain "$ESPANSO_HPI_PAIN4"
+
+            case "$count" in
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            esac
+
+      - name: plan_text
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_recommendation() {
+              choice="$1"
+
+              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+                return
+              fi
+
+              case "|$seen|" in
+                *"|$choice|"*) return ;;
+              esac
+
+              seen="${seen}|${choice}"
+
+              case "$choice" in
+                injection)
+                  subject="injection therapies"
+                  goal="provide effective, long-lasting relief"
+                  ;;
+                medications)
+                  subject="medications"
+                  goal="help manage pain"
+                  ;;
+                conservative)
+                  subject="conservative therapies"
+                  goal="help manage pain"
+                  ;;
+                diagnostics)
+                  subject="diagnostics"
+                  goal="further evaluate the patient's condition"
+                  ;;
+                referral)
+                  subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
+                  goal="further evaluate the patient's condition"
+                  ;;
+              esac
+
+              count=$((count + 1))
+
+              case "$count" in
+                1) s1="$subject"; g1="$goal" ;;
+                2) s2="$subject"; g2="$goal" ;;
+                3) s3="$subject"; g3="$goal" ;;
+                4) s4="$subject"; g4="$goal" ;;
+              esac
+            }
+
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+
+            case "$count" in
+              1)
+                case "$s1" in
+                  referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+                  *) recommendation_text="$s1 were discussed to $g1." ;;
+                esac
+                ;;
+              2)
+                recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+                ;;
+              3)
+                recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+                ;;
+              4)
+                recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+                ;;
+            esac
+
+            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
+              printf "%s" "$recommendation_text"
+            else
+              printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+                "$recommendation_text" \
+                "$ESPANSO_HPI_CURRENT_THERAPY" \
+                "$ESPANSO_HPI_FREQUENCY" \
+                "$ESPANSO_HPI_RELIEF"
+            fi
+  - trigger: ".mmpostpro"
+    replace: |
+      Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a {{hpi.procedure}} on {{hpi.procedure_date}}, citing {{hpi.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Procedure received:
+            [[procedure]]
+
+            Procedure date (MM-DD-YYYY):
+            [[procedure_date]]
+
+            Procedure response/result:
+            [[procedure_response]]
+
+            Primary pain area:
+            [[pain1]]
+
+            Additional pain area 1:
+            [[pain2]]
+
+            Additional pain area 2:
+            [[pain3]]
+
+            Additional pain area 3:
+            [[pain4]]
+
+            Custom pain area (used only when "other/custom" is selected):
+            [[custom_pain]]
+
+            Pain status:
+            [[pain_status]]
+
+            Limitation:
+            [[limitation]]
+
+            Recommendation 1:
+            [[recommendation1]]
+
+            Recommendation 2:
+            [[recommendation2]]
+
+            Recommendation 3:
+            [[recommendation3]]
+
+            Recommendation 4:
+            [[recommendation4]]
+
+            Referral to (used only when "referral" is selected):
+            [[referral_target]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Frequency per week:
+            [[frequency]]
+
+            Relief:
+            [[relief]]
+          fields:
+            procedure:
+              default: "XXX"
+            procedure_date:
+              default: "XX-XX-XXXX"
+            procedure_response:
+              default: "XXX"
+            pain1:
+              type: choice
+              values:
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain2:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain3:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain4:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_pain:
+              default: "XXX"
+            pain_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            recommendation1:
+              type: choice
+              values:
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation2:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation3:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation4:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            referral_target:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            frequency:
+              type: choice
+              values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_PAIN"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+                4) p4="$item" ;;
+              esac
+            }
+
+            add_pain "$ESPANSO_HPI_PAIN1"
+            add_pain "$ESPANSO_HPI_PAIN2"
+            add_pain "$ESPANSO_HPI_PAIN3"
+            add_pain "$ESPANSO_HPI_PAIN4"
+
+            case "$count" in
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            esac
+
+      - name: plan_text
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_recommendation() {
+              choice="$1"
+
+              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+                return
+              fi
+
+              case "|$seen|" in
+                *"|$choice|"*) return ;;
+              esac
+
+              seen="${seen}|${choice}"
+
+              case "$choice" in
+                injection)
+                  subject="injection therapies"
+                  goal="provide effective, long-lasting relief"
+                  ;;
+                medications)
+                  subject="medications"
+                  goal="help manage pain"
+                  ;;
+                conservative)
+                  subject="conservative therapies"
+                  goal="help manage pain"
+                  ;;
+                diagnostics)
+                  subject="diagnostics"
+                  goal="further evaluate the patient's condition"
+                  ;;
+                referral)
+                  subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
+                  goal="further evaluate the patient's condition"
+                  ;;
+              esac
+
+              count=$((count + 1))
+
+              case "$count" in
+                1) s1="$subject"; g1="$goal" ;;
+                2) s2="$subject"; g2="$goal" ;;
+                3) s3="$subject"; g3="$goal" ;;
+                4) s4="$subject"; g4="$goal" ;;
+              esac
+            }
+
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+
+            case "$count" in
+              1)
+                case "$s1" in
+                  referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+                  *) recommendation_text="$s1 were discussed to $g1." ;;
+                esac
+                ;;
+              2)
+                recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+                ;;
+              3)
+                recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+                ;;
+              4)
+                recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+                ;;
+            esac
+
+            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
+              printf "%s" "$recommendation_text"
+            else
+              printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+                "$recommendation_text" \
+                "$ESPANSO_HPI_CURRENT_THERAPY" \
+                "$ESPANSO_HPI_FREQUENCY" \
+                "$ESPANSO_HPI_RELIEF"
+            fi
+  - trigger: ".ffpostpro"
+    replace: |
+      Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a {{hpi.procedure}} on {{hpi.procedure_date}}, citing {{hpi.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Procedure received:
+            [[procedure]]
+
+            Procedure date (MM-DD-YYYY):
+            [[procedure_date]]
+
+            Procedure response/result:
+            [[procedure_response]]
+
+            Primary pain area:
+            [[pain1]]
+
+            Additional pain area 1:
+            [[pain2]]
+
+            Additional pain area 2:
+            [[pain3]]
+
+            Additional pain area 3:
+            [[pain4]]
+
+            Custom pain area (used only when "other/custom" is selected):
+            [[custom_pain]]
+
+            Pain status:
+            [[pain_status]]
+
+            Limitation:
+            [[limitation]]
+
+            Recommendation 1:
+            [[recommendation1]]
+
+            Recommendation 2:
+            [[recommendation2]]
+
+            Recommendation 3:
+            [[recommendation3]]
+
+            Recommendation 4:
+            [[recommendation4]]
+
+            Referral to (used only when "referral" is selected):
+            [[referral_target]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Frequency per week:
+            [[frequency]]
+
+            Relief:
+            [[relief]]
+          fields:
+            procedure:
+              default: "XXX"
+            procedure_date:
+              default: "XX-XX-XXXX"
+            procedure_response:
+              default: "XXX"
+            pain1:
+              type: choice
+              values:
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain2:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain3:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain4:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_pain:
+              default: "XXX"
+            pain_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            recommendation1:
+              type: choice
+              values:
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation2:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation3:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation4:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            referral_target:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            frequency:
+              type: choice
+              values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_PAIN"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+                4) p4="$item" ;;
+              esac
+            }
+
+            add_pain "$ESPANSO_HPI_PAIN1"
+            add_pain "$ESPANSO_HPI_PAIN2"
+            add_pain "$ESPANSO_HPI_PAIN3"
+            add_pain "$ESPANSO_HPI_PAIN4"
+
+            case "$count" in
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            esac
+
+      - name: plan_text
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_recommendation() {
+              choice="$1"
+
+              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+                return
+              fi
+
+              case "|$seen|" in
+                *"|$choice|"*) return ;;
+              esac
+
+              seen="${seen}|${choice}"
+
+              case "$choice" in
+                injection)
+                  subject="injection therapies"
+                  goal="provide effective, long-lasting relief"
+                  ;;
+                medications)
+                  subject="medications"
+                  goal="help manage pain"
+                  ;;
+                conservative)
+                  subject="conservative therapies"
+                  goal="help manage pain"
+                  ;;
+                diagnostics)
+                  subject="diagnostics"
+                  goal="further evaluate the patient's condition"
+                  ;;
+                referral)
+                  subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
+                  goal="further evaluate the patient's condition"
+                  ;;
+              esac
+
+              count=$((count + 1))
+
+              case "$count" in
+                1) s1="$subject"; g1="$goal" ;;
+                2) s2="$subject"; g2="$goal" ;;
+                3) s3="$subject"; g3="$goal" ;;
+                4) s4="$subject"; g4="$goal" ;;
+              esac
+            }
+
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+
+            case "$count" in
+              1)
+                case "$s1" in
+                  referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+                  *) recommendation_text="$s1 were discussed to $g1." ;;
+                esac
+                ;;
+              2)
+                recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+                ;;
+              3)
+                recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+                ;;
+              4)
+                recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+                ;;
+            esac
+
+            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
+              printf "%s" "$recommendation_text"
+            else
+              printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+                "$recommendation_text" \
+                "$ESPANSO_HPI_CURRENT_THERAPY" \
+                "$ESPANSO_HPI_FREQUENCY" \
+                "$ESPANSO_HPI_RELIEF"
+            fi
+  - trigger: ".mmicpostpro"
+    replace: |
+      Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment. Patient received a {{hpi.procedure}} on {{hpi.procedure_date}}, citing {{hpi.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Procedure received:
+            [[procedure]]
+
+            Procedure date (MM-DD-YYYY):
+            [[procedure_date]]
+
+            Procedure response/result:
+            [[procedure_response]]
+
+            Primary pain area:
+            [[pain1]]
+
+            Additional pain area 1:
+            [[pain2]]
+
+            Additional pain area 2:
+            [[pain3]]
+
+            Additional pain area 3:
+            [[pain4]]
+
+            Custom pain area (used only when "other/custom" is selected):
+            [[custom_pain]]
+
+            Pain status:
+            [[pain_status]]
+
+            Limitation:
+            [[limitation]]
+
+            Recommendation 1:
+            [[recommendation1]]
+
+            Recommendation 2:
+            [[recommendation2]]
+
+            Recommendation 3:
+            [[recommendation3]]
+
+            Recommendation 4:
+            [[recommendation4]]
+
+            Referral to (used only when "referral" is selected):
+            [[referral_target]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Frequency per week:
+            [[frequency]]
+
+            Relief:
+            [[relief]]
+          fields:
+            procedure:
+              default: "XXX"
+            procedure_date:
+              default: "XX-XX-XXXX"
+            procedure_response:
+              default: "XXX"
+            pain1:
+              type: choice
+              values:
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain2:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain3:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain4:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_pain:
+              default: "XXX"
+            pain_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            recommendation1:
+              type: choice
+              values:
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation2:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation3:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation4:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            referral_target:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            frequency:
+              type: choice
+              values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_PAIN"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+                4) p4="$item" ;;
+              esac
+            }
+
+            add_pain "$ESPANSO_HPI_PAIN1"
+            add_pain "$ESPANSO_HPI_PAIN2"
+            add_pain "$ESPANSO_HPI_PAIN3"
+            add_pain "$ESPANSO_HPI_PAIN4"
+
+            case "$count" in
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            esac
+
+      - name: plan_text
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_recommendation() {
+              choice="$1"
+
+              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+                return
+              fi
+
+              case "|$seen|" in
+                *"|$choice|"*) return ;;
+              esac
+
+              seen="${seen}|${choice}"
+
+              case "$choice" in
+                injection)
+                  subject="injection therapies"
+                  goal="provide effective, long-lasting relief"
+                  ;;
+                medications)
+                  subject="medications"
+                  goal="help manage pain"
+                  ;;
+                conservative)
+                  subject="conservative therapies"
+                  goal="help manage pain"
+                  ;;
+                diagnostics)
+                  subject="diagnostics"
+                  goal="further evaluate the patient's condition"
+                  ;;
+                referral)
+                  subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
+                  goal="further evaluate the patient's condition"
+                  ;;
+              esac
+
+              count=$((count + 1))
+
+              case "$count" in
+                1) s1="$subject"; g1="$goal" ;;
+                2) s2="$subject"; g2="$goal" ;;
+                3) s3="$subject"; g3="$goal" ;;
+                4) s4="$subject"; g4="$goal" ;;
+              esac
+            }
+
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+
+            case "$count" in
+              1)
+                case "$s1" in
+                  referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+                  *) recommendation_text="$s1 were discussed to $g1." ;;
+                esac
+                ;;
+              2)
+                recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+                ;;
+              3)
+                recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+                ;;
+              4)
+                recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+                ;;
+            esac
+
+            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
+              printf "%s" "$recommendation_text"
+            else
+              printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+                "$recommendation_text" \
+                "$ESPANSO_HPI_CURRENT_THERAPY" \
+                "$ESPANSO_HPI_FREQUENCY" \
+                "$ESPANSO_HPI_RELIEF"
+            fi
+  - trigger: ".fficpostpro"
+    replace: |
+      Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment. Patient received a {{hpi.procedure}} on {{hpi.procedure_date}}, citing {{hpi.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Procedure received:
+            [[procedure]]
+
+            Procedure date (MM-DD-YYYY):
+            [[procedure_date]]
+
+            Procedure response/result:
+            [[procedure_response]]
+
+            Primary pain area:
+            [[pain1]]
+
+            Additional pain area 1:
+            [[pain2]]
+
+            Additional pain area 2:
+            [[pain3]]
+
+            Additional pain area 3:
+            [[pain4]]
+
+            Custom pain area (used only when "other/custom" is selected):
+            [[custom_pain]]
+
+            Pain status:
+            [[pain_status]]
+
+            Limitation:
+            [[limitation]]
+
+            Recommendation 1:
+            [[recommendation1]]
+
+            Recommendation 2:
+            [[recommendation2]]
+
+            Recommendation 3:
+            [[recommendation3]]
+
+            Recommendation 4:
+            [[recommendation4]]
+
+            Referral to (used only when "referral" is selected):
+            [[referral_target]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Frequency per week:
+            [[frequency]]
+
+            Relief:
+            [[relief]]
+          fields:
+            procedure:
+              default: "XXX"
+            procedure_date:
+              default: "XX-XX-XXXX"
+            procedure_response:
+              default: "XXX"
+            pain1:
+              type: choice
+              values:
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain2:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain3:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain4:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_pain:
+              default: "XXX"
+            pain_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            recommendation1:
+              type: choice
+              values:
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation2:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation3:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation4:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            referral_target:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            frequency:
+              type: choice
+              values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_PAIN"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+                4) p4="$item" ;;
+              esac
+            }
+
+            add_pain "$ESPANSO_HPI_PAIN1"
+            add_pain "$ESPANSO_HPI_PAIN2"
+            add_pain "$ESPANSO_HPI_PAIN3"
+            add_pain "$ESPANSO_HPI_PAIN4"
+
+            case "$count" in
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            esac
+
+      - name: plan_text
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_recommendation() {
+              choice="$1"
+
+              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+                return
+              fi
+
+              case "|$seen|" in
+                *"|$choice|"*) return ;;
+              esac
+
+              seen="${seen}|${choice}"
+
+              case "$choice" in
+                injection)
+                  subject="injection therapies"
+                  goal="provide effective, long-lasting relief"
+                  ;;
+                medications)
+                  subject="medications"
+                  goal="help manage pain"
+                  ;;
+                conservative)
+                  subject="conservative therapies"
+                  goal="help manage pain"
+                  ;;
+                diagnostics)
+                  subject="diagnostics"
+                  goal="further evaluate the patient's condition"
+                  ;;
+                referral)
+                  subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
+                  goal="further evaluate the patient's condition"
+                  ;;
+              esac
+
+              count=$((count + 1))
+
+              case "$count" in
+                1) s1="$subject"; g1="$goal" ;;
+                2) s2="$subject"; g2="$goal" ;;
+                3) s3="$subject"; g3="$goal" ;;
+                4) s4="$subject"; g4="$goal" ;;
+              esac
+            }
+
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+
+            case "$count" in
+              1)
+                case "$s1" in
+                  referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+                  *) recommendation_text="$s1 were discussed to $g1." ;;
+                esac
+                ;;
+              2)
+                recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+                ;;
+              3)
+                recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+                ;;
+              4)
+                recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+                ;;
+            esac
+
+            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
+              printf "%s" "$recommendation_text"
+            else
+              printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+                "$recommendation_text" \
+                "$ESPANSO_HPI_CURRENT_THERAPY" \
+                "$ESPANSO_HPI_FREQUENCY" \
+                "$ESPANSO_HPI_RELIEF"
+            fi
+  - trigger: ".mmdiagrev"
+    replace: |
+      Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Primary pain area:
+            [[pain1]]
+
+            Additional pain area 1:
+            [[pain2]]
+
+            Additional pain area 2:
+            [[pain3]]
+
+            Additional pain area 3:
+            [[pain4]]
+
+            Custom pain area (used only when "other/custom" is selected):
+            [[custom_pain]]
+
+            Pain status:
+            [[pain_status]]
+
+            Limitation:
+            [[limitation]]
+
+            Recommendation 1:
+            [[recommendation1]]
+
+            Recommendation 2:
+            [[recommendation2]]
+
+            Recommendation 3:
+            [[recommendation3]]
+
+            Recommendation 4:
+            [[recommendation4]]
+
+            Referral to (used only when "referral" is selected):
+            [[referral_target]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Frequency per week:
+            [[frequency]]
+
+            Relief:
+            [[relief]]
+
+            Primary MRI report:
+            [[mri1]]
+
+            Additional MRI report 1:
+            [[mri2]]
+
+            Additional MRI report 2:
+            [[mri3]]
+
+            Additional MRI report 3:
+            [[mri4]]
+
+            Custom MRI report (used only when "other/custom" is selected):
+            [[custom_mri]]
+          fields:
+            pain1:
+              type: choice
+              values:
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain2:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain3:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain4:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_pain:
+              default: "XXX"
+            pain_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            recommendation1:
+              type: choice
+              values:
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation2:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation3:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation4:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            referral_target:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            frequency:
+              type: choice
+              values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+            mri1:
+              type: choice
+              values:
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri2:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri3:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri4:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_mri:
+              default: "XXX"
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_PAIN"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+                4) p4="$item" ;;
+              esac
+            }
+
+            add_pain "$ESPANSO_HPI_PAIN1"
+            add_pain "$ESPANSO_HPI_PAIN2"
+            add_pain "$ESPANSO_HPI_PAIN3"
+            add_pain "$ESPANSO_HPI_PAIN4"
+
+            case "$count" in
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            esac
+
+      - name: plan_text
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_recommendation() {
+              choice="$1"
+
+              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+                return
+              fi
+
+              case "|$seen|" in
+                *"|$choice|"*) return ;;
+              esac
+
+              seen="${seen}|${choice}"
+
+              case "$choice" in
+                injection)
+                  subject="injection therapies"
+                  goal="provide effective, long-lasting relief"
+                  ;;
+                medications)
+                  subject="medications"
+                  goal="help manage pain"
+                  ;;
+                conservative)
+                  subject="conservative therapies"
+                  goal="help manage pain"
+                  ;;
+                diagnostics)
+                  subject="diagnostics"
+                  goal="further evaluate the patient's condition"
+                  ;;
+                referral)
+                  subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
+                  goal="further evaluate the patient's condition"
+                  ;;
+              esac
+
+              count=$((count + 1))
+
+              case "$count" in
+                1) s1="$subject"; g1="$goal" ;;
+                2) s2="$subject"; g2="$goal" ;;
+                3) s3="$subject"; g3="$goal" ;;
+                4) s4="$subject"; g4="$goal" ;;
+              esac
+            }
+
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+
+            case "$count" in
+              1)
+                case "$s1" in
+                  referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+                  *) recommendation_text="$s1 were discussed to $g1." ;;
+                esac
+                ;;
+              2)
+                recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+                ;;
+              3)
+                recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+                ;;
+              4)
+                recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+                ;;
+            esac
+
+            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
+              printf "%s" "$recommendation_text"
+            else
+              printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+                "$recommendation_text" \
+                "$ESPANSO_HPI_CURRENT_THERAPY" \
+                "$ESPANSO_HPI_FREQUENCY" \
+                "$ESPANSO_HPI_RELIEF"
+            fi
+
+      - name: mri_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_mri() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_MRI"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) m1="$item" ;;
+                2) m2="$item" ;;
+                3) m3="$item" ;;
+                4) m4="$item" ;;
+              esac
+            }
+
+            add_mri "$ESPANSO_HPI_MRI1"
+            add_mri "$ESPANSO_HPI_MRI2"
+            add_mri "$ESPANSO_HPI_MRI3"
+            add_mri "$ESPANSO_HPI_MRI4"
+
+            case "$count" in
+              1) printf "%s" "$m1" ;;
+              2) printf "%s and %s" "$m1" "$m2" ;;
+              3) printf "%s, %s, and %s" "$m1" "$m2" "$m3" ;;
+              4) printf "%s, %s, %s, and %s" "$m1" "$m2" "$m3" "$m4" ;;
+            esac
+  - trigger: ".ffdiagrev"
+    replace: |
+      Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Primary pain area:
+            [[pain1]]
+
+            Additional pain area 1:
+            [[pain2]]
+
+            Additional pain area 2:
+            [[pain3]]
+
+            Additional pain area 3:
+            [[pain4]]
+
+            Custom pain area (used only when "other/custom" is selected):
+            [[custom_pain]]
+
+            Pain status:
+            [[pain_status]]
+
+            Limitation:
+            [[limitation]]
+
+            Recommendation 1:
+            [[recommendation1]]
+
+            Recommendation 2:
+            [[recommendation2]]
+
+            Recommendation 3:
+            [[recommendation3]]
+
+            Recommendation 4:
+            [[recommendation4]]
+
+            Referral to (used only when "referral" is selected):
+            [[referral_target]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Frequency per week:
+            [[frequency]]
+
+            Relief:
+            [[relief]]
+
+            Primary MRI report:
+            [[mri1]]
+
+            Additional MRI report 1:
+            [[mri2]]
+
+            Additional MRI report 2:
+            [[mri3]]
+
+            Additional MRI report 3:
+            [[mri4]]
+
+            Custom MRI report (used only when "other/custom" is selected):
+            [[custom_mri]]
+          fields:
+            pain1:
+              type: choice
+              values:
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain2:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain3:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain4:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_pain:
+              default: "XXX"
+            pain_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            recommendation1:
+              type: choice
+              values:
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation2:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation3:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation4:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            referral_target:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            frequency:
+              type: choice
+              values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+            mri1:
+              type: choice
+              values:
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri2:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri3:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri4:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_mri:
+              default: "XXX"
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_PAIN"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+                4) p4="$item" ;;
+              esac
+            }
+
+            add_pain "$ESPANSO_HPI_PAIN1"
+            add_pain "$ESPANSO_HPI_PAIN2"
+            add_pain "$ESPANSO_HPI_PAIN3"
+            add_pain "$ESPANSO_HPI_PAIN4"
+
+            case "$count" in
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            esac
+
+      - name: plan_text
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_recommendation() {
+              choice="$1"
+
+              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+                return
+              fi
+
+              case "|$seen|" in
+                *"|$choice|"*) return ;;
+              esac
+
+              seen="${seen}|${choice}"
+
+              case "$choice" in
+                injection)
+                  subject="injection therapies"
+                  goal="provide effective, long-lasting relief"
+                  ;;
+                medications)
+                  subject="medications"
+                  goal="help manage pain"
+                  ;;
+                conservative)
+                  subject="conservative therapies"
+                  goal="help manage pain"
+                  ;;
+                diagnostics)
+                  subject="diagnostics"
+                  goal="further evaluate the patient's condition"
+                  ;;
+                referral)
+                  subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
+                  goal="further evaluate the patient's condition"
+                  ;;
+              esac
+
+              count=$((count + 1))
+
+              case "$count" in
+                1) s1="$subject"; g1="$goal" ;;
+                2) s2="$subject"; g2="$goal" ;;
+                3) s3="$subject"; g3="$goal" ;;
+                4) s4="$subject"; g4="$goal" ;;
+              esac
+            }
+
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+
+            case "$count" in
+              1)
+                case "$s1" in
+                  referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+                  *) recommendation_text="$s1 were discussed to $g1." ;;
+                esac
+                ;;
+              2)
+                recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+                ;;
+              3)
+                recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+                ;;
+              4)
+                recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+                ;;
+            esac
+
+            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
+              printf "%s" "$recommendation_text"
+            else
+              printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+                "$recommendation_text" \
+                "$ESPANSO_HPI_CURRENT_THERAPY" \
+                "$ESPANSO_HPI_FREQUENCY" \
+                "$ESPANSO_HPI_RELIEF"
+            fi
+
+      - name: mri_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_mri() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_MRI"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) m1="$item" ;;
+                2) m2="$item" ;;
+                3) m3="$item" ;;
+                4) m4="$item" ;;
+              esac
+            }
+
+            add_mri "$ESPANSO_HPI_MRI1"
+            add_mri "$ESPANSO_HPI_MRI2"
+            add_mri "$ESPANSO_HPI_MRI3"
+            add_mri "$ESPANSO_HPI_MRI4"
+
+            case "$count" in
+              1) printf "%s" "$m1" ;;
+              2) printf "%s and %s" "$m1" "$m2" ;;
+              3) printf "%s, %s, and %s" "$m1" "$m2" "$m3" ;;
+              4) printf "%s, %s, %s, and %s" "$m1" "$m2" "$m3" "$m4" ;;
+            esac
+  - trigger: ".mmicdiagrev"
+    replace: |
+      Interval {{output}}: XXX presents today for a in-clinic follow-up appointment and diagnostic review. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Primary pain area:
+            [[pain1]]
+
+            Additional pain area 1:
+            [[pain2]]
+
+            Additional pain area 2:
+            [[pain3]]
+
+            Additional pain area 3:
+            [[pain4]]
+
+            Custom pain area (used only when "other/custom" is selected):
+            [[custom_pain]]
+
+            Pain status:
+            [[pain_status]]
+
+            Limitation:
+            [[limitation]]
+
+            Recommendation 1:
+            [[recommendation1]]
+
+            Recommendation 2:
+            [[recommendation2]]
+
+            Recommendation 3:
+            [[recommendation3]]
+
+            Recommendation 4:
+            [[recommendation4]]
+
+            Referral to (used only when "referral" is selected):
+            [[referral_target]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Frequency per week:
+            [[frequency]]
+
+            Relief:
+            [[relief]]
+
+            Primary MRI report:
+            [[mri1]]
+
+            Additional MRI report 1:
+            [[mri2]]
+
+            Additional MRI report 2:
+            [[mri3]]
+
+            Additional MRI report 3:
+            [[mri4]]
+
+            Custom MRI report (used only when "other/custom" is selected):
+            [[custom_mri]]
+          fields:
+            pain1:
+              type: choice
+              values:
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain2:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain3:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain4:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_pain:
+              default: "XXX"
+            pain_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            recommendation1:
+              type: choice
+              values:
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation2:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation3:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation4:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            referral_target:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            frequency:
+              type: choice
+              values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+            mri1:
+              type: choice
+              values:
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri2:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri3:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri4:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_mri:
+              default: "XXX"
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_PAIN"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+                4) p4="$item" ;;
+              esac
+            }
+
+            add_pain "$ESPANSO_HPI_PAIN1"
+            add_pain "$ESPANSO_HPI_PAIN2"
+            add_pain "$ESPANSO_HPI_PAIN3"
+            add_pain "$ESPANSO_HPI_PAIN4"
+
+            case "$count" in
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            esac
+
+      - name: plan_text
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_recommendation() {
+              choice="$1"
+
+              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+                return
+              fi
+
+              case "|$seen|" in
+                *"|$choice|"*) return ;;
+              esac
+
+              seen="${seen}|${choice}"
+
+              case "$choice" in
+                injection)
+                  subject="injection therapies"
+                  goal="provide effective, long-lasting relief"
+                  ;;
+                medications)
+                  subject="medications"
+                  goal="help manage pain"
+                  ;;
+                conservative)
+                  subject="conservative therapies"
+                  goal="help manage pain"
+                  ;;
+                diagnostics)
+                  subject="diagnostics"
+                  goal="further evaluate the patient's condition"
+                  ;;
+                referral)
+                  subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
+                  goal="further evaluate the patient's condition"
+                  ;;
+              esac
+
+              count=$((count + 1))
+
+              case "$count" in
+                1) s1="$subject"; g1="$goal" ;;
+                2) s2="$subject"; g2="$goal" ;;
+                3) s3="$subject"; g3="$goal" ;;
+                4) s4="$subject"; g4="$goal" ;;
+              esac
+            }
+
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+
+            case "$count" in
+              1)
+                case "$s1" in
+                  referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+                  *) recommendation_text="$s1 were discussed to $g1." ;;
+                esac
+                ;;
+              2)
+                recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+                ;;
+              3)
+                recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+                ;;
+              4)
+                recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+                ;;
+            esac
+
+            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
+              printf "%s" "$recommendation_text"
+            else
+              printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+                "$recommendation_text" \
+                "$ESPANSO_HPI_CURRENT_THERAPY" \
+                "$ESPANSO_HPI_FREQUENCY" \
+                "$ESPANSO_HPI_RELIEF"
+            fi
+
+      - name: mri_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_mri() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_MRI"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) m1="$item" ;;
+                2) m2="$item" ;;
+                3) m3="$item" ;;
+                4) m4="$item" ;;
+              esac
+            }
+
+            add_mri "$ESPANSO_HPI_MRI1"
+            add_mri "$ESPANSO_HPI_MRI2"
+            add_mri "$ESPANSO_HPI_MRI3"
+            add_mri "$ESPANSO_HPI_MRI4"
+
+            case "$count" in
+              1) printf "%s" "$m1" ;;
+              2) printf "%s and %s" "$m1" "$m2" ;;
+              3) printf "%s, %s, and %s" "$m1" "$m2" "$m3" ;;
+              4) printf "%s, %s, %s, and %s" "$m1" "$m2" "$m3" "$m4" ;;
+            esac
+  - trigger: ".fficdiagrev"
+    replace: |
+      Interval {{output}}: XXX presents today for a in-clinic follow-up appointment and diagnostic review. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Primary pain area:
+            [[pain1]]
+
+            Additional pain area 1:
+            [[pain2]]
+
+            Additional pain area 2:
+            [[pain3]]
+
+            Additional pain area 3:
+            [[pain4]]
+
+            Custom pain area (used only when "other/custom" is selected):
+            [[custom_pain]]
+
+            Pain status:
+            [[pain_status]]
+
+            Limitation:
+            [[limitation]]
+
+            Recommendation 1:
+            [[recommendation1]]
+
+            Recommendation 2:
+            [[recommendation2]]
+
+            Recommendation 3:
+            [[recommendation3]]
+
+            Recommendation 4:
+            [[recommendation4]]
+
+            Referral to (used only when "referral" is selected):
+            [[referral_target]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Frequency per week:
+            [[frequency]]
+
+            Relief:
+            [[relief]]
+
+            Primary MRI report:
+            [[mri1]]
+
+            Additional MRI report 1:
+            [[mri2]]
+
+            Additional MRI report 2:
+            [[mri3]]
+
+            Additional MRI report 3:
+            [[mri4]]
+
+            Custom MRI report (used only when "other/custom" is selected):
+            [[custom_mri]]
+          fields:
+            pain1:
+              type: choice
+              values:
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain2:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain3:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            pain4:
+              type: choice
+              values:
+                - none
+                - neck
+                - mid-back
+                - low back
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_pain:
+              default: "XXX"
+            pain_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            recommendation1:
+              type: choice
+              values:
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation2:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation3:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            recommendation4:
+              type: choice
+              values:
+                - none
+                - injection
+                - medications
+                - conservative
+                - diagnostics
+                - referral
+            referral_target:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            frequency:
+              type: choice
+              values:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+            mri1:
+              type: choice
+              values:
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri2:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri3:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            mri4:
+              type: choice
+              values:
+                - none
+                - cervical
+                - thoracic
+                - lumbar
+                - right shoulder
+                - left shoulder
+                - right knee
+                - left knee
+                - right wrist
+                - left wrist
+                - other/custom
+            custom_mri:
+              default: "XXX"
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_PAIN"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+                4) p4="$item" ;;
+              esac
+            }
+
+            add_pain "$ESPANSO_HPI_PAIN1"
+            add_pain "$ESPANSO_HPI_PAIN2"
+            add_pain "$ESPANSO_HPI_PAIN3"
+            add_pain "$ESPANSO_HPI_PAIN4"
+
+            case "$count" in
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+              4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            esac
+
+      - name: plan_text
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_recommendation() {
+              choice="$1"
+
+              if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+                return
+              fi
+
+              case "|$seen|" in
+                *"|$choice|"*) return ;;
+              esac
+
+              seen="${seen}|${choice}"
+
+              case "$choice" in
+                injection)
+                  subject="injection therapies"
+                  goal="provide effective, long-lasting relief"
+                  ;;
+                medications)
+                  subject="medications"
+                  goal="help manage pain"
+                  ;;
+                conservative)
+                  subject="conservative therapies"
+                  goal="help manage pain"
+                  ;;
+                diagnostics)
+                  subject="diagnostics"
+                  goal="further evaluate the patient's condition"
+                  ;;
+                referral)
+                  subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
+                  goal="further evaluate the patient's condition"
+                  ;;
+              esac
+
+              count=$((count + 1))
+
+              case "$count" in
+                1) s1="$subject"; g1="$goal" ;;
+                2) s2="$subject"; g2="$goal" ;;
+                3) s3="$subject"; g3="$goal" ;;
+                4) s4="$subject"; g4="$goal" ;;
+              esac
+            }
+
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
+            add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+
+            case "$count" in
+              1)
+                case "$s1" in
+                  referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+                  *) recommendation_text="$s1 were discussed to $g1." ;;
+                esac
+                ;;
+              2)
+                recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+                ;;
+              3)
+                recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+                ;;
+              4)
+                recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+                ;;
+            esac
+
+            if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
+              printf "%s" "$recommendation_text"
+            else
+              printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+                "$recommendation_text" \
+                "$ESPANSO_HPI_CURRENT_THERAPY" \
+                "$ESPANSO_HPI_FREQUENCY" \
+                "$ESPANSO_HPI_RELIEF"
+            fi
+
+      - name: mri_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_mri() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_HPI_CUSTOM_MRI"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) m1="$item" ;;
+                2) m2="$item" ;;
+                3) m3="$item" ;;
+                4) m4="$item" ;;
+              esac
+            }
+
+            add_mri "$ESPANSO_HPI_MRI1"
+            add_mri "$ESPANSO_HPI_MRI2"
+            add_mri "$ESPANSO_HPI_MRI3"
+            add_mri "$ESPANSO_HPI_MRI4"
+
+            case "$count" in
+              1) printf "%s" "$m1" ;;
+              2) printf "%s and %s" "$m1" "$m2" ;;
+              3) printf "%s, %s, and %s" "$m1" "$m2" "$m3" ;;
+              4) printf "%s, %s, %s, and %s" "$m1" "$m2" "$m3" "$m4" ;;
+            esac
