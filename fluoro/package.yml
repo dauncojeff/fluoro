@@ -10067,7 +10067,8 @@ matches:
           Recommendation 3:
           [[recommendation3]]
 
-          Recommendation 4:- trigger: ".mmpostdiagrev"
+          Recommendation 4:
+- trigger: ".mmpostdiagrev"
   replace: |
     Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
   vars:
