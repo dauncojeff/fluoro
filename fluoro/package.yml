@@ -4210,10 +4210,23 @@ matches:
       
       OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Patient's vitals were stable and continuously monitored for 30 minutes post-procedure. Patient was then discharged after confirmation of a driver present for patient's transportation.
   - trigger: ".mhpi"
-    form: |
-      Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his [[pain_area]] pain continues to be present and [[pain_status]], citing the pain as limiting his [[limitation]]. As such, [[discussed_therapies]] therapies were discussed to [[therapy_goal]]. Additionally, patient partakes in [[current_therapy]] therapy ([[frequency]]x/week), citing [[relief]] relief. No other changes to patient's pain at this time.
+    replace: |
+      Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his {{hpi.pain_area}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{hpi.discussed_therapies}} therapies were discussed to {{hpi.therapy_goal}}. Additionally, patient partakes in {{hpi.current_therapy}} therapy ({{hpi.frequency}}x/week), citing {{hpi.relief}} relief. No other changes to patient's pain at this time.
     vars:
       - name: output
         type: shell
         params:
           cmd: "date +'%m-%d-%Y'"
+
+      - name: hpi
+        type: form
+        params:
+          layout: |
+            Pain area: [[pain_area]]
+            Pain status: [[pain_status]]
+            Limitation: [[limitation]]
+            Therapies discussed: [[discussed_therapies]]
+            Goal of therapy: [[therapy_goal]]
+            Current therapy: [[current_therapy]]
+            Frequency per week: [[frequency]]
+            Type of relief: [[relief]]
