@@ -4211,7 +4211,7 @@ matches:
       OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Patient's vitals were stable and continuously monitored for 30 minutes post-procedure. Patient was then discharged after confirmation of a driver present for patient's transportation.
   - trigger: ".mhpi"
     replace: |
-      Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his {{hpi.pain_area}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{hpi.discussed_therapies}} therapies were discussed to {{hpi.therapy_goal}}. Additionally, patient partakes in {{hpi.current_therapy}} therapy ({{hpi.frequency}}x/week), citing {{hpi.relief}} relief. No other changes to patient's pain at this time.
+      Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his {{hpi.pain_area}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{hpi.therapy}} therapies were discussed to {{goal}}. Additionally, patient partakes in {{hpi.current_therapy}} therapy ({{hpi.frequency}}x/week), citing {{hpi.relief}} relief. No other changes to patient's pain at this time.
     vars:
       - name: output
         type: shell
@@ -4225,8 +4225,37 @@ matches:
             Pain area: [[pain_area]]
             Pain status: [[pain_status]]
             Limitation: [[limitation]]
-            Therapies discussed: [[discussed_therapies]]
-            Goal of therapy: [[therapy_goal]]
+            Therapies discussed: [[therapy]]
             Current therapy: [[current_therapy]]
             Frequency per week: [[frequency]]
             Type of relief: [[relief]]
+          fields:
+            therapy:
+              type: choice
+              values:
+                - injection
+                - medication management
+                - physical therapy
+                - chiropractic
+
+      - name: goal
+        type: shell
+        params:
+          cmd: |
+            case "{{hpi.therapy}}" in
+              "injection")
+                printf "%s" "provide effective, long-lasting relief"
+                ;;
+              "medication")
+                printf "%s" "help manage pain"
+                ;;
+              "conservative")
+                printf "%s" "help manage pain"
+                ;;
+              "chiropractic")
+                printf "%s" "improve mobility and provide symptomatic relief"
+                ;;
+              *)
+                printf "%s" "improve pain and overall function"
+                ;;
+            esac
