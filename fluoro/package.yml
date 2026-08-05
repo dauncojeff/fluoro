@@ -7201,12 +7201,44 @@ matches:
             add_mri "$ESPANSO_HPI_MRI3"
             add_mri "$ESPANSO_HPI_MRI4"
 
-            case "$count" in
-              1) printf "%s" "$m1" ;;
-              2) printf "%s and %s" "$m1" "$m2" ;;
-              3) printf "%s, %s, and %s" "$m1" "$m2" "$m3" ;;
-              4) printf "%s, %s, %s, and %s" "$m1" "$m2" "$m3" "$m4" ;;
-            esac
+            all_spine=1
+            index=1
+            while [ "$index" -le "$count" ]; do
+              eval "item=\$m$index"
+              case "$item" in
+                Cervical|Thoracic|Lumbar) ;;
+                *) all_spine=0 ;;
+              esac
+              index=$((index + 1))
+            done
+
+            if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
+              case "$count" in
+                1) printf "%s Spine" "$m1" ;;
+                2) printf "%s and %s Spine" "$m1" "$m2" ;;
+                3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
+                4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
+              esac
+            else
+              add_spine_label() {
+                case "$1" in
+                  Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
+                  *) printf "%s" "$1" ;;
+                esac
+              }
+
+              [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
+              [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
+              [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
+              [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
+
+              case "$count" in
+                1) printf "%s" "$f1" ;;
+                2) printf "%s and %s" "$f1" "$f2" ;;
+                3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
+                4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
+              esac
+            fi
   - trigger: ".ffdiagrev"
     replace: |
       Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
@@ -7409,7 +7441,7 @@ matches:
                 - temporary
             mri1:
               type: choice
-              values:              
+              values:
                 - Cervical
                 - Thoracic
                 - Lumbar
@@ -7631,12 +7663,44 @@ matches:
             add_mri "$ESPANSO_HPI_MRI3"
             add_mri "$ESPANSO_HPI_MRI4"
 
-            case "$count" in
-              1) printf "%s" "$m1" ;;
-              2) printf "%s and %s" "$m1" "$m2" ;;
-              3) printf "%s, %s, and %s" "$m1" "$m2" "$m3" ;;
-              4) printf "%s, %s, %s, and %s" "$m1" "$m2" "$m3" "$m4" ;;
-            esac
+            all_spine=1
+            index=1
+            while [ "$index" -le "$count" ]; do
+              eval "item=\$m$index"
+              case "$item" in
+                Cervical|Thoracic|Lumbar) ;;
+                *) all_spine=0 ;;
+              esac
+              index=$((index + 1))
+            done
+
+            if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
+              case "$count" in
+                1) printf "%s Spine" "$m1" ;;
+                2) printf "%s and %s Spine" "$m1" "$m2" ;;
+                3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
+                4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
+              esac
+            else
+              add_spine_label() {
+                case "$1" in
+                  Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
+                  *) printf "%s" "$1" ;;
+                esac
+              }
+
+              [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
+              [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
+              [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
+              [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
+
+              case "$count" in
+                1) printf "%s" "$f1" ;;
+                2) printf "%s and %s" "$f1" "$f2" ;;
+                3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
+                4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
+              esac
+            fi
   - trigger: ".mmicdiagrev"
     replace: |
       Interval {{output}}: XXX presents today for a in-clinic follow-up appointment and diagnostic review. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
@@ -8061,12 +8125,44 @@ matches:
             add_mri "$ESPANSO_HPI_MRI3"
             add_mri "$ESPANSO_HPI_MRI4"
 
-            case "$count" in
-              1) printf "%s" "$m1" ;;
-              2) printf "%s and %s" "$m1" "$m2" ;;
-              3) printf "%s, %s, and %s" "$m1" "$m2" "$m3" ;;
-              4) printf "%s, %s, %s, and %s" "$m1" "$m2" "$m3" "$m4" ;;
-            esac
+            all_spine=1
+            index=1
+            while [ "$index" -le "$count" ]; do
+              eval "item=\$m$index"
+              case "$item" in
+                Cervical|Thoracic|Lumbar) ;;
+                *) all_spine=0 ;;
+              esac
+              index=$((index + 1))
+            done
+
+            if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
+              case "$count" in
+                1) printf "%s Spine" "$m1" ;;
+                2) printf "%s and %s Spine" "$m1" "$m2" ;;
+                3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
+                4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
+              esac
+            else
+              add_spine_label() {
+                case "$1" in
+                  Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
+                  *) printf "%s" "$1" ;;
+                esac
+              }
+
+              [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
+              [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
+              [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
+              [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
+
+              case "$count" in
+                1) printf "%s" "$f1" ;;
+                2) printf "%s and %s" "$f1" "$f2" ;;
+                3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
+                4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
+              esac
+            fi
   - trigger: ".fficdiagrev"
     replace: |
       Interval {{output}}: XXX presents today for a in-clinic follow-up appointment and diagnostic review. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
@@ -8491,9 +8587,41 @@ matches:
             add_mri "$ESPANSO_HPI_MRI3"
             add_mri "$ESPANSO_HPI_MRI4"
 
-            case "$count" in
-              1) printf "%s" "$m1" ;;
-              2) printf "%s and %s" "$m1" "$m2" ;;
-              3) printf "%s, %s, and %s" "$m1" "$m2" "$m3" ;;
-              4) printf "%s, %s, %s, and %s" "$m1" "$m2" "$m3" "$m4" ;;
-            esac
+            all_spine=1
+            index=1
+            while [ "$index" -le "$count" ]; do
+              eval "item=\$m$index"
+              case "$item" in
+                Cervical|Thoracic|Lumbar) ;;
+                *) all_spine=0 ;;
+              esac
+              index=$((index + 1))
+            done
+
+            if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
+              case "$count" in
+                1) printf "%s Spine" "$m1" ;;
+                2) printf "%s and %s Spine" "$m1" "$m2" ;;
+                3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
+                4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
+              esac
+            else
+              add_spine_label() {
+                case "$1" in
+                  Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
+                  *) printf "%s" "$1" ;;
+                esac
+              }
+
+              [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
+              [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
+              [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
+              [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
+
+              case "$count" in
+                1) printf "%s" "$f1" ;;
+                2) printf "%s and %s" "$f1" "$f2" ;;
+                3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
+                4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
+              esac
+            fi
