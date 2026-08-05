@@ -9388,3 +9388,1002 @@ matches:
             fi
 
             printf "%s" "$text"
+  - trigger: ".mnpform5"
+    replace: |
+      Patient is seen here today for a NP
+
+      New Patient Evaluation.
+
+      XXX is a {{np1.age}}-year-old male who presents with {{pain_list}} pain. {{pain_sections}} Patient states that all his pain started due to a Motor Vehicle Accident (MVA) on {{np3.accident_date}}. {{history_text}}Patient's pain is affecting his quality of life, level of function, as well as basic activities of daily living.
+
+      Goal for today's visit: Evaluate extent of pain levels and discuss treatment options to restore prior levels of functioning and quality of life.
+
+      {{paperwork_text}}
+
+      Assoc: no bowel or bladder incontinence, no saddle anesthesia, no focal weakness
+    vars:
+      - name: np1
+        type: form
+        params:
+          layout: |
+            Age: [[age]]
+            Include neck section: [[include_neck]]
+            Primary neck radiation: [[neck_radiation1]]
+            Additional neck radiation 1: [[neck_radiation2]]
+            Additional neck radiation 2: [[neck_radiation3]]
+            Additional neck radiation 3: [[neck_radiation4]]
+            Neck radiation symptoms: [[neck_radiation_symptoms]]
+            Neck limitation: [[neck_limitation]]
+            Nausea: [[nausea_status]]
+            Memory loss: [[memory_loss_status]]
+            Headaches: [[headaches_status]]
+            Dizziness: [[dizziness_status]]
+            Blurry vision: [[blurry_vision_status]]
+          fields:
+            age:
+              default: "XXX"
+            include_neck:
+              type: choice
+              values:
+                - "yes"
+                - "no"
+            neck_radiation1:
+              type: choice
+              values:
+                - axial
+                - bilateral upper extremities
+                - right upper extremity
+                - left upper extremity
+                - bilateral trapezius muscles
+                - right trapezius muscle
+                - left trapezius muscle
+                - bilateral hands
+                - right hand
+                - left hand
+                - bilateral wrists
+                - right wrist
+                - left wrist
+                - bilateral elbows
+                - right elbow
+                - left elbow
+            neck_radiation2:
+              type: choice
+              values:
+                - none
+                - bilateral upper extremities
+                - right upper extremity
+                - left upper extremity
+                - bilateral trapezius muscles
+                - right trapezius muscle
+                - left trapezius muscle
+                - bilateral hands
+                - right hand
+                - left hand
+                - bilateral wrists
+                - right wrist
+                - left wrist
+                - bilateral elbows
+                - right elbow
+                - left elbow
+            neck_radiation3:
+              type: choice
+              values:
+                - none
+                - bilateral upper extremities
+                - right upper extremity
+                - left upper extremity
+                - bilateral trapezius muscles
+                - right trapezius muscle
+                - left trapezius muscle
+                - bilateral hands
+                - right hand
+                - left hand
+                - bilateral wrists
+                - right wrist
+                - left wrist
+                - bilateral elbows
+                - right elbow
+                - left elbow
+            neck_radiation4:
+              type: choice
+              values:
+                - none
+                - bilateral upper extremities
+                - right upper extremity
+                - left upper extremity
+                - bilateral trapezius muscles
+                - right trapezius muscle
+                - left trapezius muscle
+                - bilateral hands
+                - right hand
+                - left hand
+                - bilateral wrists
+                - right wrist
+                - left wrist
+                - bilateral elbows
+                - right elbow
+                - left elbow
+            neck_radiation_symptoms:
+              type: choice
+              values:
+                - none
+                - numbness
+                - muscle spasms
+                - tingling
+                - numbness and tingling
+                - numbness and muscle spasms
+                - muscle spasms and tingling
+                - numbness, muscle spasms, and tingling
+            neck_limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            nausea_status:
+              type: choice
+              values:
+                - none
+                - denied
+                - reported
+            memory_loss_status:
+              type: choice
+              values:
+                - none
+                - denied
+                - reported
+            headaches_status:
+              type: choice
+              values:
+                - none
+                - denied
+                - reported
+            dizziness_status:
+              type: choice
+              values:
+                - none
+                - denied
+                - reported
+            blurry_vision_status:
+              type: choice
+              values:
+                - none
+                - denied
+                - reported
+
+      - name: np2
+        type: form
+        params:
+          layout: |
+            Include mid-back section: [[include_mid_back]]
+            Mid-back pain status: [[mid_status]]
+            Mid-back radiation: [[mid_radiation]]
+            Mid-back radiation symptoms: [[mid_radiation_symptoms]]
+            Mid-back limitation: [[mid_limitation]]
+            Include low-back section: [[include_low_back]]
+            Primary low-back radiation: [[low_radiation1]]
+            Additional low-back radiation 1: [[low_radiation2]]
+            Additional low-back radiation 2: [[low_radiation3]]
+            Additional low-back radiation 3: [[low_radiation4]]
+            Low-back radiation symptoms: [[low_radiation_symptoms]]
+            Low-back limitation: [[low_limitation]]
+            Quality-of-life statement: [[quality_of_life]]
+          fields:
+            include_mid_back:
+              type: choice
+              values:
+                - "yes"
+                - "no"
+            mid_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            mid_radiation:
+              type: choice
+              values:
+                - axial
+                - some radiation to the ribs
+            mid_radiation_symptoms:
+              type: choice
+              values:
+                - none
+                - numbness
+                - muscle spasms
+                - tingling
+                - numbness and tingling
+                - numbness and muscle spasms
+                - muscle spasms and tingling
+                - numbness, muscle spasms, and tingling
+            mid_limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            include_low_back:
+              type: choice
+              values:
+                - "yes"
+                - "no"
+            low_radiation1:
+              type: choice
+              values:
+                - axial
+                - bilateral glutes
+                - right glute
+                - left glute
+                - bilateral lower extremities
+                - right lower extremity
+                - left lower extremity
+                - bilateral knees
+                - right knee
+                - left knee
+                - bilateral ankles
+                - right ankle
+                - left ankle
+                - bilateral hips
+                - right hip
+                - left hip
+            low_radiation2:
+              type: choice
+              values:
+                - none
+                - bilateral glutes
+                - right glute
+                - left glute
+                - bilateral lower extremities
+                - right lower extremity
+                - left lower extremity
+                - bilateral knees
+                - right knee
+                - left knee
+                - bilateral ankles
+                - right ankle
+                - left ankle
+                - bilateral hips
+                - right hip
+                - left hip
+            low_radiation3:
+              type: choice
+              values:
+                - none
+                - bilateral glutes
+                - right glute
+                - left glute
+                - bilateral lower extremities
+                - right lower extremity
+                - left lower extremity
+                - bilateral knees
+                - right knee
+                - left knee
+                - bilateral ankles
+                - right ankle
+                - left ankle
+                - bilateral hips
+                - right hip
+                - left hip
+            low_radiation4:
+              type: choice
+              values:
+                - none
+                - bilateral glutes
+                - right glute
+                - left glute
+                - bilateral lower extremities
+                - right lower extremity
+                - left lower extremity
+                - bilateral knees
+                - right knee
+                - left knee
+                - bilateral ankles
+                - right ankle
+                - left ankle
+                - bilateral hips
+                - right hip
+                - left hip
+            low_radiation_symptoms:
+              type: choice
+              values:
+                - none
+                - numbness
+                - muscle spasms
+                - tingling
+                - numbness and tingling
+                - numbness and muscle spasms
+                - muscle spasms and tingling
+                - numbness, muscle spasms, and tingling
+            low_limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            quality_of_life:
+              type: choice
+              values:
+                - restful sleep
+                - parenting and childcare responsibilities
+                - work-related duties
+                - physical activity
+                - school-related activities
+                - anxiety and emotional distress while driving
+                - none
+
+      - name: np3
+        type: form
+        params:
+          layout: |
+            MVA date: [[accident_date]]
+            Facility visited after accident: [[facility]]
+            What occurred at the facility after "where he": [[facility_action]]
+            Primary MRI: [[mri1]]
+            Additional MRI 1: [[mri2]]
+            Additional MRI 2: [[mri3]]
+            Additional MRI 3: [[mri4]]
+            Custom MRI (used only when "other/custom" is selected): [[custom_mri]]
+            Current therapy: [[current_therapy]]
+            Relief from current therapy: [[relief]]
+            Currently taking medication for pain: [[taking_medication]]
+            Medication(s): [[medications]]
+          fields:
+            accident_date:
+              default: "XX-XX-XXXX"
+            facility:
+              type: choice
+              values:
+                - ER
+                - urgent care
+                - none
+            facility_action:
+              default: "XXX"
+            mri1:
+              type: choice
+              values:
+                - none
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
+                - other/custom
+            mri2:
+              type: choice
+              values:
+                - none
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
+                - other/custom
+            mri3:
+              type: choice
+              values:
+                - none
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
+                - other/custom
+            mri4:
+              type: choice
+              values:
+                - none
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
+                - other/custom
+            custom_mri:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+            taking_medication:
+              type: choice
+              values:
+                - "yes"
+                - "no"
+            medications:
+              default: "XXX"
+
+      - name: np4
+        type: form
+        params:
+          layout: |
+            Tried/failed therapy 1: [[therapy1]]
+            Tried/failed therapy 2: [[therapy2]]
+            Tried/failed therapy 3: [[therapy3]]
+            Tried/failed therapy 4: [[therapy4]]
+            Tried/failed therapy 5: [[therapy5]]
+            Tried/failed therapy 6: [[therapy6]]
+            Tried/failed therapy 7: [[therapy7]]
+            Tried/failed therapy 8: [[therapy8]]
+            Tried/failed therapy 9: [[therapy9]]
+            Tried/failed therapy 10: [[therapy10]]
+            Tried/failed therapy 11: [[therapy11]]
+          fields:
+            therapy1:
+              type: choice
+              values:
+                - opioid medications
+                - none
+                - anti-inflammatories
+                - anti-depressants
+                - muscle relaxants
+                - injections
+                - surgery
+                - NSAIDs
+                - rest
+                - ice/heat
+                - chiropractic therapy
+                - home exercise
+            therapy2:
+              type: choice
+              values:
+                - anti-inflammatories
+                - none
+                - opioid medications
+                - anti-depressants
+                - muscle relaxants
+                - injections
+                - surgery
+                - NSAIDs
+                - rest
+                - ice/heat
+                - chiropractic therapy
+                - home exercise
+            therapy3:
+              type: choice
+              values:
+                - anti-depressants
+                - none
+                - opioid medications
+                - anti-inflammatories
+                - muscle relaxants
+                - injections
+                - surgery
+                - NSAIDs
+                - rest
+                - ice/heat
+                - chiropractic therapy
+                - home exercise
+            therapy4:
+              type: choice
+              values:
+                - muscle relaxants
+                - none
+                - opioid medications
+                - anti-inflammatories
+                - anti-depressants
+                - injections
+                - surgery
+                - NSAIDs
+                - rest
+                - ice/heat
+                - chiropractic therapy
+                - home exercise
+            therapy5:
+              type: choice
+              values:
+                - injections
+                - none
+                - opioid medications
+                - anti-inflammatories
+                - anti-depressants
+                - muscle relaxants
+                - surgery
+                - NSAIDs
+                - rest
+                - ice/heat
+                - chiropractic therapy
+                - home exercise
+            therapy6:
+              type: choice
+              values:
+                - surgery
+                - none
+                - opioid medications
+                - anti-inflammatories
+                - anti-depressants
+                - muscle relaxants
+                - injections
+                - NSAIDs
+                - rest
+                - ice/heat
+                - chiropractic therapy
+                - home exercise
+            therapy7:
+              type: choice
+              values:
+                - NSAIDs
+                - none
+                - opioid medications
+                - anti-inflammatories
+                - anti-depressants
+                - muscle relaxants
+                - injections
+                - surgery
+                - rest
+                - ice/heat
+                - chiropractic therapy
+                - home exercise
+            therapy8:
+              type: choice
+              values:
+                - rest
+                - none
+                - opioid medications
+                - anti-inflammatories
+                - anti-depressants
+                - muscle relaxants
+                - injections
+                - surgery
+                - NSAIDs
+                - ice/heat
+                - chiropractic therapy
+                - home exercise
+            therapy9:
+              type: choice
+              values:
+                - ice/heat
+                - none
+                - opioid medications
+                - anti-inflammatories
+                - anti-depressants
+                - muscle relaxants
+                - injections
+                - surgery
+                - NSAIDs
+                - rest
+                - chiropractic therapy
+                - home exercise
+            therapy10:
+              type: choice
+              values:
+                - chiropractic therapy
+                - none
+                - opioid medications
+                - anti-inflammatories
+                - anti-depressants
+                - muscle relaxants
+                - injections
+                - surgery
+                - NSAIDs
+                - rest
+                - ice/heat
+                - home exercise
+            therapy11:
+              type: choice
+              values:
+                - home exercise
+                - none
+                - opioid medications
+                - anti-inflammatories
+                - anti-depressants
+                - muscle relaxants
+                - injections
+                - surgery
+                - NSAIDs
+                - rest
+                - ice/heat
+                - chiropractic therapy
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+              count=$((count + 1))
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+              esac
+            }
+
+            [ "$ESPANSO_NP1_INCLUDE_NECK" = "yes" ] && add_pain "neck"
+            [ "$ESPANSO_NP2_INCLUDE_MID_BACK" = "yes" ] && add_pain "mid-back"
+            [ "$ESPANSO_NP2_INCLUDE_LOW_BACK" = "yes" ] && add_pain "low back"
+
+            case "$count" in
+              0) printf "%s" "XXX" ;;
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+            esac
+
+      - name: pain_sections
+        type: shell
+        params:
+          cmd: |
+            format_list() {
+              count="$1"
+              shift
+              case "$count" in
+                0) printf "%s" "" ;;
+                1) printf "%s" "$1" ;;
+                2) printf "%s and %s" "$1" "$2" ;;
+                3) printf "%s, %s, and %s" "$1" "$2" "$3" ;;
+                4) printf "%s, %s, %s, and %s" "$1" "$2" "$3" "$4" ;;
+                5) printf "%s, %s, %s, %s, and %s" "$1" "$2" "$3" "$4" "$5" ;;
+              esac
+            }
+
+            build_unique_list() {
+              count=0
+              seen=""
+              for item in "$@"; do
+                [ -z "$item" ] && continue
+                [ "$item" = "none" ] && continue
+                case "|$seen|" in *"|$item|"*) continue ;; esac
+                seen="${seen}|${item}"
+                count=$((count + 1))
+                case "$count" in
+                  1) v1="$item" ;;
+                  2) v2="$item" ;;
+                  3) v3="$item" ;;
+                  4) v4="$item" ;;
+                  5) v5="$item" ;;
+                esac
+              done
+              format_list "$count" "$v1" "$v2" "$v3" "$v4" "$v5"
+            }
+
+            radiation_symptom_suffix() {
+              case "$1" in
+                none|"") printf "%s" "" ;;
+                *) printf " with %s" "$1" ;;
+              esac
+            }
+
+            symptom_list() {
+              target="$1"
+              count=0
+              for pair in \
+                "nausea:$ESPANSO_NP1_NAUSEA_STATUS" \
+                "memory loss:$ESPANSO_NP1_MEMORY_LOSS_STATUS" \
+                "headaches:$ESPANSO_NP1_HEADACHES_STATUS" \
+                "dizziness:$ESPANSO_NP1_DIZZINESS_STATUS" \
+                "blurry vision:$ESPANSO_NP1_BLURRY_VISION_STATUS"; do
+                symptom="${pair%%:*}"
+                status="${pair#*:}"
+                if [ "$status" = "$target" ]; then
+                  count=$((count + 1))
+                  case "$count" in
+                    1) s1="$symptom" ;;
+                    2) s2="$symptom" ;;
+                    3) s3="$symptom" ;;
+                    4) s4="$symptom" ;;
+                    5) s5="$symptom" ;;
+                  esac
+                fi
+              done
+              format_list "$count" "$s1" "$s2" "$s3" "$s4" "$s5"
+            }
+
+            if [ "$ESPANSO_NP1_NECK_RADIATION1" = "axial" ]; then
+              neck_radiation="axial"
+            else
+              neck_radiation="$(build_unique_list \
+                "$ESPANSO_NP1_NECK_RADIATION1" \
+                "$ESPANSO_NP1_NECK_RADIATION2" \
+                "$ESPANSO_NP1_NECK_RADIATION3" \
+                "$ESPANSO_NP1_NECK_RADIATION4")"
+            fi
+
+            if [ "$ESPANSO_NP2_LOW_RADIATION1" = "axial" ]; then
+              low_radiation="axial"
+            else
+              low_radiation="$(build_unique_list \
+                "$ESPANSO_NP2_LOW_RADIATION1" \
+                "$ESPANSO_NP2_LOW_RADIATION2" \
+                "$ESPANSO_NP2_LOW_RADIATION3" \
+                "$ESPANSO_NP2_LOW_RADIATION4")"
+            fi
+
+            neck_symptoms="$(radiation_symptom_suffix "$ESPANSO_NP1_NECK_RADIATION_SYMPTOMS")"
+            mid_symptoms="$(radiation_symptom_suffix "$ESPANSO_NP2_MID_RADIATION_SYMPTOMS")"
+            low_symptoms="$(radiation_symptom_suffix "$ESPANSO_NP2_LOW_RADIATION_SYMPTOMS")"
+
+            denied="$(symptom_list denied)"
+            reported="$(symptom_list reported)"
+            neuro_text=""
+
+            if [ -n "$denied" ] && [ -n "$reported" ]; then
+              neuro_text=" Patient denies $denied, but reports experiencing $reported."
+            elif [ -n "$denied" ]; then
+              neuro_text=" Patient denies $denied."
+            elif [ -n "$reported" ]; then
+              neuro_text=" Patient reports experiencing $reported."
+            fi
+
+            case "$ESPANSO_NP2_MID_RADIATION" in
+              axial) mid_radiation="axial pain$mid_symptoms" ;;
+              *) mid_radiation="$ESPANSO_NP2_MID_RADIATION$mid_symptoms" ;;
+            esac
+
+            case "$ESPANSO_NP2_QUALITY_OF_LIFE" in
+              "restful sleep")
+                qol="The patient states that pain interferes with restful sleep and reports increasing fatigue and frustration related to ongoing sleep disturbance."
+                ;;
+              "parenting and childcare responsibilities")
+                qol="The patient reports difficulty performing routine parenting and childcare responsibilities due to ongoing pain, which interfere with the ability to care for, supervise, and engage in activities with his child(ren)."
+                ;;
+              "work-related duties")
+                qol="The patient reports increasing difficulty performing work-related duties due to ongoing pain and physical limitations, which have begun to interfere with his ability to meet daily job demands."
+                ;;
+              "physical activity")
+                qol="The patient reports ongoing difficulty with physical activity, noting that even mild exertion results in pain and fatigue. This has limited their functional capacity and affected daily routines."
+                ;;
+              "school-related activities")
+                qol="The patient reports increasing difficulty participating in school-related activities due to ongoing pain, which have negatively affected academic performance and participation in daily educational tasks."
+                ;;
+              "anxiety and emotional distress while driving")
+                qol="The patient reports significant anxiety and emotional distress while driving, which affects his ability to safely and independently perform activities of daily living."
+                ;;
+              *) qol="" ;;
+            esac
+
+            count=0
+            text=""
+
+            append_section() {
+              first_text="$1"
+              lower_text="$2"
+              count=$((count + 1))
+
+              case "$count" in
+                1) section="$first_text" ;;
+                2) section="In addition, $lower_text" ;;
+                *) section="To continue, $lower_text" ;;
+              esac
+
+              if [ -z "$text" ]; then
+                text="$section"
+              else
+                text="$text $section"
+              fi
+            }
+
+            if [ "$ESPANSO_NP1_INCLUDE_NECK" = "yes" ]; then
+              if [ "$neck_radiation" = "axial" ]; then
+                neck_first="Patient describes his neck pain as axial$neck_symptoms, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro_text"
+                neck_lower="patient describes his neck pain as axial$neck_symptoms, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro_text"
+              else
+                neck_first="Patient describes his neck pain as traveling to his $neck_radiation in a radicular fashion$neck_symptoms, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro_text"
+                neck_lower="patient describes his neck pain as traveling to his $neck_radiation in a radicular fashion$neck_symptoms, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro_text"
+              fi
+              append_section "$neck_first" "$neck_lower"
+            fi
+
+            if [ "$ESPANSO_NP2_INCLUDE_MID_BACK" = "yes" ]; then
+              append_section \
+                "Patient describes his mid-back pain as $ESPANSO_NP2_MID_STATUS and notes $mid_radiation, citing that the pain interferes with his $ESPANSO_NP2_MID_LIMITATION." \
+                "patient describes his mid-back pain as $ESPANSO_NP2_MID_STATUS and notes $mid_radiation, citing that the pain interferes with his $ESPANSO_NP2_MID_LIMITATION."
+            fi
+
+            if [ "$ESPANSO_NP2_INCLUDE_LOW_BACK" = "yes" ]; then
+              if [ "$low_radiation" = "axial" ]; then
+                low_text="Patient characterizes his low back pain as axial$low_symptoms, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION."
+                low_lower="patient characterizes his low back pain as axial$low_symptoms, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION."
+              else
+                low_text="Patient characterizes his low back pain as traveling to his $low_radiation in radicular fashion$low_symptoms, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION."
+                low_lower="patient characterizes his low back pain as traveling to his $low_radiation in radicular fashion$low_symptoms, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION."
+              fi
+              [ -n "$qol" ] && low_text="$low_text $qol" && low_lower="$low_lower $qol"
+              append_section "$low_text" "$low_lower"
+            fi
+
+            printf "%s" "$text"
+
+      - name: mri_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+            seen=""
+
+            add_mri() {
+              item="$1"
+              [ "$item" = "none" ] && return
+              [ -z "$item" ] && return
+              [ "$item" = "other/custom" ] && item="$ESPANSO_NP3_CUSTOM_MRI"
+              case "|$seen|" in *"|$item|"*) return ;; esac
+              seen="${seen}|${item}"
+              count=$((count + 1))
+              case "$count" in
+                1) m1="$item" ;;
+                2) m2="$item" ;;
+                3) m3="$item" ;;
+                4) m4="$item" ;;
+              esac
+            }
+
+            add_mri "$ESPANSO_NP3_MRI1"
+            add_mri "$ESPANSO_NP3_MRI2"
+            add_mri "$ESPANSO_NP3_MRI3"
+            add_mri "$ESPANSO_NP3_MRI4"
+
+            all_spine=1
+            index=1
+            while [ "$index" -le "$count" ]; do
+              eval "item=\$m$index"
+              case "$item" in Cervical|Thoracic|Lumbar) ;; *) all_spine=0 ;; esac
+              index=$((index + 1))
+            done
+
+            add_spine_label() {
+              case "$1" in
+                Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
+                *) printf "%s" "$1" ;;
+              esac
+            }
+
+            if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
+              case "$count" in
+                1) printf "%s Spine" "$m1" ;;
+                2) printf "%s and %s Spine" "$m1" "$m2" ;;
+                3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
+                4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
+              esac
+            else
+              [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
+              [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
+              [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
+              [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
+              case "$count" in
+                0) printf "%s" "" ;;
+                1) printf "%s" "$f1" ;;
+                2) printf "%s and %s" "$f1" "$f2" ;;
+                3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
+                4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
+              esac
+            fi
+
+      - name: tried_failed_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+            seen=""
+
+            add_item() {
+              item="$1"
+              [ -z "$item" ] && return
+              [ "$item" = "none" ] && return
+              case "|$seen|" in *"|$item|"*) return ;; esac
+              seen="${seen}|${item}"
+              count=$((count + 1))
+              case "$count" in
+                1) t1="$item" ;;
+                2) t2="$item" ;;
+                3) t3="$item" ;;
+                4) t4="$item" ;;
+                5) t5="$item" ;;
+                6) t6="$item" ;;
+                7) t7="$item" ;;
+                8) t8="$item" ;;
+                9) t9="$item" ;;
+                10) t10="$item" ;;
+                11) t11="$item" ;;
+              esac
+            }
+
+            add_item "$ESPANSO_NP4_THERAPY1"
+            add_item "$ESPANSO_NP4_THERAPY2"
+            add_item "$ESPANSO_NP4_THERAPY3"
+            add_item "$ESPANSO_NP4_THERAPY4"
+            add_item "$ESPANSO_NP4_THERAPY5"
+            add_item "$ESPANSO_NP4_THERAPY6"
+            add_item "$ESPANSO_NP4_THERAPY7"
+            add_item "$ESPANSO_NP4_THERAPY8"
+            add_item "$ESPANSO_NP4_THERAPY9"
+            add_item "$ESPANSO_NP4_THERAPY10"
+            add_item "$ESPANSO_NP4_THERAPY11"
+
+            if [ "$count" -eq 0 ]; then
+              printf "%s" ""
+            elif [ "$count" -eq 1 ]; then
+              printf "%s" "$t1"
+            elif [ "$count" -eq 2 ]; then
+              printf "%s and %s" "$t1" "$t2"
+            else
+              index=1
+              output=""
+              while [ "$index" -le "$count" ]; do
+                eval "item=\$t$index"
+                if [ "$index" -eq 1 ]; then
+                  output="$item"
+                elif [ "$index" -eq "$count" ]; then
+                  output="$output, and $item"
+                else
+                  output="$output, $item"
+                fi
+                index=$((index + 1))
+              done
+              printf "%s" "$output"
+            fi
+
+      - name: history_text
+        type: shell
+        params:
+          cmd: |
+            text=""
+
+            append_sentence() {
+              sentence="$1"
+              [ -z "$sentence" ] && return
+              if [ -z "$text" ]; then
+                text="$sentence"
+              else
+                text="$text $sentence"
+              fi
+            }
+
+            if [ "$ESPANSO_NP3_FACILITY" != "none" ]; then
+              append_sentence "Following the accident, patient presented to $ESPANSO_NP3_FACILITY where he $ESPANSO_NP3_FACILITY_ACTION."
+            fi
+
+            if [ -n "$ESPANSO_MRI_LIST" ]; then
+              append_sentence "Patient received MRIs of his $ESPANSO_MRI_LIST to evaluate his condition."
+            fi
+
+            if [ "$ESPANSO_NP3_CURRENT_THERAPY" != "none" ]; then
+              append_sentence "Moreover, patient partakes in $ESPANSO_NP3_CURRENT_THERAPY therapy, citing $ESPANSO_NP3_RELIEF relief."
+            fi
+
+            if [ "$ESPANSO_NP3_TAKING_MEDICATION" = "yes" ]; then
+              append_sentence "Additionally, patient reports taking $ESPANSO_NP3_MEDICATIONS to help manage his pain."
+            fi
+
+            if [ -n "$ESPANSO_TRIED_FAILED_LIST" ]; then
+              append_sentence "The patient has tried $ESPANSO_TRIED_FAILED_LIST. These therapies have not provided significant relief of symptoms."
+            fi
+
+            if [ -n "$text" ]; then
+              printf "%s " "$text"
+            fi
+
+      - name: paperwork_text
+        type: shell
+        params:
+          cmd: |
+            if [ -n "$ESPANSO_MRI_LIST" ]; then
+              printf "%s" "Pt's paperwork includes: Available images were reviewed with patient today. Impressions can be found under \"Imaging\" section."
+            fi
