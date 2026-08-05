@@ -8625,3 +8625,407 @@ matches:
                 4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
               esac
             fi
+  - trigger: ".mnpform2"
+    replace: |
+      Patient is seen here today for a NP
+
+      New Patient Evaluation.
+
+      XXX is a {{np.age}}-year-old male who presents with {{pain_list}} pain. {{pain_sections}} Patient states that all his pain started due to a Motor Vehicle Accident (MVA) on {{np.accident_date}}. Following the accident, patient presented to {{np.facility}} where he {{np.facility_action}}. Patient received MRIs of his {{mri_list}} to evaluate his condition. {{treatment_text}} The patient has tried opioid medications, anti-inflammatories, anti-depressants, muscle relaxants, injections, surgery, NSAIDs, rest, ice/heat, chiropractic therapy, and home exercise. These therapies have not provided significant relief of symptoms. Patient's pain is affecting his quality of life, level of function, as well as basic activities of daily living.
+
+      Goal for today's visit: Evaluate extent of pain levels and discuss treatment options to restore prior levels of functioning and quality of life.
+
+      Pt's paperwork includes: Available images were reviewed with patient today. Impressions can be found under "Imaging" section.
+
+      Assoc: no bowel or bladder incontinence, no saddle anesthesia, no focal weakness
+    vars:
+      - name: np
+        type: form
+        params:
+          layout: |
+            Age:
+            [[age]]
+
+            Include neck section:
+            [[include_neck]]
+
+            Neck radiation destination:
+            [[neck_radiation]]
+
+            Neck limitation:
+            [[neck_limitation]]
+
+            Neck symptoms denied:
+            [[neck_denies]]
+
+            Neck symptoms reported:
+            [[neck_reports]]
+
+            Include mid-back section:
+            [[include_mid_back]]
+
+            Mid-back pain status:
+            [[mid_status]]
+
+            Mid-back radiation wording:
+            [[mid_radiation]]
+
+            Mid-back limitation:
+            [[mid_limitation]]
+
+            Include low-back section:
+            [[include_low_back]]
+
+            Low-back radiation destination:
+            [[low_radiation]]
+
+            Low-back limitation:
+            [[low_limitation]]
+
+            Low-back symptoms reported:
+            [[low_reports]]
+
+            MVA date:
+            [[accident_date]]
+
+            Facility visited after accident:
+            [[facility]]
+
+            What occurred at the facility after "where he":
+            [[facility_action]]
+
+            Primary MRI:
+            [[mri1]]
+
+            Additional MRI 1:
+            [[mri2]]
+
+            Additional MRI 2:
+            [[mri3]]
+
+            Additional MRI 3:
+            [[mri4]]
+
+            Custom MRI (used only when "other/custom" is selected):
+            [[custom_mri]]
+
+            Current therapy:
+            [[current_therapy]]
+
+            Relief from current therapy:
+            [[relief]]
+
+            Currently taking medication for pain:
+            [[taking_medication]]
+
+            Medication(s):
+            [[medications]]
+          fields:
+            age:
+              default: "XXX"
+            include_neck:
+              type: choice
+              values:
+                - "yes"
+                - "no"
+            neck_radiation:
+              default: "XXX"
+            neck_limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            neck_denies:
+              default: "XXX"
+            neck_reports:
+              default: "XXX"
+            include_mid_back:
+              type: choice
+              values:
+                - "yes"
+                - "no"
+            mid_status:
+              type: choice
+              values:
+                - debilitating
+                - bothersome
+            mid_radiation:
+              default: "some radiation to the ribs"
+            mid_limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            include_low_back:
+              type: choice
+              values:
+                - "yes"
+                - "no"
+            low_radiation:
+              default: "XXX"
+            low_limitation:
+              type: choice
+              values:
+                - ability to perform activities of daily living
+                - overall range of motion
+                - full range of motion
+                - daily functioning
+            low_reports:
+              default: "XXX"
+            accident_date:
+              default: "XX-XX-XXXX"
+            facility:
+              default: "XXX"
+            facility_action:
+              default: "XXX"
+            mri1:
+              type: choice
+              values:
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
+                - other/custom
+            mri2:
+              type: choice
+              values:
+                - none
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
+                - other/custom
+            mri3:
+              type: choice
+              values:
+                - none
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
+                - other/custom
+            mri4:
+              type: choice
+              values:
+                - none
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
+                - other/custom
+            custom_mri:
+              default: "XXX"
+            current_therapy:
+              type: choice
+              values:
+                - none
+                - chiropractic
+                - acupuncture
+                - massage
+                - physical
+            relief:
+              type: choice
+              values:
+                - some
+                - temporary
+            taking_medication:
+              type: choice
+              values:
+                - "yes"
+                - "no"
+            medications:
+              default: "XXX"
+
+      - name: pain_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_pain() {
+              item="$1"
+              count=$((count + 1))
+              case "$count" in
+                1) p1="$item" ;;
+                2) p2="$item" ;;
+                3) p3="$item" ;;
+              esac
+            }
+
+            [ "$ESPANSO_NP_INCLUDE_NECK" = "yes" ] && add_pain "neck"
+            [ "$ESPANSO_NP_INCLUDE_MID_BACK" = "yes" ] && add_pain "mid-back"
+            [ "$ESPANSO_NP_INCLUDE_LOW_BACK" = "yes" ] && add_pain "low back"
+
+            case "$count" in
+              0) printf "%s" "XXX" ;;
+              1) printf "%s" "$p1" ;;
+              2) printf "%s and %s" "$p1" "$p2" ;;
+              3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+            esac
+
+      - name: pain_sections
+        type: shell
+        params:
+          cmd: |
+            count=0
+            text=""
+
+            append_section() {
+              first_text="$1"
+              lower_text="$2"
+              count=$((count + 1))
+
+              case "$count" in
+                1) section="$first_text" ;;
+                2) section="In addition, $lower_text" ;;
+                *) section="To continue, $lower_text" ;;
+              esac
+
+              if [ -z "$text" ]; then
+                text="$section"
+              else
+                text="$text $section"
+              fi
+            }
+
+            if [ "$ESPANSO_NP_INCLUDE_NECK" = "yes" ]; then
+              append_section \
+                "Patient describes his neck pain as traveling to his $ESPANSO_NP_NECK_RADIATION in a radicular fashion, noting that the pain limits his $ESPANSO_NP_NECK_LIMITATION. Patient denies $ESPANSO_NP_NECK_DENIES, but reports experiencing $ESPANSO_NP_NECK_REPORTS." \
+                "patient describes his neck pain as traveling to his $ESPANSO_NP_NECK_RADIATION in a radicular fashion, noting that the pain limits his $ESPANSO_NP_NECK_LIMITATION. Patient denies $ESPANSO_NP_NECK_DENIES, but reports experiencing $ESPANSO_NP_NECK_REPORTS."
+            fi
+
+            if [ "$ESPANSO_NP_INCLUDE_MID_BACK" = "yes" ]; then
+              append_section \
+                "Patient describes his mid-back pain as $ESPANSO_NP_MID_STATUS and notes $ESPANSO_NP_MID_RADIATION, citing that the pain interferes with his $ESPANSO_NP_MID_LIMITATION." \
+                "patient describes his mid-back pain as $ESPANSO_NP_MID_STATUS and notes $ESPANSO_NP_MID_RADIATION, citing that the pain interferes with his $ESPANSO_NP_MID_LIMITATION."
+            fi
+
+            if [ "$ESPANSO_NP_INCLUDE_LOW_BACK" = "yes" ]; then
+              append_section \
+                "Patient characterizes his low back pain as traveling to his $ESPANSO_NP_LOW_RADIATION in radicular fashion, stating that the pain affects his $ESPANSO_NP_LOW_LIMITATION. Patient reports $ESPANSO_NP_LOW_REPORTS." \
+                "patient characterizes his low back pain as traveling to his $ESPANSO_NP_LOW_RADIATION in radicular fashion, stating that the pain affects his $ESPANSO_NP_LOW_LIMITATION. Patient reports $ESPANSO_NP_LOW_REPORTS."
+            fi
+
+            printf "%s" "$text"
+
+      - name: mri_list
+        type: shell
+        params:
+          cmd: |
+            count=0
+
+            add_mri() {
+              item="$1"
+
+              if [ "$item" = "none" ] || [ -z "$item" ]; then
+                return
+              fi
+
+              if [ "$item" = "other/custom" ]; then
+                item="$ESPANSO_NP_CUSTOM_MRI"
+              fi
+
+              case "|$seen|" in
+                *"|$item|"*) return ;;
+              esac
+
+              seen="${seen}|${item}"
+              count=$((count + 1))
+
+              case "$count" in
+                1) m1="$item" ;;
+                2) m2="$item" ;;
+                3) m3="$item" ;;
+                4) m4="$item" ;;
+              esac
+            }
+
+            add_mri "$ESPANSO_NP_MRI1"
+            add_mri "$ESPANSO_NP_MRI2"
+            add_mri "$ESPANSO_NP_MRI3"
+            add_mri "$ESPANSO_NP_MRI4"
+
+            all_spine=1
+            index=1
+            while [ "$index" -le "$count" ]; do
+              eval "item=\$m$index"
+              case "$item" in
+                Cervical|Thoracic|Lumbar) ;;
+                *) all_spine=0 ;;
+              esac
+              index=$((index + 1))
+            done
+
+            if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
+              case "$count" in
+                1) printf "%s Spine" "$m1" ;;
+                2) printf "%s and %s Spine" "$m1" "$m2" ;;
+                3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
+                4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
+              esac
+            else
+              add_spine_label() {
+                case "$1" in
+                  Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
+                  *) printf "%s" "$1" ;;
+                esac
+              }
+
+              [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
+              [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
+              [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
+              [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
+
+              case "$count" in
+                1) printf "%s" "$f1" ;;
+                2) printf "%s and %s" "$f1" "$f2" ;;
+                3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
+                4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
+              esac
+            fi
+
+      - name: treatment_text
+        type: shell
+        params:
+          cmd: |
+            text=""
+
+            if [ "$ESPANSO_NP_CURRENT_THERAPY" != "none" ]; then
+              text="Moreover, patient partakes in $ESPANSO_NP_CURRENT_THERAPY therapy, citing $ESPANSO_NP_RELIEF relief."
+            fi
+
+            if [ "$ESPANSO_NP_TAKING_MEDICATION" = "yes" ]; then
+              medication_text="Additionally, patient reports taking $ESPANSO_NP_MEDICATIONS to help manage his pain."
+
+              if [ -z "$text" ]; then
+                text="$medication_text"
+              else
+                text="$text $medication_text"
+              fi
+            fi
+
+            printf "%s" "$text"
