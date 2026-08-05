@@ -4209,3 +4209,11 @@ matches:
       SPECIMENS: None
       
       OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Patient's vitals were stable and continuously monitored for 30 minutes post-procedure. Patient was then discharged after confirmation of a driver present for patient's transportation.
+  - trigger: ".mhpi"
+    form: |
+      Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his [[pain_area]] pain continues to be present and [[pain_status]], citing the pain as limiting his [[limitation]]. As such, [[discussed_therapies]] therapies were discussed to [[therapy_goal]]. Additionally, patient partakes in [[current_therapy]] therapy ([[frequency]]x/week), citing [[relief]] relief. No other changes to patient's pain at this time.
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date +'%m-%d-%Y'"
