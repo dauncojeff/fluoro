@@ -6980,57 +6980,57 @@ matches:
             mri1:
               type: choice
               values:
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri2:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri3:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri4:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             custom_mri:
               default: "XXX"
@@ -7409,58 +7409,58 @@ matches:
                 - temporary
             mri1:
               type: choice
-              values:
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+              values:              
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri2:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri3:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri4:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             custom_mri:
               default: "XXX"
@@ -7840,57 +7840,57 @@ matches:
             mri1:
               type: choice
               values:
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri2:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri3:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri4:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             custom_mri:
               default: "XXX"
@@ -8270,57 +8270,57 @@ matches:
             mri1:
               type: choice
               values:
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri2:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri3:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             mri4:
               type: choice
               values:
                 - none
-                - cervical
-                - thoracic
-                - lumbar
-                - right shoulder
-                - left shoulder
-                - right knee
-                - left knee
-                - right wrist
-                - left wrist
+                - Cervical
+                - Thoracic
+                - Lumbar
+                - Right Shoulder
+                - Left Shoulder
+                - Right Knee
+                - Left Knee
+                - Right Wrist
+                - Left Wrist
                 - other/custom
             custom_mri:
               default: "XXX"
