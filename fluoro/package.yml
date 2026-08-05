@@ -10067,2240 +10067,2247 @@ matches:
           Recommendation 3:
           [[recommendation3]]
 
-          Recommendation 4:
-          [[recommendation4]]
+          Recommendation 4:- trigger: ".mmpostdiagrev"
+  replace: |
+    Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
+  vars:
+  - name: output
+    type: shell
+    params:
+      cmd: date +'%m-%d-%Y'
+  - name: procedure_info
+    type: form
+    params:
+      layout: |-
+        Procedure received:
+        [[procedure]]
+        Custom procedure (used only when "other/custom" is selected):
+        [[custom_procedure]]
+        Procedure date (MM-DD-YYYY):
+        [[procedure_date]]
+        Procedure response/result:
+        [[procedure_response]]
+      fields:
+        procedure:
+          type: choice
+          values:
+          - C7/T1 cervical interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - L5/S1 lumbar interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - C7/T1 cervical interlaminar epidural steroid injection under fluoroscopy
+          - L5/S1 lumbar interlaminar epidural steroid injection under fluoroscopy
+          - T12/L1 thoracic interlaminar epidural steroid injection under fluoroscopy
+          - T12/L1 thoracic interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - bilateral sacroiliac joint injection with steroid under fluoroscopy
+          - right sacroiliac joint injection with steroid under fluoroscopy
+          - left sacroiliac joint injection with steroid under fluoroscopy
+          - bilateral sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - right sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - left sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - bilateral C4-5 and C5-6 cervical facet joint injection with steroid under fluoroscopy
+          - bilateral C4-5 and C5-6 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - right C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - left C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - right C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
+          - left C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
+          - bilateral L4-5 and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - bilateral L4-5 and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - bilateral T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - bilateral T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - right T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - left T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - right T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - left T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - bilateral subacromial bursa injection with platelet-rich plasma under ultrasound
+          - bilateral subacromial bursa injection with steroid under ultrasound
+          - right subacromial bursa injection with platelet-rich plasma under ultrasound
+          - left subacromial bursa injection with platelet-rich plasma under ultrasound
+          - right subacromial bursa injection with steroid under ultrasound
+          - left subacromial bursa injection with steroid under ultrasound
+          - cervical trigger point injections with platelet-rich plasma under ultrasound
+          - cervical trigger point injections with steroid under ultrasound
+          - thoracic trigger point injections with platelet-rich plasma under ultrasound
+          - thoracic trigger point injections with steroid under ultrasound
+          - lumbar trigger point injections with platelet-rich plasma under ultrasound
+          - lumbar trigger point injections with steroid under ultrasound
+          - right C3-5 cervical medial branch block under fluoroscopy
+          - left C3-5 cervical medial branch block under fluoroscopy
+          - bilateral C3-5 cervical medial branch block under fluoroscopy
+          - right L3-5 lumbar medial branch block under fluoroscopy
+          - left L3-5 lumbar medial branch block under fluoroscopy
+          - bilateral L3-5 lumbar medial branch block under fluoroscopy
+          - right thoracic medial branch block under fluoroscopy
+          - left thoracic medial branch block under fluoroscopy
+          - bilateral thoracic medial branch block under fluoroscopy
+          - right elbow epicondyle injection with platelet-rich plasma under ultrasound
+          - left elbow epicondyle injection with platelet-rich plasma under ultrasound
+          - right elbow epicondyle injection with steroid under ultrasound
+          - left elbow epicondyle injection with steroid under ultrasound
+          - right knee intra-articular joint injection with steroid under ultrasound
+          - left knee intra-articular joint injection with steroid under ultrasound
+          - bilateral knee intra-articular joint injection with steroid under ultrasound
+          - right knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - left knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - bilateral knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - cervical epidural blood patch injection under fluoroscopy
+          - lumbar epidural blood patch injection under fluoroscopy
+          - right hip intra-articular joint injection with steroid
+          - left hip intra-articular joint injection with steroid
+          - bilateral hip intra-articular joint injection with steroid
+          - right hip intra-articular joint injection with platelet-rich plasma
+          - left hip intra-articular joint injection with platelet-rich plasma
+          - bilateral hip intra-articular joint injection with platelet-rich plasma
+          - right bicipital groove injection with platelet-rich plasma under ultrasound
+          - left bicipital groove injection with platelet-rich plasma under ultrasound
+          - bilateral bicipital groove injection with platelet-rich plasma under ultrasound
+          - right bicipital groove injection with steroid under ultrasound
+          - left bicipital groove injection with steroid under ultrasound
+          - bilateral bicipital groove injection with steroid under ultrasound
+          - other/custom
+        custom_procedure:
+          default: XXX
+        procedure_date:
+          default: XX-XX-XXXX
+        procedure_response:
+          type: choice
+          values:
+          - significant relief
+          - moderate relief
+          - minimal relief
+          - minor relief
+  - name: pain_info
+    type: form
+    params:
+      layout: |-
+        Primary pain area:
+        [[pain1]]
+        Additional pain area 1:
+        [[pain2]]
+        Additional pain area 2:
+        [[pain3]]
+        Additional pain area 3:
+        [[pain4]]
+        Custom pain area (used only when "other/custom" is selected):
+        [[custom_pain]]
+        Pain status:
+        [[pain_status]]
+        Limitation:
+        [[limitation]]
+      fields:
+        pain1:
+          type: choice
+          values:
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain2:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain3:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain4:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        custom_pain:
+          default: XXX
+        pain_status:
+          type: choice
+          values:
+          - debilitating
+          - bothersome
+        limitation:
+          type: choice
+          values:
+          - ability to perform activities of daily living
+          - overall range of motion
+          - full range of motion
+          - daily functioning
+  - name: plan_info
+    type: form
+    params:
+      layout: |-
+        Recommendation 1:
+        [[recommendation1]]
+        Recommendation 2:
+        [[recommendation2]]
+        Recommendation 3:
+        [[recommendation3]]
+        Recommendation 4:
+        [[recommendation4]]
+        Referral to (used only when "referral" is selected):
+        [[referral_target]]
+        Current therapy:
+        [[current_therapy]]
+        Frequency per week:
+        [[frequency]]
+        Relief:
+        [[relief]]
+      fields:
+        recommendation1:
+          type: choice
+          values:
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation2:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation3:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation4:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        referral_target:
+          default: XXX
+        current_therapy:
+          type: choice
+          values:
+          - none
+          - chiropractic
+          - acupuncture
+          - massage
+          - physical
+        frequency:
+          type: choice
+          values:
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+        relief:
+          type: choice
+          values:
+          - some
+          - temporary
+  - name: mri_info
+    type: form
+    params:
+      layout: |-
+        Primary MRI report:
+        [[mri1]]
+        Additional MRI report 1:
+        [[mri2]]
+        Additional MRI report 2:
+        [[mri3]]
+        Additional MRI report 3:
+        [[mri4]]
+        Custom MRI report (used only when "other/custom" is selected):
+        [[custom_mri]]
+      fields:
+        mri1:
+          type: choice
+          values:
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri2:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri3:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri4:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        custom_mri:
+          default: XXX
+  - name: procedure_text
+    type: shell
+    params:
+      cmd: |
+        if [ "$ESPANSO_PROCEDURE_INFO_PROCEDURE" = "other/custom" ]; then
+          printf "%s" "$ESPANSO_PROCEDURE_INFO_CUSTOM_PROCEDURE"
+        else
+          printf "%s" "$ESPANSO_PROCEDURE_INFO_PROCEDURE"
+        fi
+  - name: pain_list
+    type: shell
+    params:
+      cmd: |
+        count=0
 
-          Referral to (used only when "referral" is selected):
-          [[referral_target]]
+        add_pain() {
+          item="$1"
 
-          Current therapy:
-          [[current_therapy]]
-
-          Frequency per week:
-          [[frequency]]
-
-          Relief:
-          [[relief]]
-
-                      Primary MRI report:
-                      [[mri1]]
-
-                      Additional MRI report 1:
-                      [[mri2]]
-
-                      Additional MRI report 2:
-                      [[mri3]]
-
-                      Additional MRI report 3:
-                      [[mri4]]
-
-                      Custom MRI report (used only when "other/custom" is selected):
-                      [[custom_mri]]
-        fields:
-          procedure:
-            type: choice
-            values:
-            - C7/T1 cervical interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - L5/S1 lumbar interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - C7/T1 cervical interlaminar epidural steroid injection under fluoroscopy
-            - L5/S1 lumbar interlaminar epidural steroid injection under fluoroscopy
-            - T12/L1 thoracic interlaminar epidural steroid injection under fluoroscopy
-            - T12/L1 thoracic interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - bilateral sacroiliac joint injection with steroid under fluoroscopy
-            - right sacroiliac joint injection with steroid under fluoroscopy
-            - left sacroiliac joint injection with steroid under fluoroscopy
-            - bilateral sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - right sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - left sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - bilateral C4-5 and C5-6 cervical facet joint injection with steroid under fluoroscopy
-            - bilateral C4-5 and C5-6 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - right C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - left C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - right C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
-            - left C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
-            - bilateral L4-5 and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - bilateral L4-5 and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - bilateral T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - bilateral T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - right T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - left T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - right T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - left T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - bilateral subacromial bursa injection with platelet-rich plasma under ultrasound
-            - bilateral subacromial bursa injection with steroid under ultrasound
-            - right subacromial bursa injection with platelet-rich plasma under ultrasound
-            - left subacromial bursa injection with platelet-rich plasma under ultrasound
-            - right subacromial bursa injection with steroid under ultrasound
-            - left subacromial bursa injection with steroid under ultrasound
-            - cervical trigger point injections with platelet-rich plasma under ultrasound
-            - cervical trigger point injections with steroid under ultrasound
-            - thoracic trigger point injections with platelet-rich plasma under ultrasound
-            - thoracic trigger point injections with steroid under ultrasound
-            - lumbar trigger point injections with platelet-rich plasma under ultrasound
-            - lumbar trigger point injections with steroid under ultrasound
-            - right C3-5 cervical medial branch block under fluoroscopy
-            - left C3-5 cervical medial branch block under fluoroscopy
-            - bilateral C3-5 cervical medial branch block under fluoroscopy
-            - right L3-5 lumbar medial branch block under fluoroscopy
-            - left L3-5 lumbar medial branch block under fluoroscopy
-            - bilateral L3-5 lumbar medial branch block under fluoroscopy
-            - right thoracic medial branch block under fluoroscopy
-            - left thoracic medial branch block under fluoroscopy
-            - bilateral thoracic medial branch block under fluoroscopy
-            - right elbow epicondyle injection with platelet-rich plasma under ultrasound
-            - left elbow epicondyle injection with platelet-rich plasma under ultrasound
-            - right elbow epicondyle injection with steroid under ultrasound
-            - left elbow epicondyle injection with steroid under ultrasound
-            - right knee intra-articular joint injection with steroid under ultrasound
-            - left knee intra-articular joint injection with steroid under ultrasound
-            - bilateral knee intra-articular joint injection with steroid under ultrasound
-            - right knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - left knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - bilateral knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - cervical epidural blood patch injection under fluoroscopy
-            - lumbar epidural blood patch injection under fluoroscopy
-            - right hip intra-articular joint injection with steroid
-            - left hip intra-articular joint injection with steroid
-            - bilateral hip intra-articular joint injection with steroid
-            - right hip intra-articular joint injection with platelet-rich plasma
-            - left hip intra-articular joint injection with platelet-rich plasma
-            - bilateral hip intra-articular joint injection with platelet-rich plasma
-            - right bicipital groove injection with platelet-rich plasma under ultrasound
-            - left bicipital groove injection with platelet-rich plasma under ultrasound
-            - bilateral bicipital groove injection with platelet-rich plasma under ultrasound
-            - right bicipital groove injection with steroid under ultrasound
-            - left bicipital groove injection with steroid under ultrasound
-            - bilateral bicipital groove injection with steroid under ultrasound
-            - other/custom
-          custom_procedure:
-            default: XXX
-          procedure_date:
-            default: "XX-XX-XXXX"
-          procedure_response:
-            type: choice
-            values:
-            - significant relief
-            - moderate relief
-            - minimal relief
-            - minor relief
-          pain1:
-            type: choice
-            values:
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain2:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain3:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain4:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          custom_pain:
-            default: "XXX"
-          pain_status:
-            type: choice
-            values:
-            - debilitating
-            - bothersome
-          limitation:
-            type: choice
-            values:
-            - ability to perform activities of daily living
-            - overall range of motion
-            - full range of motion
-            - daily functioning
-          recommendation1:
-            type: choice
-            values:
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation2:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation3:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation4:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          referral_target:
-            default: "XXX"
-          current_therapy:
-            type: choice
-            values:
-            - none
-            - chiropractic
-            - acupuncture
-            - massage
-            - physical
-          frequency:
-            type: choice
-            values:
-            - "1"
-            - "2"
-            - "3"
-            - "4"
-            - "5"
-          relief:
-            type: choice
-            values:
-            - some
-            - temporary
-
-          mri1:
-            type: choice
-            values:
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri2:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri3:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri4:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          custom_mri:
-            default: "XXX"
-
-    - name: procedure_text
-      type: shell
-      params:
-        cmd: |
-          if [ "$ESPANSO_HPI_PROCEDURE" = "other/custom" ]; then
-            printf "%s" "$ESPANSO_HPI_CUSTOM_PROCEDURE"
-          else
-            printf "%s" "$ESPANSO_HPI_PROCEDURE"
+          if [ "$item" = "none" ] || [ -z "$item" ]; then
+            return
           fi
-    - name: pain_list
-      type: shell
-      params:
-        cmd: |
-          count=0
 
-          add_pain() {
-            item="$1"
+          if [ "$item" = "other/custom" ]; then
+            item="$ESPANSO_PAIN_INFO_CUSTOM_PAIN"
+          fi
 
-            if [ "$item" = "none" ] || [ -z "$item" ]; then
-              return
-            fi
-
-            if [ "$item" = "other/custom" ]; then
-              item="$ESPANSO_HPI_CUSTOM_PAIN"
-            fi
-
-            case "|$seen|" in
-              *"|$item|"*) return ;;
-            esac
-
-            seen="${seen}|${item}"
-            count=$((count + 1))
-
-            case "$count" in
-              1) p1="$item" ;;
-              2) p2="$item" ;;
-              3) p3="$item" ;;
-              4) p4="$item" ;;
-            esac
-          }
-
-          add_pain "$ESPANSO_HPI_PAIN1"
-          add_pain "$ESPANSO_HPI_PAIN2"
-          add_pain "$ESPANSO_HPI_PAIN3"
-          add_pain "$ESPANSO_HPI_PAIN4"
-
-          case "$count" in
-            1) printf "%s" "$p1" ;;
-            2) printf "%s and %s" "$p1" "$p2" ;;
-            3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
-            4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+          case "|$seen|" in
+            *"|$item|"*) return ;;
           esac
 
-    - name: plan_text
-      type: shell
-      params:
-        cmd: |
-          count=0
-
-          add_recommendation() {
-            choice="$1"
-
-            if [ "$choice" = "none" ] || [ -z "$choice" ]; then
-              return
-            fi
-
-            case "|$seen|" in
-              *"|$choice|"*) return ;;
-            esac
-
-            seen="${seen}|${choice}"
-
-            case "$choice" in
-              injection)
-                subject="injection therapies"
-                goal="provide effective, long-lasting relief"
-                ;;
-              medications)
-                subject="medications"
-                goal="help manage pain"
-                ;;
-              conservative)
-                subject="conservative therapies"
-                goal="help manage pain"
-                ;;
-              diagnostics)
-                subject="diagnostics"
-                goal="further evaluate the patient's condition"
-                ;;
-              referral)
-                subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
-                goal="further evaluate the patient's condition"
-                ;;
-            esac
-
-            count=$((count + 1))
-
-            case "$count" in
-              1) s1="$subject"; g1="$goal" ;;
-              2) s2="$subject"; g2="$goal" ;;
-              3) s3="$subject"; g3="$goal" ;;
-              4) s4="$subject"; g4="$goal" ;;
-            esac
-          }
-
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+          seen="${seen}|${item}"
+          count=$((count + 1))
 
           case "$count" in
-            1)
-              case "$s1" in
-                referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
-                *) recommendation_text="$s1 were discussed to $g1." ;;
-              esac
-              ;;
-            2)
-              recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
-              ;;
-            3)
-              recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
-              ;;
-            4)
-              recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
-              ;;
+            1) p1="$item" ;;
+            2) p2="$item" ;;
+            3) p3="$item" ;;
+            4) p4="$item" ;;
+          esac
+        }
+
+        add_pain "$ESPANSO_PAIN_INFO_PAIN1"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN2"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN3"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN4"
+
+        case "$count" in
+          1) printf "%s" "$p1" ;;
+          2) printf "%s and %s" "$p1" "$p2" ;;
+          3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+          4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+        esac
+  - name: plan_text
+    type: shell
+    params:
+      cmd: |
+        count=0
+
+        add_recommendation() {
+          choice="$1"
+
+          if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+            return
+          fi
+
+          case "|$seen|" in
+            *"|$choice|"*) return ;;
           esac
 
-          if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
-            printf "%s" "$recommendation_text"
-          else
-            printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
-              "$recommendation_text" \
-              "$ESPANSO_HPI_CURRENT_THERAPY" \
-              "$ESPANSO_HPI_FREQUENCY" \
-              "$ESPANSO_HPI_RELIEF"
-          fi
-    - name: mri_list
-      type: shell
-      params:
-        cmd: |
-          count=0
+          seen="${seen}|${choice}"
 
-          add_mri() {
-            item="$1"
-
-            if [ "$item" = "none" ] || [ -z "$item" ]; then
-              return
-            fi
-
-            if [ "$item" = "other/custom" ]; then
-              item="$ESPANSO_HPI_CUSTOM_MRI"
-            fi
-
-            case "|$seen|" in
-              *"|$item|"*) return ;;
-            esac
-
-            seen="${seen}|${item}"
-            count=$((count + 1))
-
-            case "$count" in
-              1) m1="$item" ;;
-              2) m2="$item" ;;
-              3) m3="$item" ;;
-              4) m4="$item" ;;
-            esac
-          }
-
-          add_mri "$ESPANSO_HPI_MRI1"
-          add_mri "$ESPANSO_HPI_MRI2"
-          add_mri "$ESPANSO_HPI_MRI3"
-          add_mri "$ESPANSO_HPI_MRI4"
-
-          all_spine=1
-          index=1
-          while [ "$index" -le "$count" ]; do
-            eval "item=\$m$index"
-            case "$item" in
-              Cervical|Thoracic|Lumbar) ;;
-              *) all_spine=0 ;;
-            esac
-            index=$((index + 1))
-          done
-
-          if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
-            case "$count" in
-              1) printf "%s Spine" "$m1" ;;
-              2) printf "%s and %s Spine" "$m1" "$m2" ;;
-              3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
-              4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
-            esac
-          else
-            add_spine_label() {
-              case "$1" in
-                Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
-                *) printf "%s" "$1" ;;
-              esac
-            }
-
-            [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
-            [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
-            [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
-            [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
-
-            case "$count" in
-              1) printf "%s" "$f1" ;;
-              2) printf "%s and %s" "$f1" "$f2" ;;
-              3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
-              4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
-            esac
-          fi
-  - trigger: ".ffpostdiagrev"
-    replace: |
-      Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{hpi.procedure_date}}, citing {{hpi.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
-    vars:
-    - name: output
-      type: shell
-      params:
-        cmd: "date +'%m-%d-%Y'"
-
-    - name: hpi
-      type: form
-      params:
-        layout: |
-          Procedure received:
-          [[procedure]]
-
-          Custom procedure (used only when "other/custom" is selected):
-          [[custom_procedure]]
-
-          Procedure date (MM-DD-YYYY):
-          [[procedure_date]]
-
-          Procedure response/result:
-          [[procedure_response]]
-
-          Primary pain area:
-          [[pain1]]
-
-          Additional pain area 1:
-          [[pain2]]
-
-          Additional pain area 2:
-          [[pain3]]
-
-          Additional pain area 3:
-          [[pain4]]
-
-          Custom pain area (used only when "other/custom" is selected):
-          [[custom_pain]]
-
-          Pain status:
-          [[pain_status]]
-
-          Limitation:
-          [[limitation]]
-
-          Recommendation 1:
-          [[recommendation1]]
-
-          Recommendation 2:
-          [[recommendation2]]
-
-          Recommendation 3:
-          [[recommendation3]]
-
-          Recommendation 4:
-          [[recommendation4]]
-
-          Referral to (used only when "referral" is selected):
-          [[referral_target]]
-
-          Current therapy:
-          [[current_therapy]]
-
-          Frequency per week:
-          [[frequency]]
-
-          Relief:
-          [[relief]]
-
-                      Primary MRI report:
-                      [[mri1]]
-
-                      Additional MRI report 1:
-                      [[mri2]]
-
-                      Additional MRI report 2:
-                      [[mri3]]
-
-                      Additional MRI report 3:
-                      [[mri4]]
-
-                      Custom MRI report (used only when "other/custom" is selected):
-                      [[custom_mri]]
-        fields:
-          procedure:
-            type: choice
-            values:
-            - C7/T1 cervical interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - L5/S1 lumbar interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - C7/T1 cervical interlaminar epidural steroid injection under fluoroscopy
-            - L5/S1 lumbar interlaminar epidural steroid injection under fluoroscopy
-            - T12/L1 thoracic interlaminar epidural steroid injection under fluoroscopy
-            - T12/L1 thoracic interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - bilateral sacroiliac joint injection with steroid under fluoroscopy
-            - right sacroiliac joint injection with steroid under fluoroscopy
-            - left sacroiliac joint injection with steroid under fluoroscopy
-            - bilateral sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - right sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - left sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - bilateral C4-5 and C5-6 cervical facet joint injection with steroid under fluoroscopy
-            - bilateral C4-5 and C5-6 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - right C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - left C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - right C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
-            - left C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
-            - bilateral L4-5 and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - bilateral L4-5 and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - bilateral T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - bilateral T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - right T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - left T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - right T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - left T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - bilateral subacromial bursa injection with platelet-rich plasma under ultrasound
-            - bilateral subacromial bursa injection with steroid under ultrasound
-            - right subacromial bursa injection with platelet-rich plasma under ultrasound
-            - left subacromial bursa injection with platelet-rich plasma under ultrasound
-            - right subacromial bursa injection with steroid under ultrasound
-            - left subacromial bursa injection with steroid under ultrasound
-            - cervical trigger point injections with platelet-rich plasma under ultrasound
-            - cervical trigger point injections with steroid under ultrasound
-            - thoracic trigger point injections with platelet-rich plasma under ultrasound
-            - thoracic trigger point injections with steroid under ultrasound
-            - lumbar trigger point injections with platelet-rich plasma under ultrasound
-            - lumbar trigger point injections with steroid under ultrasound
-            - right C3-5 cervical medial branch block under fluoroscopy
-            - left C3-5 cervical medial branch block under fluoroscopy
-            - bilateral C3-5 cervical medial branch block under fluoroscopy
-            - right L3-5 lumbar medial branch block under fluoroscopy
-            - left L3-5 lumbar medial branch block under fluoroscopy
-            - bilateral L3-5 lumbar medial branch block under fluoroscopy
-            - right thoracic medial branch block under fluoroscopy
-            - left thoracic medial branch block under fluoroscopy
-            - bilateral thoracic medial branch block under fluoroscopy
-            - right elbow epicondyle injection with platelet-rich plasma under ultrasound
-            - left elbow epicondyle injection with platelet-rich plasma under ultrasound
-            - right elbow epicondyle injection with steroid under ultrasound
-            - left elbow epicondyle injection with steroid under ultrasound
-            - right knee intra-articular joint injection with steroid under ultrasound
-            - left knee intra-articular joint injection with steroid under ultrasound
-            - bilateral knee intra-articular joint injection with steroid under ultrasound
-            - right knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - left knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - bilateral knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - cervical epidural blood patch injection under fluoroscopy
-            - lumbar epidural blood patch injection under fluoroscopy
-            - right hip intra-articular joint injection with steroid
-            - left hip intra-articular joint injection with steroid
-            - bilateral hip intra-articular joint injection with steroid
-            - right hip intra-articular joint injection with platelet-rich plasma
-            - left hip intra-articular joint injection with platelet-rich plasma
-            - bilateral hip intra-articular joint injection with platelet-rich plasma
-            - right bicipital groove injection with platelet-rich plasma under ultrasound
-            - left bicipital groove injection with platelet-rich plasma under ultrasound
-            - bilateral bicipital groove injection with platelet-rich plasma under ultrasound
-            - right bicipital groove injection with steroid under ultrasound
-            - left bicipital groove injection with steroid under ultrasound
-            - bilateral bicipital groove injection with steroid under ultrasound
-            - other/custom
-          custom_procedure:
-            default: XXX
-          procedure_date:
-            default: "XX-XX-XXXX"
-          procedure_response:
-            type: choice
-            values:
-            - significant relief
-            - moderate relief
-            - minimal relief
-            - minor relief
-          pain1:
-            type: choice
-            values:
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain2:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain3:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain4:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          custom_pain:
-            default: "XXX"
-          pain_status:
-            type: choice
-            values:
-            - debilitating
-            - bothersome
-          limitation:
-            type: choice
-            values:
-            - ability to perform activities of daily living
-            - overall range of motion
-            - full range of motion
-            - daily functioning
-          recommendation1:
-            type: choice
-            values:
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation2:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation3:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation4:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          referral_target:
-            default: "XXX"
-          current_therapy:
-            type: choice
-            values:
-            - none
-            - chiropractic
-            - acupuncture
-            - massage
-            - physical
-          frequency:
-            type: choice
-            values:
-            - "1"
-            - "2"
-            - "3"
-            - "4"
-            - "5"
-          relief:
-            type: choice
-            values:
-            - some
-            - temporary
-
-          mri1:
-            type: choice
-            values:
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri2:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri3:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri4:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          custom_mri:
-            default: "XXX"
-
-    - name: procedure_text
-      type: shell
-      params:
-        cmd: |
-          if [ "$ESPANSO_HPI_PROCEDURE" = "other/custom" ]; then
-            printf "%s" "$ESPANSO_HPI_CUSTOM_PROCEDURE"
-          else
-            printf "%s" "$ESPANSO_HPI_PROCEDURE"
-          fi
-    - name: pain_list
-      type: shell
-      params:
-        cmd: |
-          count=0
-
-          add_pain() {
-            item="$1"
-
-            if [ "$item" = "none" ] || [ -z "$item" ]; then
-              return
-            fi
-
-            if [ "$item" = "other/custom" ]; then
-              item="$ESPANSO_HPI_CUSTOM_PAIN"
-            fi
-
-            case "|$seen|" in
-              *"|$item|"*) return ;;
-            esac
-
-            seen="${seen}|${item}"
-            count=$((count + 1))
-
-            case "$count" in
-              1) p1="$item" ;;
-              2) p2="$item" ;;
-              3) p3="$item" ;;
-              4) p4="$item" ;;
-            esac
-          }
-
-          add_pain "$ESPANSO_HPI_PAIN1"
-          add_pain "$ESPANSO_HPI_PAIN2"
-          add_pain "$ESPANSO_HPI_PAIN3"
-          add_pain "$ESPANSO_HPI_PAIN4"
-
-          case "$count" in
-            1) printf "%s" "$p1" ;;
-            2) printf "%s and %s" "$p1" "$p2" ;;
-            3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
-            4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
-          esac
-
-    - name: plan_text
-      type: shell
-      params:
-        cmd: |
-          count=0
-
-          add_recommendation() {
-            choice="$1"
-
-            if [ "$choice" = "none" ] || [ -z "$choice" ]; then
-              return
-            fi
-
-            case "|$seen|" in
-              *"|$choice|"*) return ;;
-            esac
-
-            seen="${seen}|${choice}"
-
-            case "$choice" in
-              injection)
-                subject="injection therapies"
-                goal="provide effective, long-lasting relief"
-                ;;
-              medications)
-                subject="medications"
-                goal="help manage pain"
-                ;;
-              conservative)
-                subject="conservative therapies"
-                goal="help manage pain"
-                ;;
-              diagnostics)
-                subject="diagnostics"
-                goal="further evaluate the patient's condition"
-                ;;
-              referral)
-                subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
-                goal="further evaluate the patient's condition"
-                ;;
-            esac
-
-            count=$((count + 1))
-
-            case "$count" in
-              1) s1="$subject"; g1="$goal" ;;
-              2) s2="$subject"; g2="$goal" ;;
-              3) s3="$subject"; g3="$goal" ;;
-              4) s4="$subject"; g4="$goal" ;;
-            esac
-          }
-
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
-
-          case "$count" in
-            1)
-              case "$s1" in
-                referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
-                *) recommendation_text="$s1 were discussed to $g1." ;;
-              esac
+          case "$choice" in
+            injection)
+              subject="injection therapies"
+              goal="provide effective, long-lasting relief"
               ;;
-            2)
-              recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+            medications)
+              subject="medications"
+              goal="help manage pain"
               ;;
-            3)
-              recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+            conservative)
+              subject="conservative therapies"
+              goal="help manage pain"
               ;;
-            4)
-              recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+            diagnostics)
+              subject="diagnostics"
+              goal="further evaluate the patient's condition"
+              ;;
+            referral)
+              subject="referral to $ESPANSO_PLAN_INFO_REFERRAL_TARGET"
+              goal="further evaluate the patient's condition"
               ;;
           esac
 
-          if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
-            printf "%s" "$recommendation_text"
-          else
-            printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
-              "$recommendation_text" \
-              "$ESPANSO_HPI_CURRENT_THERAPY" \
-              "$ESPANSO_HPI_FREQUENCY" \
-              "$ESPANSO_HPI_RELIEF"
-          fi
-    - name: mri_list
-      type: shell
-      params:
-        cmd: |
-          count=0
-
-          add_mri() {
-            item="$1"
-
-            if [ "$item" = "none" ] || [ -z "$item" ]; then
-              return
-            fi
-
-            if [ "$item" = "other/custom" ]; then
-              item="$ESPANSO_HPI_CUSTOM_MRI"
-            fi
-
-            case "|$seen|" in
-              *"|$item|"*) return ;;
-            esac
-
-            seen="${seen}|${item}"
-            count=$((count + 1))
-
-            case "$count" in
-              1) m1="$item" ;;
-              2) m2="$item" ;;
-              3) m3="$item" ;;
-              4) m4="$item" ;;
-            esac
-          }
-
-          add_mri "$ESPANSO_HPI_MRI1"
-          add_mri "$ESPANSO_HPI_MRI2"
-          add_mri "$ESPANSO_HPI_MRI3"
-          add_mri "$ESPANSO_HPI_MRI4"
-
-          all_spine=1
-          index=1
-          while [ "$index" -le "$count" ]; do
-            eval "item=\$m$index"
-            case "$item" in
-              Cervical|Thoracic|Lumbar) ;;
-              *) all_spine=0 ;;
-            esac
-            index=$((index + 1))
-          done
-
-          if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
-            case "$count" in
-              1) printf "%s Spine" "$m1" ;;
-              2) printf "%s and %s Spine" "$m1" "$m2" ;;
-              3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
-              4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
-            esac
-          else
-            add_spine_label() {
-              case "$1" in
-                Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
-                *) printf "%s" "$1" ;;
-              esac
-            }
-
-            [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
-            [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
-            [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
-            [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
-
-            case "$count" in
-              1) printf "%s" "$f1" ;;
-              2) printf "%s and %s" "$f1" "$f2" ;;
-              3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
-              4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
-            esac
-          fi
-  - trigger: ".mmicpostdiagrev"
-    replace: |
-      Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{hpi.procedure_date}}, citing {{hpi.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
-    vars:
-    - name: output
-      type: shell
-      params:
-        cmd: "date +'%m-%d-%Y'"
-
-    - name: hpi
-      type: form
-      params:
-        layout: |
-          Procedure received:
-          [[procedure]]
-
-          Custom procedure (used only when "other/custom" is selected):
-          [[custom_procedure]]
-
-          Procedure date (MM-DD-YYYY):
-          [[procedure_date]]
-
-          Procedure response/result:
-          [[procedure_response]]
-
-          Primary pain area:
-          [[pain1]]
-
-          Additional pain area 1:
-          [[pain2]]
-
-          Additional pain area 2:
-          [[pain3]]
-
-          Additional pain area 3:
-          [[pain4]]
-
-          Custom pain area (used only when "other/custom" is selected):
-          [[custom_pain]]
-
-          Pain status:
-          [[pain_status]]
-
-          Limitation:
-          [[limitation]]
-
-          Recommendation 1:
-          [[recommendation1]]
-
-          Recommendation 2:
-          [[recommendation2]]
-
-          Recommendation 3:
-          [[recommendation3]]
-
-          Recommendation 4:
-          [[recommendation4]]
-
-          Referral to (used only when "referral" is selected):
-          [[referral_target]]
-
-          Current therapy:
-          [[current_therapy]]
-
-          Frequency per week:
-          [[frequency]]
-
-          Relief:
-          [[relief]]
-
-                      Primary MRI report:
-                      [[mri1]]
-
-                      Additional MRI report 1:
-                      [[mri2]]
-
-                      Additional MRI report 2:
-                      [[mri3]]
-
-                      Additional MRI report 3:
-                      [[mri4]]
-
-                      Custom MRI report (used only when "other/custom" is selected):
-                      [[custom_mri]]
-        fields:
-          procedure:
-            type: choice
-            values:
-            - C7/T1 cervical interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - L5/S1 lumbar interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - C7/T1 cervical interlaminar epidural steroid injection under fluoroscopy
-            - L5/S1 lumbar interlaminar epidural steroid injection under fluoroscopy
-            - T12/L1 thoracic interlaminar epidural steroid injection under fluoroscopy
-            - T12/L1 thoracic interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - bilateral sacroiliac joint injection with steroid under fluoroscopy
-            - right sacroiliac joint injection with steroid under fluoroscopy
-            - left sacroiliac joint injection with steroid under fluoroscopy
-            - bilateral sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - right sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - left sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - bilateral C4-5 and C5-6 cervical facet joint injection with steroid under fluoroscopy
-            - bilateral C4-5 and C5-6 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - right C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - left C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - right C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
-            - left C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
-            - bilateral L4-5 and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - bilateral L4-5 and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - bilateral T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - bilateral T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - right T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - left T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - right T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - left T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - bilateral subacromial bursa injection with platelet-rich plasma under ultrasound
-            - bilateral subacromial bursa injection with steroid under ultrasound
-            - right subacromial bursa injection with platelet-rich plasma under ultrasound
-            - left subacromial bursa injection with platelet-rich plasma under ultrasound
-            - right subacromial bursa injection with steroid under ultrasound
-            - left subacromial bursa injection with steroid under ultrasound
-            - cervical trigger point injections with platelet-rich plasma under ultrasound
-            - cervical trigger point injections with steroid under ultrasound
-            - thoracic trigger point injections with platelet-rich plasma under ultrasound
-            - thoracic trigger point injections with steroid under ultrasound
-            - lumbar trigger point injections with platelet-rich plasma under ultrasound
-            - lumbar trigger point injections with steroid under ultrasound
-            - right C3-5 cervical medial branch block under fluoroscopy
-            - left C3-5 cervical medial branch block under fluoroscopy
-            - bilateral C3-5 cervical medial branch block under fluoroscopy
-            - right L3-5 lumbar medial branch block under fluoroscopy
-            - left L3-5 lumbar medial branch block under fluoroscopy
-            - bilateral L3-5 lumbar medial branch block under fluoroscopy
-            - right thoracic medial branch block under fluoroscopy
-            - left thoracic medial branch block under fluoroscopy
-            - bilateral thoracic medial branch block under fluoroscopy
-            - right elbow epicondyle injection with platelet-rich plasma under ultrasound
-            - left elbow epicondyle injection with platelet-rich plasma under ultrasound
-            - right elbow epicondyle injection with steroid under ultrasound
-            - left elbow epicondyle injection with steroid under ultrasound
-            - right knee intra-articular joint injection with steroid under ultrasound
-            - left knee intra-articular joint injection with steroid under ultrasound
-            - bilateral knee intra-articular joint injection with steroid under ultrasound
-            - right knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - left knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - bilateral knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - cervical epidural blood patch injection under fluoroscopy
-            - lumbar epidural blood patch injection under fluoroscopy
-            - right hip intra-articular joint injection with steroid
-            - left hip intra-articular joint injection with steroid
-            - bilateral hip intra-articular joint injection with steroid
-            - right hip intra-articular joint injection with platelet-rich plasma
-            - left hip intra-articular joint injection with platelet-rich plasma
-            - bilateral hip intra-articular joint injection with platelet-rich plasma
-            - right bicipital groove injection with platelet-rich plasma under ultrasound
-            - left bicipital groove injection with platelet-rich plasma under ultrasound
-            - bilateral bicipital groove injection with platelet-rich plasma under ultrasound
-            - right bicipital groove injection with steroid under ultrasound
-            - left bicipital groove injection with steroid under ultrasound
-            - bilateral bicipital groove injection with steroid under ultrasound
-            - other/custom
-          custom_procedure:
-            default: XXX
-          procedure_date:
-            default: "XX-XX-XXXX"
-          procedure_response:
-            type: choice
-            values:
-            - significant relief
-            - moderate relief
-            - minimal relief
-            - minor relief
-          pain1:
-            type: choice
-            values:
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain2:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain3:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain4:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          custom_pain:
-            default: "XXX"
-          pain_status:
-            type: choice
-            values:
-            - debilitating
-            - bothersome
-          limitation:
-            type: choice
-            values:
-            - ability to perform activities of daily living
-            - overall range of motion
-            - full range of motion
-            - daily functioning
-          recommendation1:
-            type: choice
-            values:
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation2:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation3:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation4:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          referral_target:
-            default: "XXX"
-          current_therapy:
-            type: choice
-            values:
-            - none
-            - chiropractic
-            - acupuncture
-            - massage
-            - physical
-          frequency:
-            type: choice
-            values:
-            - "1"
-            - "2"
-            - "3"
-            - "4"
-            - "5"
-          relief:
-            type: choice
-            values:
-            - some
-            - temporary
-
-          mri1:
-            type: choice
-            values:
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri2:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri3:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri4:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          custom_mri:
-            default: "XXX"
-
-    - name: procedure_text
-      type: shell
-      params:
-        cmd: |
-          if [ "$ESPANSO_HPI_PROCEDURE" = "other/custom" ]; then
-            printf "%s" "$ESPANSO_HPI_CUSTOM_PROCEDURE"
-          else
-            printf "%s" "$ESPANSO_HPI_PROCEDURE"
-          fi
-    - name: pain_list
-      type: shell
-      params:
-        cmd: |
-          count=0
-
-          add_pain() {
-            item="$1"
-
-            if [ "$item" = "none" ] || [ -z "$item" ]; then
-              return
-            fi
-
-            if [ "$item" = "other/custom" ]; then
-              item="$ESPANSO_HPI_CUSTOM_PAIN"
-            fi
-
-            case "|$seen|" in
-              *"|$item|"*) return ;;
-            esac
-
-            seen="${seen}|${item}"
-            count=$((count + 1))
-
-            case "$count" in
-              1) p1="$item" ;;
-              2) p2="$item" ;;
-              3) p3="$item" ;;
-              4) p4="$item" ;;
-            esac
-          }
-
-          add_pain "$ESPANSO_HPI_PAIN1"
-          add_pain "$ESPANSO_HPI_PAIN2"
-          add_pain "$ESPANSO_HPI_PAIN3"
-          add_pain "$ESPANSO_HPI_PAIN4"
+          count=$((count + 1))
 
           case "$count" in
-            1) printf "%s" "$p1" ;;
-            2) printf "%s and %s" "$p1" "$p2" ;;
-            3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
-            4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            1) s1="$subject"; g1="$goal" ;;
+            2) s2="$subject"; g2="$goal" ;;
+            3) s3="$subject"; g3="$goal" ;;
+            4) s4="$subject"; g4="$goal" ;;
+          esac
+        }
+
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION1"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION2"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION3"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION4"
+
+        case "$count" in
+          1)
+            case "$s1" in
+              referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+              *) recommendation_text="$s1 were discussed to $g1." ;;
+            esac
+            ;;
+          2)
+            recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+            ;;
+          3)
+            recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+            ;;
+          4)
+            recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+            ;;
+        esac
+
+        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ]; then
+          printf "%s" "$recommendation_text"
+        else
+          printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+            "$recommendation_text" \
+            "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" \
+            "$ESPANSO_PLAN_INFO_FREQUENCY" \
+            "$ESPANSO_PLAN_INFO_RELIEF"
+        fi
+  - name: mri_list
+    type: shell
+    params:
+      cmd: |
+        count=0
+
+        add_mri() {
+          item="$1"
+
+          if [ "$item" = "none" ] || [ -z "$item" ]; then
+            return
+          fi
+
+          if [ "$item" = "other/custom" ]; then
+            item="$ESPANSO_MRI_INFO_CUSTOM_MRI"
+          fi
+
+          case "|$seen|" in
+            *"|$item|"*) return ;;
           esac
 
-    - name: plan_text
-      type: shell
-      params:
-        cmd: |
-          count=0
+          seen="${seen}|${item}"
+          count=$((count + 1))
 
-          add_recommendation() {
-            choice="$1"
+          case "$count" in
+            1) m1="$item" ;;
+            2) m2="$item" ;;
+            3) m3="$item" ;;
+            4) m4="$item" ;;
+          esac
+        }
 
-            if [ "$choice" = "none" ] || [ -z "$choice" ]; then
-              return
-            fi
+        add_mri "$ESPANSO_MRI_INFO_MRI1"
+        add_mri "$ESPANSO_MRI_INFO_MRI2"
+        add_mri "$ESPANSO_MRI_INFO_MRI3"
+        add_mri "$ESPANSO_MRI_INFO_MRI4"
 
-            case "|$seen|" in
-              *"|$choice|"*) return ;;
-            esac
+        all_spine=1
+        index=1
+        while [ "$index" -le "$count" ]; do
+          eval "item=\$m$index"
+          case "$item" in
+            Cervical|Thoracic|Lumbar) ;;
+            *) all_spine=0 ;;
+          esac
+          index=$((index + 1))
+        done
 
-            seen="${seen}|${choice}"
-
-            case "$choice" in
-              injection)
-                subject="injection therapies"
-                goal="provide effective, long-lasting relief"
-                ;;
-              medications)
-                subject="medications"
-                goal="help manage pain"
-                ;;
-              conservative)
-                subject="conservative therapies"
-                goal="help manage pain"
-                ;;
-              diagnostics)
-                subject="diagnostics"
-                goal="further evaluate the patient's condition"
-                ;;
-              referral)
-                subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
-                goal="further evaluate the patient's condition"
-                ;;
-            esac
-
-            count=$((count + 1))
-
-            case "$count" in
-              1) s1="$subject"; g1="$goal" ;;
-              2) s2="$subject"; g2="$goal" ;;
-              3) s3="$subject"; g3="$goal" ;;
-              4) s4="$subject"; g4="$goal" ;;
+        if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
+          case "$count" in
+            1) printf "%s Spine" "$m1" ;;
+            2) printf "%s and %s Spine" "$m1" "$m2" ;;
+            3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
+            4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
+          esac
+        else
+          add_spine_label() {
+            case "$1" in
+              Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
+              *) printf "%s" "$1" ;;
             esac
           }
 
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+          [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
+          [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
+          [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
+          [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
 
           case "$count" in
-            1)
-              case "$s1" in
-                referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
-                *) recommendation_text="$s1 were discussed to $g1." ;;
-              esac
+            1) printf "%s" "$f1" ;;
+            2) printf "%s and %s" "$f1" "$f2" ;;
+            3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
+            4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
+          esac
+        fi
+- trigger: ".fpostdiagrev"
+  replace: |
+    Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
+  vars:
+  - name: output
+    type: shell
+    params:
+      cmd: date +'%m-%d-%Y'
+  - name: procedure_info
+    type: form
+    params:
+      layout: |-
+        Procedure received:
+        [[procedure]]
+        Custom procedure (used only when "other/custom" is selected):
+        [[custom_procedure]]
+        Procedure date (MM-DD-YYYY):
+        [[procedure_date]]
+        Procedure response/result:
+        [[procedure_response]]
+      fields:
+        procedure:
+          type: choice
+          values:
+          - C7/T1 cervical interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - L5/S1 lumbar interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - C7/T1 cervical interlaminar epidural steroid injection under fluoroscopy
+          - L5/S1 lumbar interlaminar epidural steroid injection under fluoroscopy
+          - T12/L1 thoracic interlaminar epidural steroid injection under fluoroscopy
+          - T12/L1 thoracic interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - bilateral sacroiliac joint injection with steroid under fluoroscopy
+          - right sacroiliac joint injection with steroid under fluoroscopy
+          - left sacroiliac joint injection with steroid under fluoroscopy
+          - bilateral sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - right sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - left sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - bilateral C4-5 and C5-6 cervical facet joint injection with steroid under fluoroscopy
+          - bilateral C4-5 and C5-6 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - right C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - left C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - right C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
+          - left C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
+          - bilateral L4-5 and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - bilateral L4-5 and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - bilateral T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - bilateral T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - right T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - left T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - right T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - left T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - bilateral subacromial bursa injection with platelet-rich plasma under ultrasound
+          - bilateral subacromial bursa injection with steroid under ultrasound
+          - right subacromial bursa injection with platelet-rich plasma under ultrasound
+          - left subacromial bursa injection with platelet-rich plasma under ultrasound
+          - right subacromial bursa injection with steroid under ultrasound
+          - left subacromial bursa injection with steroid under ultrasound
+          - cervical trigger point injections with platelet-rich plasma under ultrasound
+          - cervical trigger point injections with steroid under ultrasound
+          - thoracic trigger point injections with platelet-rich plasma under ultrasound
+          - thoracic trigger point injections with steroid under ultrasound
+          - lumbar trigger point injections with platelet-rich plasma under ultrasound
+          - lumbar trigger point injections with steroid under ultrasound
+          - right C3-5 cervical medial branch block under fluoroscopy
+          - left C3-5 cervical medial branch block under fluoroscopy
+          - bilateral C3-5 cervical medial branch block under fluoroscopy
+          - right L3-5 lumbar medial branch block under fluoroscopy
+          - left L3-5 lumbar medial branch block under fluoroscopy
+          - bilateral L3-5 lumbar medial branch block under fluoroscopy
+          - right thoracic medial branch block under fluoroscopy
+          - left thoracic medial branch block under fluoroscopy
+          - bilateral thoracic medial branch block under fluoroscopy
+          - right elbow epicondyle injection with platelet-rich plasma under ultrasound
+          - left elbow epicondyle injection with platelet-rich plasma under ultrasound
+          - right elbow epicondyle injection with steroid under ultrasound
+          - left elbow epicondyle injection with steroid under ultrasound
+          - right knee intra-articular joint injection with steroid under ultrasound
+          - left knee intra-articular joint injection with steroid under ultrasound
+          - bilateral knee intra-articular joint injection with steroid under ultrasound
+          - right knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - left knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - bilateral knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - cervical epidural blood patch injection under fluoroscopy
+          - lumbar epidural blood patch injection under fluoroscopy
+          - right hip intra-articular joint injection with steroid
+          - left hip intra-articular joint injection with steroid
+          - bilateral hip intra-articular joint injection with steroid
+          - right hip intra-articular joint injection with platelet-rich plasma
+          - left hip intra-articular joint injection with platelet-rich plasma
+          - bilateral hip intra-articular joint injection with platelet-rich plasma
+          - right bicipital groove injection with platelet-rich plasma under ultrasound
+          - left bicipital groove injection with platelet-rich plasma under ultrasound
+          - bilateral bicipital groove injection with platelet-rich plasma under ultrasound
+          - right bicipital groove injection with steroid under ultrasound
+          - left bicipital groove injection with steroid under ultrasound
+          - bilateral bicipital groove injection with steroid under ultrasound
+          - other/custom
+        custom_procedure:
+          default: XXX
+        procedure_date:
+          default: XX-XX-XXXX
+        procedure_response:
+          type: choice
+          values:
+          - significant relief
+          - moderate relief
+          - minimal relief
+          - minor relief
+  - name: pain_info
+    type: form
+    params:
+      layout: |-
+        Primary pain area:
+        [[pain1]]
+        Additional pain area 1:
+        [[pain2]]
+        Additional pain area 2:
+        [[pain3]]
+        Additional pain area 3:
+        [[pain4]]
+        Custom pain area (used only when "other/custom" is selected):
+        [[custom_pain]]
+        Pain status:
+        [[pain_status]]
+        Limitation:
+        [[limitation]]
+      fields:
+        pain1:
+          type: choice
+          values:
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain2:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain3:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain4:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        custom_pain:
+          default: XXX
+        pain_status:
+          type: choice
+          values:
+          - debilitating
+          - bothersome
+        limitation:
+          type: choice
+          values:
+          - ability to perform activities of daily living
+          - overall range of motion
+          - full range of motion
+          - daily functioning
+  - name: plan_info
+    type: form
+    params:
+      layout: |-
+        Recommendation 1:
+        [[recommendation1]]
+        Recommendation 2:
+        [[recommendation2]]
+        Recommendation 3:
+        [[recommendation3]]
+        Recommendation 4:
+        [[recommendation4]]
+        Referral to (used only when "referral" is selected):
+        [[referral_target]]
+        Current therapy:
+        [[current_therapy]]
+        Frequency per week:
+        [[frequency]]
+        Relief:
+        [[relief]]
+      fields:
+        recommendation1:
+          type: choice
+          values:
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation2:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation3:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation4:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        referral_target:
+          default: XXX
+        current_therapy:
+          type: choice
+          values:
+          - none
+          - chiropractic
+          - acupuncture
+          - massage
+          - physical
+        frequency:
+          type: choice
+          values:
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+        relief:
+          type: choice
+          values:
+          - some
+          - temporary
+  - name: mri_info
+    type: form
+    params:
+      layout: |-
+        Primary MRI report:
+        [[mri1]]
+        Additional MRI report 1:
+        [[mri2]]
+        Additional MRI report 2:
+        [[mri3]]
+        Additional MRI report 3:
+        [[mri4]]
+        Custom MRI report (used only when "other/custom" is selected):
+        [[custom_mri]]
+      fields:
+        mri1:
+          type: choice
+          values:
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri2:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri3:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri4:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        custom_mri:
+          default: XXX
+  - name: procedure_text
+    type: shell
+    params:
+      cmd: |
+        if [ "$ESPANSO_PROCEDURE_INFO_PROCEDURE" = "other/custom" ]; then
+          printf "%s" "$ESPANSO_PROCEDURE_INFO_CUSTOM_PROCEDURE"
+        else
+          printf "%s" "$ESPANSO_PROCEDURE_INFO_PROCEDURE"
+        fi
+  - name: pain_list
+    type: shell
+    params:
+      cmd: |
+        count=0
+
+        add_pain() {
+          item="$1"
+
+          if [ "$item" = "none" ] || [ -z "$item" ]; then
+            return
+          fi
+
+          if [ "$item" = "other/custom" ]; then
+            item="$ESPANSO_PAIN_INFO_CUSTOM_PAIN"
+          fi
+
+          case "|$seen|" in
+            *"|$item|"*) return ;;
+          esac
+
+          seen="${seen}|${item}"
+          count=$((count + 1))
+
+          case "$count" in
+            1) p1="$item" ;;
+            2) p2="$item" ;;
+            3) p3="$item" ;;
+            4) p4="$item" ;;
+          esac
+        }
+
+        add_pain "$ESPANSO_PAIN_INFO_PAIN1"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN2"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN3"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN4"
+
+        case "$count" in
+          1) printf "%s" "$p1" ;;
+          2) printf "%s and %s" "$p1" "$p2" ;;
+          3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+          4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+        esac
+  - name: plan_text
+    type: shell
+    params:
+      cmd: |
+        count=0
+
+        add_recommendation() {
+          choice="$1"
+
+          if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+            return
+          fi
+
+          case "|$seen|" in
+            *"|$choice|"*) return ;;
+          esac
+
+          seen="${seen}|${choice}"
+
+          case "$choice" in
+            injection)
+              subject="injection therapies"
+              goal="provide effective, long-lasting relief"
               ;;
-            2)
-              recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+            medications)
+              subject="medications"
+              goal="help manage pain"
               ;;
-            3)
-              recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+            conservative)
+              subject="conservative therapies"
+              goal="help manage pain"
               ;;
-            4)
-              recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+            diagnostics)
+              subject="diagnostics"
+              goal="further evaluate the patient's condition"
+              ;;
+            referral)
+              subject="referral to $ESPANSO_PLAN_INFO_REFERRAL_TARGET"
+              goal="further evaluate the patient's condition"
               ;;
           esac
 
-          if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
-            printf "%s" "$recommendation_text"
-          else
-            printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
-              "$recommendation_text" \
-              "$ESPANSO_HPI_CURRENT_THERAPY" \
-              "$ESPANSO_HPI_FREQUENCY" \
-              "$ESPANSO_HPI_RELIEF"
-          fi
-    - name: mri_list
-      type: shell
-      params:
-        cmd: |
-          count=0
-
-          add_mri() {
-            item="$1"
-
-            if [ "$item" = "none" ] || [ -z "$item" ]; then
-              return
-            fi
-
-            if [ "$item" = "other/custom" ]; then
-              item="$ESPANSO_HPI_CUSTOM_MRI"
-            fi
-
-            case "|$seen|" in
-              *"|$item|"*) return ;;
-            esac
-
-            seen="${seen}|${item}"
-            count=$((count + 1))
-
-            case "$count" in
-              1) m1="$item" ;;
-              2) m2="$item" ;;
-              3) m3="$item" ;;
-              4) m4="$item" ;;
-            esac
-          }
-
-          add_mri "$ESPANSO_HPI_MRI1"
-          add_mri "$ESPANSO_HPI_MRI2"
-          add_mri "$ESPANSO_HPI_MRI3"
-          add_mri "$ESPANSO_HPI_MRI4"
-
-          all_spine=1
-          index=1
-          while [ "$index" -le "$count" ]; do
-            eval "item=\$m$index"
-            case "$item" in
-              Cervical|Thoracic|Lumbar) ;;
-              *) all_spine=0 ;;
-            esac
-            index=$((index + 1))
-          done
-
-          if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
-            case "$count" in
-              1) printf "%s Spine" "$m1" ;;
-              2) printf "%s and %s Spine" "$m1" "$m2" ;;
-              3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
-              4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
-            esac
-          else
-            add_spine_label() {
-              case "$1" in
-                Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
-                *) printf "%s" "$1" ;;
-              esac
-            }
-
-            [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
-            [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
-            [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
-            [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
-
-            case "$count" in
-              1) printf "%s" "$f1" ;;
-              2) printf "%s and %s" "$f1" "$f2" ;;
-              3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
-              4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
-            esac
-          fi
-  - trigger: ".fficpostdiagrev"
-    replace: |
-      Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{hpi.procedure_date}}, citing {{hpi.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
-    vars:
-    - name: output
-      type: shell
-      params:
-        cmd: "date +'%m-%d-%Y'"
-
-    - name: hpi
-      type: form
-      params:
-        layout: |
-          Procedure received:
-          [[procedure]]
-
-          Custom procedure (used only when "other/custom" is selected):
-          [[custom_procedure]]
-
-          Procedure date (MM-DD-YYYY):
-          [[procedure_date]]
-
-          Procedure response/result:
-          [[procedure_response]]
-
-          Primary pain area:
-          [[pain1]]
-
-          Additional pain area 1:
-          [[pain2]]
-
-          Additional pain area 2:
-          [[pain3]]
-
-          Additional pain area 3:
-          [[pain4]]
-
-          Custom pain area (used only when "other/custom" is selected):
-          [[custom_pain]]
-
-          Pain status:
-          [[pain_status]]
-
-          Limitation:
-          [[limitation]]
-
-          Recommendation 1:
-          [[recommendation1]]
-
-          Recommendation 2:
-          [[recommendation2]]
-
-          Recommendation 3:
-          [[recommendation3]]
-
-          Recommendation 4:
-          [[recommendation4]]
-
-          Referral to (used only when "referral" is selected):
-          [[referral_target]]
-
-          Current therapy:
-          [[current_therapy]]
-
-          Frequency per week:
-          [[frequency]]
-
-          Relief:
-          [[relief]]
-
-                      Primary MRI report:
-                      [[mri1]]
-
-                      Additional MRI report 1:
-                      [[mri2]]
-
-                      Additional MRI report 2:
-                      [[mri3]]
-
-                      Additional MRI report 3:
-                      [[mri4]]
-
-                      Custom MRI report (used only when "other/custom" is selected):
-                      [[custom_mri]]
-        fields:
-          procedure:
-            type: choice
-            values:
-            - C7/T1 cervical interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - L5/S1 lumbar interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - C7/T1 cervical interlaminar epidural steroid injection under fluoroscopy
-            - L5/S1 lumbar interlaminar epidural steroid injection under fluoroscopy
-            - T12/L1 thoracic interlaminar epidural steroid injection under fluoroscopy
-            - T12/L1 thoracic interlaminar epidural injection with platelet-rich plasma under fluoroscopy
-            - bilateral sacroiliac joint injection with steroid under fluoroscopy
-            - right sacroiliac joint injection with steroid under fluoroscopy
-            - left sacroiliac joint injection with steroid under fluoroscopy
-            - bilateral sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - right sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - left sacroiliac joint injection with platelet-rich plasma under fluoroscopy
-            - bilateral C4-5 and C5-6 cervical facet joint injection with steroid under fluoroscopy
-            - bilateral C4-5 and C5-6 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - right C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - left C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
-            - right C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
-            - left C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
-            - bilateral L4-5 and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
-            - bilateral L4-5 and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
-            - bilateral T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - bilateral T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - right T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - left T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
-            - right T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - left T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
-            - bilateral subacromial bursa injection with platelet-rich plasma under ultrasound
-            - bilateral subacromial bursa injection with steroid under ultrasound
-            - right subacromial bursa injection with platelet-rich plasma under ultrasound
-            - left subacromial bursa injection with platelet-rich plasma under ultrasound
-            - right subacromial bursa injection with steroid under ultrasound
-            - left subacromial bursa injection with steroid under ultrasound
-            - cervical trigger point injections with platelet-rich plasma under ultrasound
-            - cervical trigger point injections with steroid under ultrasound
-            - thoracic trigger point injections with platelet-rich plasma under ultrasound
-            - thoracic trigger point injections with steroid under ultrasound
-            - lumbar trigger point injections with platelet-rich plasma under ultrasound
-            - lumbar trigger point injections with steroid under ultrasound
-            - right C3-5 cervical medial branch block under fluoroscopy
-            - left C3-5 cervical medial branch block under fluoroscopy
-            - bilateral C3-5 cervical medial branch block under fluoroscopy
-            - right L3-5 lumbar medial branch block under fluoroscopy
-            - left L3-5 lumbar medial branch block under fluoroscopy
-            - bilateral L3-5 lumbar medial branch block under fluoroscopy
-            - right thoracic medial branch block under fluoroscopy
-            - left thoracic medial branch block under fluoroscopy
-            - bilateral thoracic medial branch block under fluoroscopy
-            - right elbow epicondyle injection with platelet-rich plasma under ultrasound
-            - left elbow epicondyle injection with platelet-rich plasma under ultrasound
-            - right elbow epicondyle injection with steroid under ultrasound
-            - left elbow epicondyle injection with steroid under ultrasound
-            - right knee intra-articular joint injection with steroid under ultrasound
-            - left knee intra-articular joint injection with steroid under ultrasound
-            - bilateral knee intra-articular joint injection with steroid under ultrasound
-            - right knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - left knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - bilateral knee intra-articular joint injection with platelet-rich plasma under ultrasound
-            - cervical epidural blood patch injection under fluoroscopy
-            - lumbar epidural blood patch injection under fluoroscopy
-            - right hip intra-articular joint injection with steroid
-            - left hip intra-articular joint injection with steroid
-            - bilateral hip intra-articular joint injection with steroid
-            - right hip intra-articular joint injection with platelet-rich plasma
-            - left hip intra-articular joint injection with platelet-rich plasma
-            - bilateral hip intra-articular joint injection with platelet-rich plasma
-            - right bicipital groove injection with platelet-rich plasma under ultrasound
-            - left bicipital groove injection with platelet-rich plasma under ultrasound
-            - bilateral bicipital groove injection with platelet-rich plasma under ultrasound
-            - right bicipital groove injection with steroid under ultrasound
-            - left bicipital groove injection with steroid under ultrasound
-            - bilateral bicipital groove injection with steroid under ultrasound
-            - other/custom
-          custom_procedure:
-            default: XXX
-          procedure_date:
-            default: "XX-XX-XXXX"
-          procedure_response:
-            type: choice
-            values:
-            - significant relief
-            - moderate relief
-            - minimal relief
-            - minor relief
-          pain1:
-            type: choice
-            values:
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain2:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain3:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          pain4:
-            type: choice
-            values:
-            - none
-            - neck
-            - mid-back
-            - low back
-            - right shoulder
-            - left shoulder
-            - right knee
-            - left knee
-            - right wrist
-            - left wrist
-            - other/custom
-          custom_pain:
-            default: "XXX"
-          pain_status:
-            type: choice
-            values:
-            - debilitating
-            - bothersome
-          limitation:
-            type: choice
-            values:
-            - ability to perform activities of daily living
-            - overall range of motion
-            - full range of motion
-            - daily functioning
-          recommendation1:
-            type: choice
-            values:
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation2:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation3:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          recommendation4:
-            type: choice
-            values:
-            - none
-            - injection
-            - medications
-            - conservative
-            - diagnostics
-            - referral
-          referral_target:
-            default: "XXX"
-          current_therapy:
-            type: choice
-            values:
-            - none
-            - chiropractic
-            - acupuncture
-            - massage
-            - physical
-          frequency:
-            type: choice
-            values:
-            - "1"
-            - "2"
-            - "3"
-            - "4"
-            - "5"
-          relief:
-            type: choice
-            values:
-            - some
-            - temporary
-
-          mri1:
-            type: choice
-            values:
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri2:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri3:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          mri4:
-            type: choice
-            values:
-            - none
-            - Cervical
-            - Thoracic
-            - Lumbar
-            - Right Shoulder
-            - Left Shoulder
-            - Right Knee
-            - Left Knee
-            - Right Wrist
-            - Left Wrist
-            - other/custom
-          custom_mri:
-            default: "XXX"
-
-    - name: procedure_text
-      type: shell
-      params:
-        cmd: |
-          if [ "$ESPANSO_HPI_PROCEDURE" = "other/custom" ]; then
-            printf "%s" "$ESPANSO_HPI_CUSTOM_PROCEDURE"
-          else
-            printf "%s" "$ESPANSO_HPI_PROCEDURE"
-          fi
-    - name: pain_list
-      type: shell
-      params:
-        cmd: |
-          count=0
-
-          add_pain() {
-            item="$1"
-
-            if [ "$item" = "none" ] || [ -z "$item" ]; then
-              return
-            fi
-
-            if [ "$item" = "other/custom" ]; then
-              item="$ESPANSO_HPI_CUSTOM_PAIN"
-            fi
-
-            case "|$seen|" in
-              *"|$item|"*) return ;;
-            esac
-
-            seen="${seen}|${item}"
-            count=$((count + 1))
-
-            case "$count" in
-              1) p1="$item" ;;
-              2) p2="$item" ;;
-              3) p3="$item" ;;
-              4) p4="$item" ;;
-            esac
-          }
-
-          add_pain "$ESPANSO_HPI_PAIN1"
-          add_pain "$ESPANSO_HPI_PAIN2"
-          add_pain "$ESPANSO_HPI_PAIN3"
-          add_pain "$ESPANSO_HPI_PAIN4"
+          count=$((count + 1))
 
           case "$count" in
-            1) printf "%s" "$p1" ;;
-            2) printf "%s and %s" "$p1" "$p2" ;;
-            3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
-            4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+            1) s1="$subject"; g1="$goal" ;;
+            2) s2="$subject"; g2="$goal" ;;
+            3) s3="$subject"; g3="$goal" ;;
+            4) s4="$subject"; g4="$goal" ;;
+          esac
+        }
+
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION1"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION2"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION3"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION4"
+
+        case "$count" in
+          1)
+            case "$s1" in
+              referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+              *) recommendation_text="$s1 were discussed to $g1." ;;
+            esac
+            ;;
+          2)
+            recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+            ;;
+          3)
+            recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+            ;;
+          4)
+            recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+            ;;
+        esac
+
+        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ]; then
+          printf "%s" "$recommendation_text"
+        else
+          printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+            "$recommendation_text" \
+            "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" \
+            "$ESPANSO_PLAN_INFO_FREQUENCY" \
+            "$ESPANSO_PLAN_INFO_RELIEF"
+        fi
+  - name: mri_list
+    type: shell
+    params:
+      cmd: |
+        count=0
+
+        add_mri() {
+          item="$1"
+
+          if [ "$item" = "none" ] || [ -z "$item" ]; then
+            return
+          fi
+
+          if [ "$item" = "other/custom" ]; then
+            item="$ESPANSO_MRI_INFO_CUSTOM_MRI"
+          fi
+
+          case "|$seen|" in
+            *"|$item|"*) return ;;
           esac
 
-    - name: plan_text
-      type: shell
-      params:
-        cmd: |
-          count=0
+          seen="${seen}|${item}"
+          count=$((count + 1))
 
-          add_recommendation() {
-            choice="$1"
+          case "$count" in
+            1) m1="$item" ;;
+            2) m2="$item" ;;
+            3) m3="$item" ;;
+            4) m4="$item" ;;
+          esac
+        }
 
-            if [ "$choice" = "none" ] || [ -z "$choice" ]; then
-              return
-            fi
+        add_mri "$ESPANSO_MRI_INFO_MRI1"
+        add_mri "$ESPANSO_MRI_INFO_MRI2"
+        add_mri "$ESPANSO_MRI_INFO_MRI3"
+        add_mri "$ESPANSO_MRI_INFO_MRI4"
 
-            case "|$seen|" in
-              *"|$choice|"*) return ;;
-            esac
+        all_spine=1
+        index=1
+        while [ "$index" -le "$count" ]; do
+          eval "item=\$m$index"
+          case "$item" in
+            Cervical|Thoracic|Lumbar) ;;
+            *) all_spine=0 ;;
+          esac
+          index=$((index + 1))
+        done
 
-            seen="${seen}|${choice}"
-
-            case "$choice" in
-              injection)
-                subject="injection therapies"
-                goal="provide effective, long-lasting relief"
-                ;;
-              medications)
-                subject="medications"
-                goal="help manage pain"
-                ;;
-              conservative)
-                subject="conservative therapies"
-                goal="help manage pain"
-                ;;
-              diagnostics)
-                subject="diagnostics"
-                goal="further evaluate the patient's condition"
-                ;;
-              referral)
-                subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"
-                goal="further evaluate the patient's condition"
-                ;;
-            esac
-
-            count=$((count + 1))
-
-            case "$count" in
-              1) s1="$subject"; g1="$goal" ;;
-              2) s2="$subject"; g2="$goal" ;;
-              3) s3="$subject"; g3="$goal" ;;
-              4) s4="$subject"; g4="$goal" ;;
+        if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
+          case "$count" in
+            1) printf "%s Spine" "$m1" ;;
+            2) printf "%s and %s Spine" "$m1" "$m2" ;;
+            3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
+            4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
+          esac
+        else
+          add_spine_label() {
+            case "$1" in
+              Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
+              *) printf "%s" "$1" ;;
             esac
           }
 
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+          [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
+          [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
+          [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
+          [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
 
           case "$count" in
-            1)
-              case "$s1" in
-                referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
-                *) recommendation_text="$s1 were discussed to $g1." ;;
-              esac
+            1) printf "%s" "$f1" ;;
+            2) printf "%s and %s" "$f1" "$f2" ;;
+            3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
+            4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
+          esac
+        fi
+- trigger: ".mmicpostdiagrev"
+  replace: |
+    Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
+  vars:
+  - name: output
+    type: shell
+    params:
+      cmd: date +'%m-%d-%Y'
+  - name: procedure_info
+    type: form
+    params:
+      layout: |-
+        Procedure received:
+        [[procedure]]
+        Custom procedure (used only when "other/custom" is selected):
+        [[custom_procedure]]
+        Procedure date (MM-DD-YYYY):
+        [[procedure_date]]
+        Procedure response/result:
+        [[procedure_response]]
+      fields:
+        procedure:
+          type: choice
+          values:
+          - C7/T1 cervical interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - L5/S1 lumbar interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - C7/T1 cervical interlaminar epidural steroid injection under fluoroscopy
+          - L5/S1 lumbar interlaminar epidural steroid injection under fluoroscopy
+          - T12/L1 thoracic interlaminar epidural steroid injection under fluoroscopy
+          - T12/L1 thoracic interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - bilateral sacroiliac joint injection with steroid under fluoroscopy
+          - right sacroiliac joint injection with steroid under fluoroscopy
+          - left sacroiliac joint injection with steroid under fluoroscopy
+          - bilateral sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - right sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - left sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - bilateral C4-5 and C5-6 cervical facet joint injection with steroid under fluoroscopy
+          - bilateral C4-5 and C5-6 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - right C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - left C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - right C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
+          - left C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
+          - bilateral L4-5 and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - bilateral L4-5 and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - bilateral T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - bilateral T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - right T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - left T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - right T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - left T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - bilateral subacromial bursa injection with platelet-rich plasma under ultrasound
+          - bilateral subacromial bursa injection with steroid under ultrasound
+          - right subacromial bursa injection with platelet-rich plasma under ultrasound
+          - left subacromial bursa injection with platelet-rich plasma under ultrasound
+          - right subacromial bursa injection with steroid under ultrasound
+          - left subacromial bursa injection with steroid under ultrasound
+          - cervical trigger point injections with platelet-rich plasma under ultrasound
+          - cervical trigger point injections with steroid under ultrasound
+          - thoracic trigger point injections with platelet-rich plasma under ultrasound
+          - thoracic trigger point injections with steroid under ultrasound
+          - lumbar trigger point injections with platelet-rich plasma under ultrasound
+          - lumbar trigger point injections with steroid under ultrasound
+          - right C3-5 cervical medial branch block under fluoroscopy
+          - left C3-5 cervical medial branch block under fluoroscopy
+          - bilateral C3-5 cervical medial branch block under fluoroscopy
+          - right L3-5 lumbar medial branch block under fluoroscopy
+          - left L3-5 lumbar medial branch block under fluoroscopy
+          - bilateral L3-5 lumbar medial branch block under fluoroscopy
+          - right thoracic medial branch block under fluoroscopy
+          - left thoracic medial branch block under fluoroscopy
+          - bilateral thoracic medial branch block under fluoroscopy
+          - right elbow epicondyle injection with platelet-rich plasma under ultrasound
+          - left elbow epicondyle injection with platelet-rich plasma under ultrasound
+          - right elbow epicondyle injection with steroid under ultrasound
+          - left elbow epicondyle injection with steroid under ultrasound
+          - right knee intra-articular joint injection with steroid under ultrasound
+          - left knee intra-articular joint injection with steroid under ultrasound
+          - bilateral knee intra-articular joint injection with steroid under ultrasound
+          - right knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - left knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - bilateral knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - cervical epidural blood patch injection under fluoroscopy
+          - lumbar epidural blood patch injection under fluoroscopy
+          - right hip intra-articular joint injection with steroid
+          - left hip intra-articular joint injection with steroid
+          - bilateral hip intra-articular joint injection with steroid
+          - right hip intra-articular joint injection with platelet-rich plasma
+          - left hip intra-articular joint injection with platelet-rich plasma
+          - bilateral hip intra-articular joint injection with platelet-rich plasma
+          - right bicipital groove injection with platelet-rich plasma under ultrasound
+          - left bicipital groove injection with platelet-rich plasma under ultrasound
+          - bilateral bicipital groove injection with platelet-rich plasma under ultrasound
+          - right bicipital groove injection with steroid under ultrasound
+          - left bicipital groove injection with steroid under ultrasound
+          - bilateral bicipital groove injection with steroid under ultrasound
+          - other/custom
+        custom_procedure:
+          default: XXX
+        procedure_date:
+          default: XX-XX-XXXX
+        procedure_response:
+          type: choice
+          values:
+          - significant relief
+          - moderate relief
+          - minimal relief
+          - minor relief
+  - name: pain_info
+    type: form
+    params:
+      layout: |-
+        Primary pain area:
+        [[pain1]]
+        Additional pain area 1:
+        [[pain2]]
+        Additional pain area 2:
+        [[pain3]]
+        Additional pain area 3:
+        [[pain4]]
+        Custom pain area (used only when "other/custom" is selected):
+        [[custom_pain]]
+        Pain status:
+        [[pain_status]]
+        Limitation:
+        [[limitation]]
+      fields:
+        pain1:
+          type: choice
+          values:
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain2:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain3:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain4:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        custom_pain:
+          default: XXX
+        pain_status:
+          type: choice
+          values:
+          - debilitating
+          - bothersome
+        limitation:
+          type: choice
+          values:
+          - ability to perform activities of daily living
+          - overall range of motion
+          - full range of motion
+          - daily functioning
+  - name: plan_info
+    type: form
+    params:
+      layout: |-
+        Recommendation 1:
+        [[recommendation1]]
+        Recommendation 2:
+        [[recommendation2]]
+        Recommendation 3:
+        [[recommendation3]]
+        Recommendation 4:
+        [[recommendation4]]
+        Referral to (used only when "referral" is selected):
+        [[referral_target]]
+        Current therapy:
+        [[current_therapy]]
+        Frequency per week:
+        [[frequency]]
+        Relief:
+        [[relief]]
+      fields:
+        recommendation1:
+          type: choice
+          values:
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation2:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation3:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation4:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        referral_target:
+          default: XXX
+        current_therapy:
+          type: choice
+          values:
+          - none
+          - chiropractic
+          - acupuncture
+          - massage
+          - physical
+        frequency:
+          type: choice
+          values:
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+        relief:
+          type: choice
+          values:
+          - some
+          - temporary
+  - name: mri_info
+    type: form
+    params:
+      layout: |-
+        Primary MRI report:
+        [[mri1]]
+        Additional MRI report 1:
+        [[mri2]]
+        Additional MRI report 2:
+        [[mri3]]
+        Additional MRI report 3:
+        [[mri4]]
+        Custom MRI report (used only when "other/custom" is selected):
+        [[custom_mri]]
+      fields:
+        mri1:
+          type: choice
+          values:
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri2:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri3:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri4:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        custom_mri:
+          default: XXX
+  - name: procedure_text
+    type: shell
+    params:
+      cmd: |
+        if [ "$ESPANSO_PROCEDURE_INFO_PROCEDURE" = "other/custom" ]; then
+          printf "%s" "$ESPANSO_PROCEDURE_INFO_CUSTOM_PROCEDURE"
+        else
+          printf "%s" "$ESPANSO_PROCEDURE_INFO_PROCEDURE"
+        fi
+  - name: pain_list
+    type: shell
+    params:
+      cmd: |
+        count=0
+
+        add_pain() {
+          item="$1"
+
+          if [ "$item" = "none" ] || [ -z "$item" ]; then
+            return
+          fi
+
+          if [ "$item" = "other/custom" ]; then
+            item="$ESPANSO_PAIN_INFO_CUSTOM_PAIN"
+          fi
+
+          case "|$seen|" in
+            *"|$item|"*) return ;;
+          esac
+
+          seen="${seen}|${item}"
+          count=$((count + 1))
+
+          case "$count" in
+            1) p1="$item" ;;
+            2) p2="$item" ;;
+            3) p3="$item" ;;
+            4) p4="$item" ;;
+          esac
+        }
+
+        add_pain "$ESPANSO_PAIN_INFO_PAIN1"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN2"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN3"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN4"
+
+        case "$count" in
+          1) printf "%s" "$p1" ;;
+          2) printf "%s and %s" "$p1" "$p2" ;;
+          3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+          4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+        esac
+  - name: plan_text
+    type: shell
+    params:
+      cmd: |
+        count=0
+
+        add_recommendation() {
+          choice="$1"
+
+          if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+            return
+          fi
+
+          case "|$seen|" in
+            *"|$choice|"*) return ;;
+          esac
+
+          seen="${seen}|${choice}"
+
+          case "$choice" in
+            injection)
+              subject="injection therapies"
+              goal="provide effective, long-lasting relief"
               ;;
-            2)
-              recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+            medications)
+              subject="medications"
+              goal="help manage pain"
               ;;
-            3)
-              recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+            conservative)
+              subject="conservative therapies"
+              goal="help manage pain"
               ;;
-            4)
-              recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+            diagnostics)
+              subject="diagnostics"
+              goal="further evaluate the patient's condition"
+              ;;
+            referral)
+              subject="referral to $ESPANSO_PLAN_INFO_REFERRAL_TARGET"
+              goal="further evaluate the patient's condition"
               ;;
           esac
 
-          if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ]; then
-            printf "%s" "$recommendation_text"
-          else
-            printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
-              "$recommendation_text" \
-              "$ESPANSO_HPI_CURRENT_THERAPY" \
-              "$ESPANSO_HPI_FREQUENCY" \
-              "$ESPANSO_HPI_RELIEF"
-          fi
-    - name: mri_list
-      type: shell
-      params:
-        cmd: |
-          count=0
+          count=$((count + 1))
 
-          add_mri() {
-            item="$1"
+          case "$count" in
+            1) s1="$subject"; g1="$goal" ;;
+            2) s2="$subject"; g2="$goal" ;;
+            3) s3="$subject"; g3="$goal" ;;
+            4) s4="$subject"; g4="$goal" ;;
+          esac
+        }
 
-            if [ "$item" = "none" ] || [ -z "$item" ]; then
-              return
-            fi
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION1"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION2"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION3"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION4"
 
-            if [ "$item" = "other/custom" ]; then
-              item="$ESPANSO_HPI_CUSTOM_MRI"
-            fi
-
-            case "|$seen|" in
-              *"|$item|"*) return ;;
+        case "$count" in
+          1)
+            case "$s1" in
+              referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+              *) recommendation_text="$s1 were discussed to $g1." ;;
             esac
+            ;;
+          2)
+            recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+            ;;
+          3)
+            recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+            ;;
+          4)
+            recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+            ;;
+        esac
 
-            seen="${seen}|${item}"
-            count=$((count + 1))
+        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ]; then
+          printf "%s" "$recommendation_text"
+        else
+          printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+            "$recommendation_text" \
+            "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" \
+            "$ESPANSO_PLAN_INFO_FREQUENCY" \
+            "$ESPANSO_PLAN_INFO_RELIEF"
+        fi
+  - name: mri_list
+    type: shell
+    params:
+      cmd: |
+        count=0
 
-            case "$count" in
-              1) m1="$item" ;;
-              2) m2="$item" ;;
-              3) m3="$item" ;;
-              4) m4="$item" ;;
+        add_mri() {
+          item="$1"
+
+          if [ "$item" = "none" ] || [ -z "$item" ]; then
+            return
+          fi
+
+          if [ "$item" = "other/custom" ]; then
+            item="$ESPANSO_MRI_INFO_CUSTOM_MRI"
+          fi
+
+          case "|$seen|" in
+            *"|$item|"*) return ;;
+          esac
+
+          seen="${seen}|${item}"
+          count=$((count + 1))
+
+          case "$count" in
+            1) m1="$item" ;;
+            2) m2="$item" ;;
+            3) m3="$item" ;;
+            4) m4="$item" ;;
+          esac
+        }
+
+        add_mri "$ESPANSO_MRI_INFO_MRI1"
+        add_mri "$ESPANSO_MRI_INFO_MRI2"
+        add_mri "$ESPANSO_MRI_INFO_MRI3"
+        add_mri "$ESPANSO_MRI_INFO_MRI4"
+
+        all_spine=1
+        index=1
+        while [ "$index" -le "$count" ]; do
+          eval "item=\$m$index"
+          case "$item" in
+            Cervical|Thoracic|Lumbar) ;;
+            *) all_spine=0 ;;
+          esac
+          index=$((index + 1))
+        done
+
+        if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
+          case "$count" in
+            1) printf "%s Spine" "$m1" ;;
+            2) printf "%s and %s Spine" "$m1" "$m2" ;;
+            3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
+            4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
+          esac
+        else
+          add_spine_label() {
+            case "$1" in
+              Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
+              *) printf "%s" "$1" ;;
             esac
           }
 
-          add_mri "$ESPANSO_HPI_MRI1"
-          add_mri "$ESPANSO_HPI_MRI2"
-          add_mri "$ESPANSO_HPI_MRI3"
-          add_mri "$ESPANSO_HPI_MRI4"
+          [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
+          [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
+          [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
+          [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
 
-          all_spine=1
-          index=1
-          while [ "$index" -le "$count" ]; do
-            eval "item=\$m$index"
-            case "$item" in
-              Cervical|Thoracic|Lumbar) ;;
-              *) all_spine=0 ;;
-            esac
-            index=$((index + 1))
-          done
+          case "$count" in
+            1) printf "%s" "$f1" ;;
+            2) printf "%s and %s" "$f1" "$f2" ;;
+            3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
+            4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
+          esac
+        fi
+- trigger: ".fficpostdiagrev"
+  replace: |
+    Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today's visit was spent reviewing patient's {{mri_list}} MRI reports. No other changes to patient's pain at this time.
+  vars:
+  - name: output
+    type: shell
+    params:
+      cmd: date +'%m-%d-%Y'
+  - name: procedure_info
+    type: form
+    params:
+      layout: |-
+        Procedure received:
+        [[procedure]]
+        Custom procedure (used only when "other/custom" is selected):
+        [[custom_procedure]]
+        Procedure date (MM-DD-YYYY):
+        [[procedure_date]]
+        Procedure response/result:
+        [[procedure_response]]
+      fields:
+        procedure:
+          type: choice
+          values:
+          - C7/T1 cervical interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - L5/S1 lumbar interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - C7/T1 cervical interlaminar epidural steroid injection under fluoroscopy
+          - L5/S1 lumbar interlaminar epidural steroid injection under fluoroscopy
+          - T12/L1 thoracic interlaminar epidural steroid injection under fluoroscopy
+          - T12/L1 thoracic interlaminar epidural injection with platelet-rich plasma under fluoroscopy
+          - bilateral sacroiliac joint injection with steroid under fluoroscopy
+          - right sacroiliac joint injection with steroid under fluoroscopy
+          - left sacroiliac joint injection with steroid under fluoroscopy
+          - bilateral sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - right sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - left sacroiliac joint injection with platelet-rich plasma under fluoroscopy
+          - bilateral C4-5 and C5-6 cervical facet joint injection with steroid under fluoroscopy
+          - bilateral C4-5 and C5-6 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - right C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - left C4-5, C5-6, and C6-7 cervical facet joint injection with platelet-rich plasma under fluoroscopy
+          - right C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
+          - left C4-5, C5-6, and C6-7 cervical facet joint injection with steroid under fluoroscopy
+          - bilateral L4-5 and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with platelet-rich plasma under fluoroscopy
+          - bilateral L4-5 and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - right L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - left L3-4, L4-5, and L5-S1 lumbar facet joint injection with steroid under fluoroscopy
+          - bilateral T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - bilateral T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - right T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - left T10-11 and T11-12 thoracic facet joint injection with platelet-rich plasma under fluoroscopy
+          - right T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - left T10-11 and T11-12 thoracic facet joint injection with steroid under fluoroscopy
+          - bilateral subacromial bursa injection with platelet-rich plasma under ultrasound
+          - bilateral subacromial bursa injection with steroid under ultrasound
+          - right subacromial bursa injection with platelet-rich plasma under ultrasound
+          - left subacromial bursa injection with platelet-rich plasma under ultrasound
+          - right subacromial bursa injection with steroid under ultrasound
+          - left subacromial bursa injection with steroid under ultrasound
+          - cervical trigger point injections with platelet-rich plasma under ultrasound
+          - cervical trigger point injections with steroid under ultrasound
+          - thoracic trigger point injections with platelet-rich plasma under ultrasound
+          - thoracic trigger point injections with steroid under ultrasound
+          - lumbar trigger point injections with platelet-rich plasma under ultrasound
+          - lumbar trigger point injections with steroid under ultrasound
+          - right C3-5 cervical medial branch block under fluoroscopy
+          - left C3-5 cervical medial branch block under fluoroscopy
+          - bilateral C3-5 cervical medial branch block under fluoroscopy
+          - right L3-5 lumbar medial branch block under fluoroscopy
+          - left L3-5 lumbar medial branch block under fluoroscopy
+          - bilateral L3-5 lumbar medial branch block under fluoroscopy
+          - right thoracic medial branch block under fluoroscopy
+          - left thoracic medial branch block under fluoroscopy
+          - bilateral thoracic medial branch block under fluoroscopy
+          - right elbow epicondyle injection with platelet-rich plasma under ultrasound
+          - left elbow epicondyle injection with platelet-rich plasma under ultrasound
+          - right elbow epicondyle injection with steroid under ultrasound
+          - left elbow epicondyle injection with steroid under ultrasound
+          - right knee intra-articular joint injection with steroid under ultrasound
+          - left knee intra-articular joint injection with steroid under ultrasound
+          - bilateral knee intra-articular joint injection with steroid under ultrasound
+          - right knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - left knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - bilateral knee intra-articular joint injection with platelet-rich plasma under ultrasound
+          - cervical epidural blood patch injection under fluoroscopy
+          - lumbar epidural blood patch injection under fluoroscopy
+          - right hip intra-articular joint injection with steroid
+          - left hip intra-articular joint injection with steroid
+          - bilateral hip intra-articular joint injection with steroid
+          - right hip intra-articular joint injection with platelet-rich plasma
+          - left hip intra-articular joint injection with platelet-rich plasma
+          - bilateral hip intra-articular joint injection with platelet-rich plasma
+          - right bicipital groove injection with platelet-rich plasma under ultrasound
+          - left bicipital groove injection with platelet-rich plasma under ultrasound
+          - bilateral bicipital groove injection with platelet-rich plasma under ultrasound
+          - right bicipital groove injection with steroid under ultrasound
+          - left bicipital groove injection with steroid under ultrasound
+          - bilateral bicipital groove injection with steroid under ultrasound
+          - other/custom
+        custom_procedure:
+          default: XXX
+        procedure_date:
+          default: XX-XX-XXXX
+        procedure_response:
+          type: choice
+          values:
+          - significant relief
+          - moderate relief
+          - minimal relief
+          - minor relief
+  - name: pain_info
+    type: form
+    params:
+      layout: |-
+        Primary pain area:
+        [[pain1]]
+        Additional pain area 1:
+        [[pain2]]
+        Additional pain area 2:
+        [[pain3]]
+        Additional pain area 3:
+        [[pain4]]
+        Custom pain area (used only when "other/custom" is selected):
+        [[custom_pain]]
+        Pain status:
+        [[pain_status]]
+        Limitation:
+        [[limitation]]
+      fields:
+        pain1:
+          type: choice
+          values:
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain2:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain3:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        pain4:
+          type: choice
+          values:
+          - none
+          - neck
+          - mid-back
+          - low back
+          - right shoulder
+          - left shoulder
+          - right knee
+          - left knee
+          - right wrist
+          - left wrist
+          - other/custom
+        custom_pain:
+          default: XXX
+        pain_status:
+          type: choice
+          values:
+          - debilitating
+          - bothersome
+        limitation:
+          type: choice
+          values:
+          - ability to perform activities of daily living
+          - overall range of motion
+          - full range of motion
+          - daily functioning
+  - name: plan_info
+    type: form
+    params:
+      layout: |-
+        Recommendation 1:
+        [[recommendation1]]
+        Recommendation 2:
+        [[recommendation2]]
+        Recommendation 3:
+        [[recommendation3]]
+        Recommendation 4:
+        [[recommendation4]]
+        Referral to (used only when "referral" is selected):
+        [[referral_target]]
+        Current therapy:
+        [[current_therapy]]
+        Frequency per week:
+        [[frequency]]
+        Relief:
+        [[relief]]
+      fields:
+        recommendation1:
+          type: choice
+          values:
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation2:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation3:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        recommendation4:
+          type: choice
+          values:
+          - none
+          - injection
+          - medications
+          - conservative
+          - diagnostics
+          - referral
+        referral_target:
+          default: XXX
+        current_therapy:
+          type: choice
+          values:
+          - none
+          - chiropractic
+          - acupuncture
+          - massage
+          - physical
+        frequency:
+          type: choice
+          values:
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+        relief:
+          type: choice
+          values:
+          - some
+          - temporary
+  - name: mri_info
+    type: form
+    params:
+      layout: |-
+        Primary MRI report:
+        [[mri1]]
+        Additional MRI report 1:
+        [[mri2]]
+        Additional MRI report 2:
+        [[mri3]]
+        Additional MRI report 3:
+        [[mri4]]
+        Custom MRI report (used only when "other/custom" is selected):
+        [[custom_mri]]
+      fields:
+        mri1:
+          type: choice
+          values:
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri2:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri3:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        mri4:
+          type: choice
+          values:
+          - none
+          - Cervical
+          - Thoracic
+          - Lumbar
+          - Right Shoulder
+          - Left Shoulder
+          - Right Knee
+          - Left Knee
+          - Right Wrist
+          - Left Wrist
+          - other/custom
+        custom_mri:
+          default: XXX
+  - name: procedure_text
+    type: shell
+    params:
+      cmd: |
+        if [ "$ESPANSO_PROCEDURE_INFO_PROCEDURE" = "other/custom" ]; then
+          printf "%s" "$ESPANSO_PROCEDURE_INFO_CUSTOM_PROCEDURE"
+        else
+          printf "%s" "$ESPANSO_PROCEDURE_INFO_PROCEDURE"
+        fi
+  - name: pain_list
+    type: shell
+    params:
+      cmd: |
+        count=0
 
-          if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
-            case "$count" in
-              1) printf "%s Spine" "$m1" ;;
-              2) printf "%s and %s Spine" "$m1" "$m2" ;;
-              3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
-              4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
-            esac
-          else
-            add_spine_label() {
-              case "$1" in
-                Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
-                *) printf "%s" "$1" ;;
-              esac
-            }
+        add_pain() {
+          item="$1"
 
-            [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
-            [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
-            [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
-            [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
-
-            case "$count" in
-              1) printf "%s" "$f1" ;;
-              2) printf "%s and %s" "$f1" "$f2" ;;
-              3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
-              4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
-            esac
+          if [ "$item" = "none" ] || [ -z "$item" ]; then
+            return
           fi
+
+          if [ "$item" = "other/custom" ]; then
+            item="$ESPANSO_PAIN_INFO_CUSTOM_PAIN"
+          fi
+
+          case "|$seen|" in
+            *"|$item|"*) return ;;
+          esac
+
+          seen="${seen}|${item}"
+          count=$((count + 1))
+
+          case "$count" in
+            1) p1="$item" ;;
+            2) p2="$item" ;;
+            3) p3="$item" ;;
+            4) p4="$item" ;;
+          esac
+        }
+
+        add_pain "$ESPANSO_PAIN_INFO_PAIN1"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN2"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN3"
+        add_pain "$ESPANSO_PAIN_INFO_PAIN4"
+
+        case "$count" in
+          1) printf "%s" "$p1" ;;
+          2) printf "%s and %s" "$p1" "$p2" ;;
+          3) printf "%s, %s, and %s" "$p1" "$p2" "$p3" ;;
+          4) printf "%s, %s, %s, and %s" "$p1" "$p2" "$p3" "$p4" ;;
+        esac
+  - name: plan_text
+    type: shell
+    params:
+      cmd: |
+        count=0
+
+        add_recommendation() {
+          choice="$1"
+
+          if [ "$choice" = "none" ] || [ -z "$choice" ]; then
+            return
+          fi
+
+          case "|$seen|" in
+            *"|$choice|"*) return ;;
+          esac
+
+          seen="${seen}|${choice}"
+
+          case "$choice" in
+            injection)
+              subject="injection therapies"
+              goal="provide effective, long-lasting relief"
+              ;;
+            medications)
+              subject="medications"
+              goal="help manage pain"
+              ;;
+            conservative)
+              subject="conservative therapies"
+              goal="help manage pain"
+              ;;
+            diagnostics)
+              subject="diagnostics"
+              goal="further evaluate the patient's condition"
+              ;;
+            referral)
+              subject="referral to $ESPANSO_PLAN_INFO_REFERRAL_TARGET"
+              goal="further evaluate the patient's condition"
+              ;;
+          esac
+
+          count=$((count + 1))
+
+          case "$count" in
+            1) s1="$subject"; g1="$goal" ;;
+            2) s2="$subject"; g2="$goal" ;;
+            3) s3="$subject"; g3="$goal" ;;
+            4) s4="$subject"; g4="$goal" ;;
+          esac
+        }
+
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION1"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION2"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION3"
+        add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION4"
+
+        case "$count" in
+          1)
+            case "$s1" in
+              referral\ to\ *) recommendation_text="$s1 was discussed to $g1." ;;
+              *) recommendation_text="$s1 were discussed to $g1." ;;
+            esac
+            ;;
+          2)
+            recommendation_text="$s1 and $s2 were discussed to $g1 and $g2, respectively."
+            ;;
+          3)
+            recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively."
+            ;;
+          4)
+            recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively."
+            ;;
+        esac
+
+        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ]; then
+          printf "%s" "$recommendation_text"
+        else
+          printf "%s Additionally, patient partakes in %s therapy (%sx/week), citing %s relief." \
+            "$recommendation_text" \
+            "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" \
+            "$ESPANSO_PLAN_INFO_FREQUENCY" \
+            "$ESPANSO_PLAN_INFO_RELIEF"
+        fi
+  - name: mri_list
+    type: shell
+    params:
+      cmd: |
+        count=0
+
+        add_mri() {
+          item="$1"
+
+          if [ "$item" = "none" ] || [ -z "$item" ]; then
+            return
+          fi
+
+          if [ "$item" = "other/custom" ]; then
+            item="$ESPANSO_MRI_INFO_CUSTOM_MRI"
+          fi
+
+          case "|$seen|" in
+            *"|$item|"*) return ;;
+          esac
+
+          seen="${seen}|${item}"
+          count=$((count + 1))
+
+          case "$count" in
+            1) m1="$item" ;;
+            2) m2="$item" ;;
+            3) m3="$item" ;;
+            4) m4="$item" ;;
+          esac
+        }
+
+        add_mri "$ESPANSO_MRI_INFO_MRI1"
+        add_mri "$ESPANSO_MRI_INFO_MRI2"
+        add_mri "$ESPANSO_MRI_INFO_MRI3"
+        add_mri "$ESPANSO_MRI_INFO_MRI4"
+
+        all_spine=1
+        index=1
+        while [ "$index" -le "$count" ]; do
+          eval "item=\$m$index"
+          case "$item" in
+            Cervical|Thoracic|Lumbar) ;;
+            *) all_spine=0 ;;
+          esac
+          index=$((index + 1))
+        done
+
+        if [ "$all_spine" -eq 1 ] && [ "$count" -gt 0 ]; then
+          case "$count" in
+            1) printf "%s Spine" "$m1" ;;
+            2) printf "%s and %s Spine" "$m1" "$m2" ;;
+            3) printf "%s, %s, and %s Spine" "$m1" "$m2" "$m3" ;;
+            4) printf "%s, %s, %s, and %s Spine" "$m1" "$m2" "$m3" "$m4" ;;
+          esac
+        else
+          add_spine_label() {
+            case "$1" in
+              Cervical|Thoracic|Lumbar) printf "%s Spine" "$1" ;;
+              *) printf "%s" "$1" ;;
+            esac
+          }
+
+          [ "$count" -ge 1 ] && f1="$(add_spine_label "$m1")"
+          [ "$count" -ge 2 ] && f2="$(add_spine_label "$m2")"
+          [ "$count" -ge 3 ] && f3="$(add_spine_label "$m3")"
+          [ "$count" -ge 4 ] && f4="$(add_spine_label "$m4")"
+
+          case "$count" in
+            1) printf "%s" "$f1" ;;
+            2) printf "%s and %s" "$f1" "$f2" ;;
+            3) printf "%s, %s, and %s" "$f1" "$f2" "$f3" ;;
+            4) printf "%s, %s, %s, and %s" "$f1" "$f2" "$f3" "$f4" ;;
+          esac
+        fi
