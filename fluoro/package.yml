@@ -4259,7 +4259,7 @@ matches:
                 printf "%s" "improve pain and overall function"
                 ;;
             esac
-  - trigger: ".mmfollowform"
+  - trigger: ".mfollowform"
     replace: |
       Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{recommendations}}.{{current_therapy_sentence}} No other changes to patient's pain at this time.
     vars:
