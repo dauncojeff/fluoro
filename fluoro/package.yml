@@ -7730,7 +7730,7 @@ matches:
         shell: bash
   - trigger: .mmpostpro
     replace: |
-      Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{hpi.procedure_date}}, citing {{hpi.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+      Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
     vars:
     - name: output
       type: shell
@@ -7738,7 +7738,7 @@ matches:
         cmd: |-
           date +'%m-%d-%Y'
         shell: bash
-    - name: hpi
+    - name: procedure_info
       type: form
       params:
         layout: |-
@@ -7750,40 +7750,6 @@ matches:
           [[procedure_date]]
           Procedure response/result:
           [[procedure_response]]
-          Primary pain area:
-          [[pain1]]
-          Additional pain area 1:
-          [[pain2]]
-          Additional pain area 2:
-          [[pain3]]
-          Additional pain area 3:
-          [[pain4]]
-          Custom pain area (used only when "other/custom" is selected):
-          [[custom_pain]]
-          Pain status:
-          [[pain_status]]
-          Limitation:
-          [[limitation]]
-          Recommendation 1:
-          [[recommendation1]]
-          Recommendation 2:
-          [[recommendation2]]
-          Recommendation 3:
-          [[recommendation3]]
-          Recommendation 4:
-          [[recommendation4]]
-          Referral to (used only when "referral" is selected):
-          [[referral_target]]
-          Current conservative therapy:
-          [[current_therapy]]
-          Other therapy (used only when "other" is selected):
-          [[custom_therapy]]
-          Therapy status:
-          [[therapy_status]]
-          Frequency per week:
-          [[frequency]]
-          Relief from therapy:
-          [[relief]]
         fields:
           procedure:
             type: choice
@@ -7875,6 +7841,25 @@ matches:
             - moderate relief
             - minimal relief
             - minor relief
+    - name: pain_info
+      type: form
+      params:
+        layout: |-
+          Primary pain area:
+          [[pain1]]
+          Additional pain area 1:
+          [[pain2]]
+          Additional pain area 2:
+          [[pain3]]
+          Additional pain area 3:
+          [[pain4]]
+          Custom pain area (used only when "other/custom" is selected):
+          [[custom_pain]]
+          Pain status:
+          [[pain_status]]
+          Limitation:
+          [[limitation]]
+        fields:
           pain1:
             type: choice
             values:
@@ -7944,6 +7929,31 @@ matches:
             - overall range of motion
             - functional mobility
             - daily functioning
+    - name: plan_info
+      type: form
+      params:
+        layout: |-
+          Recommendation 1:
+          [[recommendation1]]
+          Recommendation 2:
+          [[recommendation2]]
+          Recommendation 3:
+          [[recommendation3]]
+          Recommendation 4:
+          [[recommendation4]]
+          Referral to (used only when "referral" is selected):
+          [[referral_target]]
+          Current conservative therapy:
+          [[current_therapy]]
+          Other therapy (used only when "other" is selected):
+          [[custom_therapy]]
+          Therapy status:
+          [[therapy_status]]
+          Frequency per week:
+          [[frequency]]
+          Relief from therapy:
+          [[relief]]
+        fields:
           recommendation1:
             type: choice
             values: *id001
@@ -7999,7 +8009,7 @@ matches:
       type: shell
       params:
         cmd: |-
-          if [ "$ESPANSO_HPI_PROCEDURE" = "other/custom" ]; then printf "%s" "$ESPANSO_HPI_CUSTOM_PROCEDURE"; else printf "%s" "$ESPANSO_HPI_PROCEDURE"; fi
+          if [ "$ESPANSO_PROCEDURE_INFO_PROCEDURE" = "other/custom" ]; then printf "%s" "$ESPANSO_PROCEDURE_INFO_CUSTOM_PROCEDURE"; else printf "%s" "$ESPANSO_PROCEDURE_INFO_PROCEDURE"; fi
         shell: bash
     - name: pain_list
       type: shell
@@ -8010,7 +8020,7 @@ matches:
             item="$1"
             [ "$item" = "none" ] && return
             [ -z "$item" ] && return
-            [ "$item" = "other/custom" ] && item="$ESPANSO_HPI_CUSTOM_PAIN"
+            [ "$item" = "other/custom" ] && item="$ESPANSO_PAIN_INFO_CUSTOM_PAIN"
             case "|$seen|" in *"|$item|"*) return ;; esac
             seen="${seen}|${item}"
             count=$((count + 1))
@@ -8021,10 +8031,10 @@ matches:
               4) p4="$item" ;;
             esac
           }
-          add_pain "$ESPANSO_HPI_PAIN1"
-          add_pain "$ESPANSO_HPI_PAIN2"
-          add_pain "$ESPANSO_HPI_PAIN3"
-          add_pain "$ESPANSO_HPI_PAIN4"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN1"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN2"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN3"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN4"
           case "$count" in
             0) printf "%s" "XXX" ;;
             1) printf "%s" "$p1" ;;
@@ -8038,7 +8048,7 @@ matches:
       params:
         cmd: |
           count=0
-          procedure="$ESPANSO_HPI_PROCEDURE"
+          procedure="$ESPANSO_PROCEDURE_INFO_PROCEDURE"
           is_spinal=0
           case "$procedure" in
             *Cervical*|*Thoracic*|*Lumbar*|*Sacroiliac*) is_spinal=1 ;;
@@ -8056,7 +8066,7 @@ matches:
               medications) subject="medications"; goal="help manage pain" ;;
               conservative) subject="conservative therapies"; goal="help manage pain" ;;
               diagnostics) subject="diagnostics"; goal="further evaluate the patient's condition" ;;
-              referral) subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"; goal="further evaluate the patient's condition" ;;
+              referral) subject="referral to $ESPANSO_PLAN_INFO_REFERRAL_TARGET"; goal="further evaluate the patient's condition" ;;
             esac
             count=$((count + 1))
             case "$count" in
@@ -8066,10 +8076,10 @@ matches:
               4) s4="$subject"; g4="$goal" ;;
             esac
           }
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION1"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION2"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION3"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION4"
           case "$count" in
             0) recommendation_text="" ;;
             1)
@@ -8078,18 +8088,18 @@ matches:
             3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
             4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
           esac
-          therapy="$ESPANSO_HPI_CURRENT_THERAPY"
-          if [ "$therapy" = "other" ]; then therapy="$ESPANSO_HPI_CUSTOM_THERAPY"; fi
-          if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+          therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+          if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
+          if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
             printf "%s" "$recommendation_text"
           else
-            therapy_text="Additionally, patient $ESPANSO_HPI_THERAPY_STATUS $therapy ($ESPANSO_HPI_FREQUENCY""x/week), citing $ESPANSO_HPI_RELIEF relief."
+            therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy ($ESPANSO_PLAN_INFO_FREQUENCY""x/week), citing $ESPANSO_PLAN_INFO_RELIEF relief."
             if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
           fi
         shell: bash
   - trigger: .ffpostpro
     replace: |
-      Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{hpi.procedure_date}}, citing {{hpi.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+      Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
     vars:
     - name: output
       type: shell
@@ -8097,7 +8107,7 @@ matches:
         cmd: |-
           date +'%m-%d-%Y'
         shell: bash
-    - name: hpi
+    - name: procedure_info
       type: form
       params:
         layout: |-
@@ -8109,40 +8119,6 @@ matches:
           [[procedure_date]]
           Procedure response/result:
           [[procedure_response]]
-          Primary pain area:
-          [[pain1]]
-          Additional pain area 1:
-          [[pain2]]
-          Additional pain area 2:
-          [[pain3]]
-          Additional pain area 3:
-          [[pain4]]
-          Custom pain area (used only when "other/custom" is selected):
-          [[custom_pain]]
-          Pain status:
-          [[pain_status]]
-          Limitation:
-          [[limitation]]
-          Recommendation 1:
-          [[recommendation1]]
-          Recommendation 2:
-          [[recommendation2]]
-          Recommendation 3:
-          [[recommendation3]]
-          Recommendation 4:
-          [[recommendation4]]
-          Referral to (used only when "referral" is selected):
-          [[referral_target]]
-          Current conservative therapy:
-          [[current_therapy]]
-          Other therapy (used only when "other" is selected):
-          [[custom_therapy]]
-          Therapy status:
-          [[therapy_status]]
-          Frequency per week:
-          [[frequency]]
-          Relief from therapy:
-          [[relief]]
         fields:
           procedure:
             type: choice
@@ -8158,6 +8134,25 @@ matches:
             - moderate relief
             - minimal relief
             - minor relief
+    - name: pain_info
+      type: form
+      params:
+        layout: |-
+          Primary pain area:
+          [[pain1]]
+          Additional pain area 1:
+          [[pain2]]
+          Additional pain area 2:
+          [[pain3]]
+          Additional pain area 3:
+          [[pain4]]
+          Custom pain area (used only when "other/custom" is selected):
+          [[custom_pain]]
+          Pain status:
+          [[pain_status]]
+          Limitation:
+          [[limitation]]
+        fields:
           pain1:
             type: choice
             values:
@@ -8227,6 +8222,31 @@ matches:
             - overall range of motion
             - functional mobility
             - daily functioning
+    - name: plan_info
+      type: form
+      params:
+        layout: |-
+          Recommendation 1:
+          [[recommendation1]]
+          Recommendation 2:
+          [[recommendation2]]
+          Recommendation 3:
+          [[recommendation3]]
+          Recommendation 4:
+          [[recommendation4]]
+          Referral to (used only when "referral" is selected):
+          [[referral_target]]
+          Current conservative therapy:
+          [[current_therapy]]
+          Other therapy (used only when "other" is selected):
+          [[custom_therapy]]
+          Therapy status:
+          [[therapy_status]]
+          Frequency per week:
+          [[frequency]]
+          Relief from therapy:
+          [[relief]]
+        fields:
           recommendation1:
             type: choice
             values: *id001
@@ -8282,7 +8302,7 @@ matches:
       type: shell
       params:
         cmd: |-
-          if [ "$ESPANSO_HPI_PROCEDURE" = "other/custom" ]; then printf "%s" "$ESPANSO_HPI_CUSTOM_PROCEDURE"; else printf "%s" "$ESPANSO_HPI_PROCEDURE"; fi
+          if [ "$ESPANSO_PROCEDURE_INFO_PROCEDURE" = "other/custom" ]; then printf "%s" "$ESPANSO_PROCEDURE_INFO_CUSTOM_PROCEDURE"; else printf "%s" "$ESPANSO_PROCEDURE_INFO_PROCEDURE"; fi
         shell: bash
     - name: pain_list
       type: shell
@@ -8293,7 +8313,7 @@ matches:
             item="$1"
             [ "$item" = "none" ] && return
             [ -z "$item" ] && return
-            [ "$item" = "other/custom" ] && item="$ESPANSO_HPI_CUSTOM_PAIN"
+            [ "$item" = "other/custom" ] && item="$ESPANSO_PAIN_INFO_CUSTOM_PAIN"
             case "|$seen|" in *"|$item|"*) return ;; esac
             seen="${seen}|${item}"
             count=$((count + 1))
@@ -8304,10 +8324,10 @@ matches:
               4) p4="$item" ;;
             esac
           }
-          add_pain "$ESPANSO_HPI_PAIN1"
-          add_pain "$ESPANSO_HPI_PAIN2"
-          add_pain "$ESPANSO_HPI_PAIN3"
-          add_pain "$ESPANSO_HPI_PAIN4"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN1"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN2"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN3"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN4"
           case "$count" in
             0) printf "%s" "XXX" ;;
             1) printf "%s" "$p1" ;;
@@ -8321,7 +8341,7 @@ matches:
       params:
         cmd: |
           count=0
-          procedure="$ESPANSO_HPI_PROCEDURE"
+          procedure="$ESPANSO_PROCEDURE_INFO_PROCEDURE"
           is_spinal=0
           case "$procedure" in
             *Cervical*|*Thoracic*|*Lumbar*|*Sacroiliac*) is_spinal=1 ;;
@@ -8339,7 +8359,7 @@ matches:
               medications) subject="medications"; goal="help manage pain" ;;
               conservative) subject="conservative therapies"; goal="help manage pain" ;;
               diagnostics) subject="diagnostics"; goal="further evaluate the patient's condition" ;;
-              referral) subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"; goal="further evaluate the patient's condition" ;;
+              referral) subject="referral to $ESPANSO_PLAN_INFO_REFERRAL_TARGET"; goal="further evaluate the patient's condition" ;;
             esac
             count=$((count + 1))
             case "$count" in
@@ -8349,10 +8369,10 @@ matches:
               4) s4="$subject"; g4="$goal" ;;
             esac
           }
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION1"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION2"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION3"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION4"
           case "$count" in
             0) recommendation_text="" ;;
             1)
@@ -8361,18 +8381,18 @@ matches:
             3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
             4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
           esac
-          therapy="$ESPANSO_HPI_CURRENT_THERAPY"
-          if [ "$therapy" = "other" ]; then therapy="$ESPANSO_HPI_CUSTOM_THERAPY"; fi
-          if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+          therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+          if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
+          if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
             printf "%s" "$recommendation_text"
           else
-            therapy_text="Additionally, patient $ESPANSO_HPI_THERAPY_STATUS $therapy ($ESPANSO_HPI_FREQUENCY""x/week), citing $ESPANSO_HPI_RELIEF relief."
+            therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy ($ESPANSO_PLAN_INFO_FREQUENCY""x/week), citing $ESPANSO_PLAN_INFO_RELIEF relief."
             if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
           fi
         shell: bash
   - trigger: .mmicpostpro
     replace: |
-      Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{hpi.procedure_date}}, citing {{hpi.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+      Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
     vars:
     - name: output
       type: shell
@@ -8380,7 +8400,7 @@ matches:
         cmd: |-
           date +'%m-%d-%Y'
         shell: bash
-    - name: hpi
+    - name: procedure_info
       type: form
       params:
         layout: |-
@@ -8392,40 +8412,6 @@ matches:
           [[procedure_date]]
           Procedure response/result:
           [[procedure_response]]
-          Primary pain area:
-          [[pain1]]
-          Additional pain area 1:
-          [[pain2]]
-          Additional pain area 2:
-          [[pain3]]
-          Additional pain area 3:
-          [[pain4]]
-          Custom pain area (used only when "other/custom" is selected):
-          [[custom_pain]]
-          Pain status:
-          [[pain_status]]
-          Limitation:
-          [[limitation]]
-          Recommendation 1:
-          [[recommendation1]]
-          Recommendation 2:
-          [[recommendation2]]
-          Recommendation 3:
-          [[recommendation3]]
-          Recommendation 4:
-          [[recommendation4]]
-          Referral to (used only when "referral" is selected):
-          [[referral_target]]
-          Current conservative therapy:
-          [[current_therapy]]
-          Other therapy (used only when "other" is selected):
-          [[custom_therapy]]
-          Therapy status:
-          [[therapy_status]]
-          Frequency per week:
-          [[frequency]]
-          Relief from therapy:
-          [[relief]]
         fields:
           procedure:
             type: choice
@@ -8441,6 +8427,25 @@ matches:
             - moderate relief
             - minimal relief
             - minor relief
+    - name: pain_info
+      type: form
+      params:
+        layout: |-
+          Primary pain area:
+          [[pain1]]
+          Additional pain area 1:
+          [[pain2]]
+          Additional pain area 2:
+          [[pain3]]
+          Additional pain area 3:
+          [[pain4]]
+          Custom pain area (used only when "other/custom" is selected):
+          [[custom_pain]]
+          Pain status:
+          [[pain_status]]
+          Limitation:
+          [[limitation]]
+        fields:
           pain1:
             type: choice
             values:
@@ -8510,6 +8515,31 @@ matches:
             - overall range of motion
             - functional mobility
             - daily functioning
+    - name: plan_info
+      type: form
+      params:
+        layout: |-
+          Recommendation 1:
+          [[recommendation1]]
+          Recommendation 2:
+          [[recommendation2]]
+          Recommendation 3:
+          [[recommendation3]]
+          Recommendation 4:
+          [[recommendation4]]
+          Referral to (used only when "referral" is selected):
+          [[referral_target]]
+          Current conservative therapy:
+          [[current_therapy]]
+          Other therapy (used only when "other" is selected):
+          [[custom_therapy]]
+          Therapy status:
+          [[therapy_status]]
+          Frequency per week:
+          [[frequency]]
+          Relief from therapy:
+          [[relief]]
+        fields:
           recommendation1:
             type: choice
             values: *id001
@@ -8565,7 +8595,7 @@ matches:
       type: shell
       params:
         cmd: |-
-          if [ "$ESPANSO_HPI_PROCEDURE" = "other/custom" ]; then printf "%s" "$ESPANSO_HPI_CUSTOM_PROCEDURE"; else printf "%s" "$ESPANSO_HPI_PROCEDURE"; fi
+          if [ "$ESPANSO_PROCEDURE_INFO_PROCEDURE" = "other/custom" ]; then printf "%s" "$ESPANSO_PROCEDURE_INFO_CUSTOM_PROCEDURE"; else printf "%s" "$ESPANSO_PROCEDURE_INFO_PROCEDURE"; fi
         shell: bash
     - name: pain_list
       type: shell
@@ -8576,7 +8606,7 @@ matches:
             item="$1"
             [ "$item" = "none" ] && return
             [ -z "$item" ] && return
-            [ "$item" = "other/custom" ] && item="$ESPANSO_HPI_CUSTOM_PAIN"
+            [ "$item" = "other/custom" ] && item="$ESPANSO_PAIN_INFO_CUSTOM_PAIN"
             case "|$seen|" in *"|$item|"*) return ;; esac
             seen="${seen}|${item}"
             count=$((count + 1))
@@ -8587,10 +8617,10 @@ matches:
               4) p4="$item" ;;
             esac
           }
-          add_pain "$ESPANSO_HPI_PAIN1"
-          add_pain "$ESPANSO_HPI_PAIN2"
-          add_pain "$ESPANSO_HPI_PAIN3"
-          add_pain "$ESPANSO_HPI_PAIN4"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN1"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN2"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN3"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN4"
           case "$count" in
             0) printf "%s" "XXX" ;;
             1) printf "%s" "$p1" ;;
@@ -8604,7 +8634,7 @@ matches:
       params:
         cmd: |
           count=0
-          procedure="$ESPANSO_HPI_PROCEDURE"
+          procedure="$ESPANSO_PROCEDURE_INFO_PROCEDURE"
           is_spinal=0
           case "$procedure" in
             *Cervical*|*Thoracic*|*Lumbar*|*Sacroiliac*) is_spinal=1 ;;
@@ -8622,7 +8652,7 @@ matches:
               medications) subject="medications"; goal="help manage pain" ;;
               conservative) subject="conservative therapies"; goal="help manage pain" ;;
               diagnostics) subject="diagnostics"; goal="further evaluate the patient's condition" ;;
-              referral) subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"; goal="further evaluate the patient's condition" ;;
+              referral) subject="referral to $ESPANSO_PLAN_INFO_REFERRAL_TARGET"; goal="further evaluate the patient's condition" ;;
             esac
             count=$((count + 1))
             case "$count" in
@@ -8632,10 +8662,10 @@ matches:
               4) s4="$subject"; g4="$goal" ;;
             esac
           }
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION1"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION2"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION3"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION4"
           case "$count" in
             0) recommendation_text="" ;;
             1)
@@ -8644,18 +8674,18 @@ matches:
             3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
             4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
           esac
-          therapy="$ESPANSO_HPI_CURRENT_THERAPY"
-          if [ "$therapy" = "other" ]; then therapy="$ESPANSO_HPI_CUSTOM_THERAPY"; fi
-          if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+          therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+          if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
+          if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
             printf "%s" "$recommendation_text"
           else
-            therapy_text="Additionally, patient $ESPANSO_HPI_THERAPY_STATUS $therapy ($ESPANSO_HPI_FREQUENCY""x/week), citing $ESPANSO_HPI_RELIEF relief."
+            therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy ($ESPANSO_PLAN_INFO_FREQUENCY""x/week), citing $ESPANSO_PLAN_INFO_RELIEF relief."
             if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
           fi
         shell: bash
   - trigger: .fficpostpro
     replace: |
-      Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{hpi.procedure_date}}, citing {{hpi.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+      Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
     vars:
     - name: output
       type: shell
@@ -8663,7 +8693,7 @@ matches:
         cmd: |-
           date +'%m-%d-%Y'
         shell: bash
-    - name: hpi
+    - name: procedure_info
       type: form
       params:
         layout: |-
@@ -8675,40 +8705,6 @@ matches:
           [[procedure_date]]
           Procedure response/result:
           [[procedure_response]]
-          Primary pain area:
-          [[pain1]]
-          Additional pain area 1:
-          [[pain2]]
-          Additional pain area 2:
-          [[pain3]]
-          Additional pain area 3:
-          [[pain4]]
-          Custom pain area (used only when "other/custom" is selected):
-          [[custom_pain]]
-          Pain status:
-          [[pain_status]]
-          Limitation:
-          [[limitation]]
-          Recommendation 1:
-          [[recommendation1]]
-          Recommendation 2:
-          [[recommendation2]]
-          Recommendation 3:
-          [[recommendation3]]
-          Recommendation 4:
-          [[recommendation4]]
-          Referral to (used only when "referral" is selected):
-          [[referral_target]]
-          Current conservative therapy:
-          [[current_therapy]]
-          Other therapy (used only when "other" is selected):
-          [[custom_therapy]]
-          Therapy status:
-          [[therapy_status]]
-          Frequency per week:
-          [[frequency]]
-          Relief from therapy:
-          [[relief]]
         fields:
           procedure:
             type: choice
@@ -8724,6 +8720,25 @@ matches:
             - moderate relief
             - minimal relief
             - minor relief
+    - name: pain_info
+      type: form
+      params:
+        layout: |-
+          Primary pain area:
+          [[pain1]]
+          Additional pain area 1:
+          [[pain2]]
+          Additional pain area 2:
+          [[pain3]]
+          Additional pain area 3:
+          [[pain4]]
+          Custom pain area (used only when "other/custom" is selected):
+          [[custom_pain]]
+          Pain status:
+          [[pain_status]]
+          Limitation:
+          [[limitation]]
+        fields:
           pain1:
             type: choice
             values:
@@ -8793,6 +8808,31 @@ matches:
             - overall range of motion
             - functional mobility
             - daily functioning
+    - name: plan_info
+      type: form
+      params:
+        layout: |-
+          Recommendation 1:
+          [[recommendation1]]
+          Recommendation 2:
+          [[recommendation2]]
+          Recommendation 3:
+          [[recommendation3]]
+          Recommendation 4:
+          [[recommendation4]]
+          Referral to (used only when "referral" is selected):
+          [[referral_target]]
+          Current conservative therapy:
+          [[current_therapy]]
+          Other therapy (used only when "other" is selected):
+          [[custom_therapy]]
+          Therapy status:
+          [[therapy_status]]
+          Frequency per week:
+          [[frequency]]
+          Relief from therapy:
+          [[relief]]
+        fields:
           recommendation1:
             type: choice
             values: *id001
@@ -8848,7 +8888,7 @@ matches:
       type: shell
       params:
         cmd: |-
-          if [ "$ESPANSO_HPI_PROCEDURE" = "other/custom" ]; then printf "%s" "$ESPANSO_HPI_CUSTOM_PROCEDURE"; else printf "%s" "$ESPANSO_HPI_PROCEDURE"; fi
+          if [ "$ESPANSO_PROCEDURE_INFO_PROCEDURE" = "other/custom" ]; then printf "%s" "$ESPANSO_PROCEDURE_INFO_CUSTOM_PROCEDURE"; else printf "%s" "$ESPANSO_PROCEDURE_INFO_PROCEDURE"; fi
         shell: bash
     - name: pain_list
       type: shell
@@ -8859,7 +8899,7 @@ matches:
             item="$1"
             [ "$item" = "none" ] && return
             [ -z "$item" ] && return
-            [ "$item" = "other/custom" ] && item="$ESPANSO_HPI_CUSTOM_PAIN"
+            [ "$item" = "other/custom" ] && item="$ESPANSO_PAIN_INFO_CUSTOM_PAIN"
             case "|$seen|" in *"|$item|"*) return ;; esac
             seen="${seen}|${item}"
             count=$((count + 1))
@@ -8870,10 +8910,10 @@ matches:
               4) p4="$item" ;;
             esac
           }
-          add_pain "$ESPANSO_HPI_PAIN1"
-          add_pain "$ESPANSO_HPI_PAIN2"
-          add_pain "$ESPANSO_HPI_PAIN3"
-          add_pain "$ESPANSO_HPI_PAIN4"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN1"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN2"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN3"
+          add_pain "$ESPANSO_PAIN_INFO_PAIN4"
           case "$count" in
             0) printf "%s" "XXX" ;;
             1) printf "%s" "$p1" ;;
@@ -8887,7 +8927,7 @@ matches:
       params:
         cmd: |
           count=0
-          procedure="$ESPANSO_HPI_PROCEDURE"
+          procedure="$ESPANSO_PROCEDURE_INFO_PROCEDURE"
           is_spinal=0
           case "$procedure" in
             *Cervical*|*Thoracic*|*Lumbar*|*Sacroiliac*) is_spinal=1 ;;
@@ -8905,7 +8945,7 @@ matches:
               medications) subject="medications"; goal="help manage pain" ;;
               conservative) subject="conservative therapies"; goal="help manage pain" ;;
               diagnostics) subject="diagnostics"; goal="further evaluate the patient's condition" ;;
-              referral) subject="referral to $ESPANSO_HPI_REFERRAL_TARGET"; goal="further evaluate the patient's condition" ;;
+              referral) subject="referral to $ESPANSO_PLAN_INFO_REFERRAL_TARGET"; goal="further evaluate the patient's condition" ;;
             esac
             count=$((count + 1))
             case "$count" in
@@ -8915,10 +8955,10 @@ matches:
               4) s4="$subject"; g4="$goal" ;;
             esac
           }
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION1"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION2"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION3"
-          add_recommendation "$ESPANSO_HPI_RECOMMENDATION4"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION1"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION2"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION3"
+          add_recommendation "$ESPANSO_PLAN_INFO_RECOMMENDATION4"
           case "$count" in
             0) recommendation_text="" ;;
             1)
@@ -8927,12 +8967,12 @@ matches:
             3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
             4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
           esac
-          therapy="$ESPANSO_HPI_CURRENT_THERAPY"
-          if [ "$therapy" = "other" ]; then therapy="$ESPANSO_HPI_CUSTOM_THERAPY"; fi
-          if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+          therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+          if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
+          if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
             printf "%s" "$recommendation_text"
           else
-            therapy_text="Additionally, patient $ESPANSO_HPI_THERAPY_STATUS $therapy ($ESPANSO_HPI_FREQUENCY""x/week), citing $ESPANSO_HPI_RELIEF relief."
+            therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy ($ESPANSO_PLAN_INFO_FREQUENCY""x/week), citing $ESPANSO_PLAN_INFO_RELIEF relief."
             if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
           fi
         shell: bash
