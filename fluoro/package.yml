@@ -11241,9 +11241,22 @@ matches:
           format_list() { count="$1"; shift; case "$count" in 0) printf "" ;; 1) printf "%s" "$1" ;; 2) printf "%s and %s" "$1" "$2" ;; 3) printf "%s, %s, and %s" "$1" "$2" "$3" ;; 4) printf "%s, %s, %s, and %s" "$1" "$2" "$3" "$4" ;; 5) printf "%s, %s, %s, %s, and %s" "$1" "$2" "$3" "$4" "$5" ;; 6) printf "%s, %s, %s, %s, %s, and %s" "$1" "$2" "$3" "$4" "$5" "$6" ;; esac; }
           build_list() { count=0; seen=""; for item in "$@"; do [ -z "$item" ] && continue; [ "$item" = "none" ] && continue; case "|$seen|" in *"|$item|"*) continue ;; esac; seen="${seen}|${item}"; count=$((count+1)); printf -v "v$count" '%s' "$item"; done; format_list "$count" "$v1" "$v2" "$v3" "$v4" "$v5" "$v6"; }
           suffix() { case "$1" in none|"") printf "" ;; *) printf " with %s" "$1" ;; esac; }
-          # Pattern and imaging together determine spinal pain wording. Traveling always uses traveling wording; axial uses axial wording with MRI and some-radiation wording without MRI.
-          imaging=0
-          for m in "$ESPANSO_NP4_MRI1" "$ESPANSO_NP4_MRI2" "$ESPANSO_NP4_MRI3" "$ESPANSO_NP4_MRI4"; do [ "$m" != "none" ] && [ -n "$m" ] && imaging=1; done
+          # Each spinal area uses only its own MRI status. Traveling always uses traveling wording; axial uses axial wording only when the corresponding spinal MRI is present, otherwise some-radiation wording.
+          cervical_mri=0; thoracic_mri=0; lumbar_mri=0
+          for m in "$ESPANSO_NP4_MRI1" "$ESPANSO_NP4_MRI2" "$ESPANSO_NP4_MRI3" "$ESPANSO_NP4_MRI4"; do
+            case "$m" in
+              Cervical) cervical_mri=1 ;;
+              Thoracic) thoracic_mri=1 ;;
+              Lumbar) lumbar_mri=1 ;;
+              other/custom)
+                case "$ESPANSO_NP4_CUSTOM_MRI" in
+                  *Cervical*|*cervical*) cervical_mri=1 ;;
+                  *Thoracic*|*thoracic*) thoracic_mri=1 ;;
+                  *Lumbar*|*lumbar*) lumbar_mri=1 ;;
+                esac
+                ;;
+            esac
+          done
           neck_dest="$(build_list "$ESPANSO_NP1_NECK_RADIATION1" "$ESPANSO_NP1_NECK_RADIATION2" "$ESPANSO_NP1_NECK_RADIATION3" "$ESPANSO_NP1_NECK_RADIATION4")"
           low_dest="$(build_list "$ESPANSO_NP2_LOW_RADIATION1" "$ESPANSO_NP2_LOW_RADIATION2" "$ESPANSO_NP2_LOW_RADIATION3" "$ESPANSO_NP2_LOW_RADIATION4")"
           neck_suffix="$(suffix "$ESPANSO_NP1_NECK_RADIATION_SYMPTOMS")"; mid_suffix="$(suffix "$ESPANSO_NP2_MID_RADIATION_SYMPTOMS")"; low_suffix="$(suffix "$ESPANSO_NP2_LOW_RADIATION_SYMPTOMS")"
@@ -11264,21 +11277,21 @@ matches:
           if [ "$ESPANSO_NP1_INCLUDE_NECK" = "yes" ]; then
            d="$ESPANSO_NP1_NECK_DESCRIPTOR"
            if [ "$ESPANSO_NP1_NECK_PATTERN" = "traveling" ]; then first="Patient describes his neck pain as $d and traveling to his $neck_dest in a radicular fashion$neck_suffix, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro"; lower="patient describes his neck pain as $d and traveling to his $neck_dest in a radicular fashion$neck_suffix, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro";
-           elif [ "$imaging" -eq 1 ]; then first="Patient describes his neck pain as $d and axial$neck_suffix, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro"; lower="patient describes his neck pain as $d and axial$neck_suffix, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro";
+           elif [ "$cervical_mri" -eq 1 ]; then first="Patient describes his neck pain as $d and axial$neck_suffix, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro"; lower="patient describes his neck pain as $d and axial$neck_suffix, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro";
            else first="Patient describes his neck pain as $d and notes some radiation to his $neck_dest$neck_suffix, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro"; lower="patient describes his neck pain as $d and notes some radiation to his $neck_dest$neck_suffix, noting that the pain limits his $ESPANSO_NP1_NECK_LIMITATION.$neuro"; fi
            append_section "$first" "$lower"
           fi
           if [ "$ESPANSO_NP2_INCLUDE_MID_BACK" = "yes" ]; then
            d="$ESPANSO_NP2_MID_DESCRIPTOR"; dest="$ESPANSO_NP2_MID_DESTINATION"
            if [ "$ESPANSO_NP2_MID_PATTERN" = "traveling" ]; then phrase="$d and traveling to his $dest";
-           elif [ "$imaging" -eq 1 ]; then phrase="$d and axial";
+           elif [ "$thoracic_mri" -eq 1 ]; then phrase="$d and axial";
            else phrase="$d and notes some radiation to his $dest"; fi
            append_section "Patient describes his mid-back pain as $phrase$mid_suffix, citing that the pain interferes with his $ESPANSO_NP2_MID_LIMITATION." "patient describes his mid-back pain as $phrase$mid_suffix, citing that the pain interferes with his $ESPANSO_NP2_MID_LIMITATION."
           fi
           if [ "$ESPANSO_NP2_INCLUDE_LOW_BACK" = "yes" ]; then
            d="$ESPANSO_NP2_LOW_DESCRIPTOR"
            if [ "$ESPANSO_NP2_LOW_PATTERN" = "traveling" ]; then first="Patient characterizes his low back pain as $d and traveling to his $low_dest in a radicular fashion$low_suffix, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION."; lower="patient characterizes his low back pain as $d and traveling to his $low_dest in a radicular fashion$low_suffix, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION.";
-           elif [ "$imaging" -eq 1 ]; then first="Patient characterizes his low back pain as $d and axial$low_suffix, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION."; lower="patient characterizes his low back pain as $d and axial$low_suffix, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION.";
+           elif [ "$lumbar_mri" -eq 1 ]; then first="Patient characterizes his low back pain as $d and axial$low_suffix, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION."; lower="patient characterizes his low back pain as $d and axial$low_suffix, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION.";
            else first="Patient characterizes his low back pain as $d and notes some radiation to his $low_dest$low_suffix, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION."; lower="patient characterizes his low back pain as $d and notes some radiation to his $low_dest$low_suffix, stating that the pain affects his $ESPANSO_NP2_LOW_LIMITATION."; fi
            [ -n "$qol" ] && first="$first $qol" && lower="$lower $qol"; append_section "$first" "$lower"
           fi
@@ -11999,9 +12012,22 @@ matches:
           format_list() { count="$1"; shift; case "$count" in 0) printf "" ;; 1) printf "%s" "$1" ;; 2) printf "%s and %s" "$1" "$2" ;; 3) printf "%s, %s, and %s" "$1" "$2" "$3" ;; 4) printf "%s, %s, %s, and %s" "$1" "$2" "$3" "$4" ;; 5) printf "%s, %s, %s, %s, and %s" "$1" "$2" "$3" "$4" "$5" ;; 6) printf "%s, %s, %s, %s, %s, and %s" "$1" "$2" "$3" "$4" "$5" "$6" ;; esac; }
           build_list() { count=0; seen=""; for item in "$@"; do [ -z "$item" ] && continue; [ "$item" = "none" ] && continue; case "|$seen|" in *"|$item|"*) continue ;; esac; seen="${seen}|${item}"; count=$((count+1)); printf -v "v$count" '%s' "$item"; done; format_list "$count" "$v1" "$v2" "$v3" "$v4" "$v5" "$v6"; }
           suffix() { case "$1" in none|"") printf "" ;; *) printf " with %s" "$1" ;; esac; }
-          # Pattern and imaging together determine spinal pain wording. Traveling always uses traveling wording; axial uses axial wording with MRI and some-radiation wording without MRI.
-          imaging=0
-          for m in "$ESPANSO_NP4_MRI1" "$ESPANSO_NP4_MRI2" "$ESPANSO_NP4_MRI3" "$ESPANSO_NP4_MRI4"; do [ "$m" != "none" ] && [ -n "$m" ] && imaging=1; done
+          # Each spinal area uses only its own MRI status. Traveling always uses traveling wording; axial uses axial wording only when the corresponding spinal MRI is present, otherwise some-radiation wording.
+          cervical_mri=0; thoracic_mri=0; lumbar_mri=0
+          for m in "$ESPANSO_NP4_MRI1" "$ESPANSO_NP4_MRI2" "$ESPANSO_NP4_MRI3" "$ESPANSO_NP4_MRI4"; do
+            case "$m" in
+              Cervical) cervical_mri=1 ;;
+              Thoracic) thoracic_mri=1 ;;
+              Lumbar) lumbar_mri=1 ;;
+              other/custom)
+                case "$ESPANSO_NP4_CUSTOM_MRI" in
+                  *Cervical*|*cervical*) cervical_mri=1 ;;
+                  *Thoracic*|*thoracic*) thoracic_mri=1 ;;
+                  *Lumbar*|*lumbar*) lumbar_mri=1 ;;
+                esac
+                ;;
+            esac
+          done
           neck_dest="$(build_list "$ESPANSO_NP1_NECK_RADIATION1" "$ESPANSO_NP1_NECK_RADIATION2" "$ESPANSO_NP1_NECK_RADIATION3" "$ESPANSO_NP1_NECK_RADIATION4")"
           low_dest="$(build_list "$ESPANSO_NP2_LOW_RADIATION1" "$ESPANSO_NP2_LOW_RADIATION2" "$ESPANSO_NP2_LOW_RADIATION3" "$ESPANSO_NP2_LOW_RADIATION4")"
           neck_suffix="$(suffix "$ESPANSO_NP1_NECK_RADIATION_SYMPTOMS")"; mid_suffix="$(suffix "$ESPANSO_NP2_MID_RADIATION_SYMPTOMS")"; low_suffix="$(suffix "$ESPANSO_NP2_LOW_RADIATION_SYMPTOMS")"
@@ -12022,21 +12048,21 @@ matches:
           if [ "$ESPANSO_NP1_INCLUDE_NECK" = "yes" ]; then
            d="$ESPANSO_NP1_NECK_DESCRIPTOR"
            if [ "$ESPANSO_NP1_NECK_PATTERN" = "traveling" ]; then first="Patient describes her neck pain as $d and traveling to her $neck_dest in a radicular fashion$neck_suffix, noting that the pain limits her $ESPANSO_NP1_NECK_LIMITATION.$neuro"; lower="patient describes her neck pain as $d and traveling to her $neck_dest in a radicular fashion$neck_suffix, noting that the pain limits her $ESPANSO_NP1_NECK_LIMITATION.$neuro";
-           elif [ "$imaging" -eq 1 ]; then first="Patient describes her neck pain as $d and axial$neck_suffix, noting that the pain limits her $ESPANSO_NP1_NECK_LIMITATION.$neuro"; lower="patient describes her neck pain as $d and axial$neck_suffix, noting that the pain limits her $ESPANSO_NP1_NECK_LIMITATION.$neuro";
+           elif [ "$cervical_mri" -eq 1 ]; then first="Patient describes her neck pain as $d and axial$neck_suffix, noting that the pain limits her $ESPANSO_NP1_NECK_LIMITATION.$neuro"; lower="patient describes her neck pain as $d and axial$neck_suffix, noting that the pain limits her $ESPANSO_NP1_NECK_LIMITATION.$neuro";
            else first="Patient describes her neck pain as $d and notes some radiation to her $neck_dest$neck_suffix, noting that the pain limits her $ESPANSO_NP1_NECK_LIMITATION.$neuro"; lower="patient describes her neck pain as $d and notes some radiation to her $neck_dest$neck_suffix, noting that the pain limits her $ESPANSO_NP1_NECK_LIMITATION.$neuro"; fi
            append_section "$first" "$lower"
           fi
           if [ "$ESPANSO_NP2_INCLUDE_MID_BACK" = "yes" ]; then
            d="$ESPANSO_NP2_MID_DESCRIPTOR"; dest="$ESPANSO_NP2_MID_DESTINATION"
            if [ "$ESPANSO_NP2_MID_PATTERN" = "traveling" ]; then phrase="$d and traveling to her $dest";
-           elif [ "$imaging" -eq 1 ]; then phrase="$d and axial";
+           elif [ "$thoracic_mri" -eq 1 ]; then phrase="$d and axial";
            else phrase="$d and notes some radiation to her $dest"; fi
            append_section "Patient describes her mid-back pain as $phrase$mid_suffix, citing that the pain interferes with her $ESPANSO_NP2_MID_LIMITATION." "patient describes her mid-back pain as $phrase$mid_suffix, citing that the pain interferes with her $ESPANSO_NP2_MID_LIMITATION."
           fi
           if [ "$ESPANSO_NP2_INCLUDE_LOW_BACK" = "yes" ]; then
            d="$ESPANSO_NP2_LOW_DESCRIPTOR"
            if [ "$ESPANSO_NP2_LOW_PATTERN" = "traveling" ]; then first="Patient characterizes her low back pain as $d and traveling to her $low_dest in a radicular fashion$low_suffix, stating that the pain affects her $ESPANSO_NP2_LOW_LIMITATION."; lower="patient characterizes her low back pain as $d and traveling to her $low_dest in a radicular fashion$low_suffix, stating that the pain affects her $ESPANSO_NP2_LOW_LIMITATION.";
-           elif [ "$imaging" -eq 1 ]; then first="Patient characterizes her low back pain as $d and axial$low_suffix, stating that the pain affects her $ESPANSO_NP2_LOW_LIMITATION."; lower="patient characterizes her low back pain as $d and axial$low_suffix, stating that the pain affects her $ESPANSO_NP2_LOW_LIMITATION.";
+           elif [ "$lumbar_mri" -eq 1 ]; then first="Patient characterizes her low back pain as $d and axial$low_suffix, stating that the pain affects her $ESPANSO_NP2_LOW_LIMITATION."; lower="patient characterizes her low back pain as $d and axial$low_suffix, stating that the pain affects her $ESPANSO_NP2_LOW_LIMITATION.";
            else first="Patient characterizes her low back pain as $d and notes some radiation to her $low_dest$low_suffix, stating that the pain affects her $ESPANSO_NP2_LOW_LIMITATION."; lower="patient characterizes her low back pain as $d and notes some radiation to her $low_dest$low_suffix, stating that the pain affects her $ESPANSO_NP2_LOW_LIMITATION."; fi
            [ -n "$qol" ] && first="$first $qol" && lower="$lower $qol"; append_section "$first" "$lower"
           fi
