@@ -5153,7 +5153,7 @@ matches:
     OUTCOME: Patient tolerated procedure well and was moved to recovery for further monitoring. Patient's vitals were stable and continuously monitored for 30 minutes post-procedure. Patient was then discharged after confirmation of a driver present for patient's transportation.
 - trigger: .mmfol
   replace: |
-    Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. {{plan_text}} No other changes to patient's pain at this time.
   vars:
   - name: output
     type: shell
@@ -5422,18 +5422,18 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_HPI_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_HPI_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_HPI_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
 - trigger: .fffol
   replace: |
-    Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    Interval {{output}}: XXX presents today for a tele-health follow-up appointment. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. {{plan_text}} No other changes to patient's pain at this time.
   vars:
   - name: output
     type: shell
@@ -5702,18 +5702,18 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_HPI_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_HPI_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_HPI_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
 - trigger: .mmicfol
   replace: |
-    Interval {{output}}: XXX presents today for a in-clinic follow-up appointment. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    Interval {{output}}: XXX presents today for a in-clinic follow-up appointment. Patient reports that his {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting his {{hpi.limitation}}. {{plan_text}} No other changes to patient's pain at this time.
   vars:
   - name: output
     type: shell
@@ -5982,18 +5982,18 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_HPI_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_HPI_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_HPI_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
 - trigger: .fficfol
   replace: |
-    Interval {{output}}: XXX presents today for a in-clinic follow-up appointment. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    Interval {{output}}: XXX presents today for a in-clinic follow-up appointment. Patient reports that her {{pain_list}} pain continues to be present and {{hpi.pain_status}}, citing the pain as limiting her {{hpi.limitation}}. {{plan_text}} No other changes to patient's pain at this time.
   vars:
   - name: output
     type: shell
@@ -6262,17 +6262,17 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_HPI_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_HPI_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_HPI_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
 - trigger: .mmdiagrev
-  replace: 'Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
+  replace: 'Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
   vars:
   - name: output
     type: shell
@@ -6636,13 +6636,13 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
   - name: mri_list
@@ -6696,7 +6696,7 @@ matches:
         esac
       shell: bash
 - trigger: .ffdiagrev
-  replace: 'Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
+  replace: 'Interval {{output}}: XXX presents today for a tele-health follow-up appointment and diagnostic review. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
   vars:
   - name: output
     type: shell
@@ -7060,13 +7060,13 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
   - name: mri_list
@@ -7120,7 +7120,7 @@ matches:
         esac
       shell: bash
 - trigger: .mmicdiagrev
-  replace: 'Interval {{output}}: XXX presents today for a in-clinic follow-up appointment and diagnostic review. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
+  replace: 'Interval {{output}}: XXX presents today for a in-clinic follow-up appointment and diagnostic review. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
   vars:
   - name: output
     type: shell
@@ -7484,13 +7484,13 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
   - name: mri_list
@@ -7544,7 +7544,7 @@ matches:
         esac
       shell: bash
 - trigger: .fficdiagrev
-  replace: 'Interval {{output}}: XXX presents today for a in-clinic follow-up appointment and diagnostic review. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
+  replace: 'Interval {{output}}: XXX presents today for a in-clinic follow-up appointment and diagnostic review. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
   vars:
   - name: output
     type: shell
@@ -7908,13 +7908,13 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
   - name: mri_list
@@ -7969,7 +7969,7 @@ matches:
       shell: bash
 - trigger: .mmpostpro
   replace: |
-    Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. {{plan_text}} No other changes to patient's pain at this time.
   vars:
   - name: output
     type: shell
@@ -8629,18 +8629,18 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
 - trigger: .ffpostpro
   replace: |
-    Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. {{plan_text}} No other changes to patient's pain at this time.
   vars:
   - name: output
     type: shell
@@ -9300,18 +9300,18 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
 - trigger: .mmicpostpro
   replace: |
-    Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. {{plan_text}} No other changes to patient's pain at this time.
   vars:
   - name: output
     type: shell
@@ -9971,18 +9971,18 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
 - trigger: .fficpostpro
   replace: |
-    Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. As such, {{plan_text}} No other changes to patient's pain at this time.
+    Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. {{plan_text}} No other changes to patient's pain at this time.
   vars:
   - name: output
     type: shell
@@ -10642,17 +10642,17 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
 - trigger: .mmpostdiagrev
-  replace: 'Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
+  replace: 'Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
   vars:
   - name: output
     type: shell
@@ -11419,13 +11419,13 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
   - name: mri_list
@@ -11479,7 +11479,7 @@ matches:
         esac
       shell: bash
 - trigger: .ffpostdiagrev
-  replace: 'Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
+  replace: 'Interval {{output}}: XXX presents today for a tele-health post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
   vars:
   - name: output
     type: shell
@@ -12246,13 +12246,13 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
   - name: mri_list
@@ -12306,7 +12306,7 @@ matches:
         esac
       shell: bash
 - trigger: .mmicpostdiagrev
-  replace: 'Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
+  replace: 'Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that his {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting his {{pain_info.limitation}}. {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
   vars:
   - name: output
     type: shell
@@ -13073,13 +13073,13 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
   - name: mri_list
@@ -13133,7 +13133,7 @@ matches:
         esac
       shell: bash
 - trigger: .fficpostdiagrev
-  replace: 'Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. As such, {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
+  replace: 'Interval {{output}}: XXX presents today for a in-clinic post-procedure follow-up appointment and diagnostic review. Patient received a {{procedure_text}} on {{procedure_info.procedure_date}}, citing {{procedure_info.procedure_response}}. Patient reports that her {{pain_list}} pain continues to be present and {{pain_info.pain_status}}, citing the pain as limiting her {{pain_info.limitation}}. {{plan_text}} A significant portion of today''s visit was spent reviewing patient''s {{mri_list}} reports. No other changes to patient''s pain at this time.'
   vars:
   - name: output
     type: shell
@@ -13900,13 +13900,13 @@ matches:
           fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
           printf "%s" "$fallback_text"
         elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
-          printf "%s" "$recommendation_text"
+          printf "As such, %s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
             freq_text=""
             if [ -n "$freq" ] && [ "$freq" != "N/A" ]; then freq_text=" ($freq)"; fi
             therapy_text="Additionally, patient $ESPANSO_PLAN_INFO_THERAPY_STATUS $therapy$freq_text, citing $ESPANSO_PLAN_INFO_RELIEF relief."
-          if [ -n "$recommendation_text" ]; then printf "%s %s" "$recommendation_text" "$therapy_text"; else printf "%s" "$therapy_text"; fi
+          if [ -n "$recommendation_text" ]; then printf "As such, %s %s" "$recommendation_text" "$therapy_text"; else printf "As such, %s" "$therapy_text"; fi
         fi
       shell: bash
   - name: mri_list
