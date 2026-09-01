@@ -5415,9 +5415,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_HPI_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_HPI_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_HPI_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_HPI_FREQUENCY"
@@ -5691,9 +5695,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_HPI_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_HPI_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_HPI_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_HPI_FREQUENCY"
@@ -5967,9 +5975,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_HPI_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_HPI_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_HPI_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_HPI_FREQUENCY"
@@ -6243,9 +6255,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_HPI_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_HPI_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_HPI_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_HPI_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_HPI_FREQUENCY"
@@ -6613,9 +6629,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
@@ -7033,9 +7053,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
@@ -7453,9 +7477,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
@@ -7873,9 +7901,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
@@ -8590,9 +8622,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
@@ -9257,9 +9293,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
@@ -9924,9 +9964,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
@@ -10591,9 +10635,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
@@ -11364,9 +11412,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
@@ -12187,9 +12239,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
@@ -13010,9 +13066,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate his pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
@@ -13833,9 +13893,13 @@ matches:
           3) recommendation_text="$s1, $s2, and $s3 were discussed to $g1; $g2; and $g3, respectively." ;;
           4) recommendation_text="$s1, $s2, $s3, and $s4 were discussed to $g1; $g2; $g3; and $g4, respectively." ;;
         esac
-        therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        raw_therapy="$ESPANSO_PLAN_INFO_CURRENT_THERAPY"
+        therapy="$raw_therapy"
         if [ "$therapy" = "other" ]; then therapy="$ESPANSO_PLAN_INFO_CUSTOM_THERAPY"; fi
-        if [ "$ESPANSO_PLAN_INFO_CURRENT_THERAPY" = "none" ] || [ -z "$therapy" ]; then
+        if { [ "$raw_therapy" = "none" ] || [ -z "$raw_therapy" ]; } && [ "$count" -eq 0 ]; then
+          fallback_text="Patient performs at-home exercises and stretches to manage pain. Patient is hopeful that current therapies will continue to moderate her pain."
+          printf "%s" "$fallback_text"
+        elif [ "$raw_therapy" = "none" ] || [ -z "$therapy" ]; then
           printf "%s" "$recommendation_text"
         else
           freq="$ESPANSO_PLAN_INFO_FREQUENCY"
