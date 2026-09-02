@@ -1,6 +1,10 @@
 matches:
 - trigger: .td
   replace: Today I administered
+- trigger: .refneuro
+  replace: "-In view of patient’s debilitating XXX, I believe it is medically necessary for patient to consult with an neurologist. Referral provided during today’s visit."
+- trigger: .refmassage
+  replace: "-I believe massage therapy is medically necessary due to patient's debilitating XXX pain. Patient is to go to sessions 1-2 times per week for 6 weeks. Referral was provided during today's visit."
 - trigger: .tol
   replace: Patient tolerated the procedure well and without complication. Discharge instructions were given.
 - trigger: .cesi
