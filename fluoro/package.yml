@@ -15798,5 +15798,8 @@ matches:
         if [ -n "$ESPANSO_MRI_LIST" ]; then printf "\n\n%s" "Pt's paperwork includes: Available images were reviewed with patient today. Impressions can be found under \"Imaging\" section."; fi
         printf "\n\n%s" "Assoc: no bowel or bladder incontinence, no saddle anesthesia, no focal weakness"
 - trigger: .pak
-  replace:      Medrol (Pak) 4 mg tablets in a dose pack #1 Take as directed
-  
+  replace: '     Rx Medrol (Pak) 4 mg tablets in a dose pack #1 Take as directed {{output}}'
+- trigger: .backies
+  replace: '     Rx baclofen 10 mg tablet #60 Take 1 tab BID PRN muscle spasms {{output}}'
+- trigger: .flex
+  replace: '     Rx cyclobenzaprine 10 mg tablet #90 Take 1 tab TID PRN muscle spasms {{output}}'
