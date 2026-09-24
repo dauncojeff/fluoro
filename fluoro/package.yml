@@ -15799,7 +15799,22 @@ matches:
         printf "\n\n%s" "Assoc: no bowel or bladder incontinence, no saddle anesthesia, no focal weakness"
 - trigger: .pak
   replace: '     Rx Medrol (Pak) 4 mg tablets in a dose pack #1 Take as directed {{output}}'
+  vars:
+  - name: output
+    type: shell
+    params:
+      cmd: date +"%m-%d-%Y"
 - trigger: .backies
   replace: '     Rx baclofen 10 mg tablet #60 Take 1 tab BID PRN muscle spasms {{output}}'
+  vars:
+  - name: output
+    type: shell
+    params:
+      cmd: date +"%m-%d-%Y"
 - trigger: .flex
   replace: '     Rx cyclobenzaprine 10 mg tablet #90 Take 1 tab TID PRN muscle spasms {{output}}'
+  vars:
+  - name: output
+    type: shell
+    params:
+      cmd: date +"%m-%d-%Y"
