@@ -15797,3 +15797,6 @@ matches:
         printf "%s" "Goal for today's visit: Evaluate extent of pain levels and discuss treatment options to restore prior levels of functioning and quality of life."
         if [ -n "$ESPANSO_MRI_LIST" ]; then printf "\n\n%s" "Pt's paperwork includes: Available images were reviewed with patient today. Impressions can be found under \"Imaging\" section."; fi
         printf "\n\n%s" "Assoc: no bowel or bladder incontinence, no saddle anesthesia, no focal weakness"
+- trigger: .pak
+  replace:      Medrol (Pak) 4 mg tablets in a dose pack #1 Take as directed
+  
