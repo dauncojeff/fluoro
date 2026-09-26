@@ -15819,4 +15819,4 @@ matches:
     params:
       cmd: date +"%m-%d-%Y"
 - trigger: .refmassage
-  replace: -I believe physical therapy is medically necessary due to patient's debilitating XXX pain. Patient is to go to sessions 1-2 times per week for 6 weeks. Referral was provided during today's visit.
+  replace: -I believe massage therapy is medically necessary due to patient's debilitating XXX pain. Patient is to go to sessions 1-2 times per week for 6 weeks. Referral was provided during today's visit.
