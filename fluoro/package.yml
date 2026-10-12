@@ -15822,3 +15822,10 @@ matches:
   replace: -I believe massage therapy is medically necessary due to patient's debilitating XXX pain. Patient is to go to sessions 1-2 times per week for 6 weeks. Referral was provided during today's visit.
 - trigger: .refneuro
   replace: -In view of patient’s debilitating XXX, I believe it is medically necessary for patient to consult with a neurologist. Referral provided during today’s visit.
+- trigger: .cp
+  replace: -Patient completed physical therapy (reported on {{output}})
+  vars:
+  - name: output
+    type: shell
+    params:
+      cmd: date +'%m-%d-%Y'
